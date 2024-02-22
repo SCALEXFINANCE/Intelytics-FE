@@ -1,8 +1,7 @@
 import { Search } from "lucide-react";
 import React, { useState } from "react";
 import Image from "next/image";
-import OverviewTable from "@/components/OverviewTable";
-import { DataTableDemo } from "@/components/TestTable";
+import { OverviewTable } from "@/components/OverviewTable";
 const overview = () => {
   const [selected, setSelected] = useState<string>("all");
 
@@ -66,9 +65,7 @@ const overview = () => {
       </div>
 
       {/* table options */}
-
-      {/* <OverviewTable /> */}
-      <DataTableDemo />
+      <OverviewTable />
     </div>
   );
 };

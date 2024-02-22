@@ -44,38 +44,46 @@ import {
 const data: Coin[] = [
   {
     name: "Dojo Swap",
-    category: "Dex",
+    protocol: 124,
+    address: 0,
     tvl: 23.4,
-    onedaychange: 23.4,
-    sevendaychange: 66.4,
-    onemonthchange: 29.1,
+    "1 Hour Change": 23.4,
+    "24 Hours Change": 66.4,
+    "7 Days Change": 29.1,
+    stakes: 0,
     volume: 25.2,
   },
   {
     name: "Astroport",
-    category: "Dex",
+    protocol: 76,
+    address: 0,
     tvl: 21.4,
-    onedaychange: 23.4,
-    sevendaychange: 77.4,
-    onemonthchange: 30.1,
+    "1 Hour Change": 23.4,
+    "24 Hours Change": 77.4,
+    "7 Days Change": 30.1,
+    stakes: 0,
     volume: 22.1,
   },
   {
     name: "Helix",
-    category: "Deriviative",
+    protocol: 981,
+    address: 0,
     tvl: 21.4,
-    onedaychange: 23.4,
-    sevendaychange: 77.4,
-    onemonthchange: 30.1,
+    "1 Hour Change": 23.4,
+    "24 Hours Change": 77.4,
+    "7 Days Change": 30.1,
+    stakes: 0,
     volume: 22.1,
   },
   {
     name: "Hydro",
-    category: "Liquid Stacking",
+    protocol: 23,
+    address: 0,
     tvl: 21.4,
-    onedaychange: 23.4,
-    sevendaychange: 77.4,
-    onemonthchange: 30.1,
+    "1 Hour Change": 23.4,
+    "24 Hours Change": 77.4,
+    "7 Days Change": 30.1,
+    stakes: 0,
     volume: 22.1,
   },
   // ...
@@ -83,11 +91,13 @@ const data: Coin[] = [
 
 export type Coin = {
   name: string;
-  category: string;
+  protocol: number;
+  address: number;
   tvl: number;
-  onedaychange: number;
-  sevendaychange: number;
-  onemonthchange: number;
+  "1 Hour Change": number;
+  "24 Hours Change": number;
+  "7 Days Change": number;
+  stakes: number;
   volume: number;
 };
 
@@ -118,15 +128,62 @@ export const columns: ColumnDef<Coin>[] = [
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => (
-      <div className="capitalize text-teal-500">{row.getValue("name")}</div>
+      <div className=" flex gap-2 items-center">
+        <Image
+          alt=""
+          src={`/${row.getValue("name")}.jpg`}
+          width={30}
+          height={30}
+          className=" rounded"
+        />
+
+        <div className="capitalize text-teal-500">{row.getValue("name")}</div>
+      </div>
     ),
   },
   {
-    accessorKey: "category",
-    header: "Category",
-    cell: ({ row }) => (
-      <div className="capitalize text-teal-500">{row.getValue("category")}</div>
-    ),
+    accessorKey: "protocol",
+    header: ({ column }) => {
+      return (
+        <Button
+          className="bg-transparent"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Protocol
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+
+    cell: ({ row }) => {
+      return (
+        <div className=" text-center text-teal-500 font-medium">
+          {row.getValue("protocol")}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "address",
+    header: ({ column }) => {
+      return (
+        <Button
+          className="bg-transparent"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Address
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+
+    cell: ({ row }) => {
+      return (
+        <div className=" text-center font-medium">
+          {row.getValue("address")}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "tvl",
@@ -151,24 +208,24 @@ export const columns: ColumnDef<Coin>[] = [
         currency: "USD",
       }).format(amount);
 
-      return <div className="font-medium">{formatted}</div>;
+      return <div className=" text-center font-medium">{formatted}</div>;
     },
   },
   {
-    accessorKey: "change",
+    accessorKey: "1 Hour Change",
     header: ({ column }) => {
       return (
         <Button
           className="bg-transparent"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          1d Change
+          1 Hour Change
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("onedaychange"));
+      const amount = parseFloat(row.getValue("1 Hour Change"));
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
@@ -176,24 +233,24 @@ export const columns: ColumnDef<Coin>[] = [
         currency: "USD",
       }).format(amount);
 
-      return <div className="  font-medium">{formatted}</div>;
+      return <div className=" text-center font-medium">{formatted}</div>;
     },
   },
   {
-    accessorKey: "sevendaychange",
+    accessorKey: "24 Hours Change",
     header: ({ column }) => {
       return (
         <Button
           className="bg-transparent"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          7d Change
+          24 Hours Change
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("sevendaychange"));
+      const amount = parseFloat(row.getValue("24 Hours Change"));
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
@@ -201,24 +258,24 @@ export const columns: ColumnDef<Coin>[] = [
         currency: "USD",
       }).format(amount);
 
-      return <div className="  font-medium">{formatted}</div>;
+      return <div className=" text-center font-medium">{formatted}</div>;
     },
   },
   {
-    accessorKey: "onemonthchange",
+    accessorKey: "7 Days Change",
     header: ({ column }) => {
       return (
         <Button
           className="bg-transparent"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          1m Change
+          7 Days Change
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("onemonthchange"));
+      const amount = parseFloat(row.getValue("7 Days Change"));
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
@@ -226,7 +283,27 @@ export const columns: ColumnDef<Coin>[] = [
         currency: "USD",
       }).format(amount);
 
-      return <div className="  font-medium">{formatted}</div>;
+      return <div className=" text-center font-medium">{formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "stakes",
+    header: ({ column }) => {
+      return (
+        <Button
+          className="bg-transparent"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Stakes
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+
+    cell: ({ row }) => {
+      return (
+        <div className=" text-center font-medium">{row.getValue("stakes")}</div>
+      );
     },
   },
   {
@@ -251,7 +328,7 @@ export const columns: ColumnDef<Coin>[] = [
         currency: "USD",
       }).format(amount);
 
-      return <div className="  font-medium">{formatted}</div>;
+      return <div className=" text-center font-medium">{formatted}</div>;
     },
   },
   //   {
@@ -285,7 +362,7 @@ export const columns: ColumnDef<Coin>[] = [
   //   },
 ];
 
-export function DataTableDemo() {
+export function ChainsTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -335,6 +412,7 @@ export function DataTableDemo() {
                   .getAllColumns()
                   .filter((column) => column.getCanHide())
                   .map((column) => {
+                    // console.log(column.)
                     return (
                       <DropdownMenuCheckboxItem
                         key={column.id}
@@ -367,7 +445,7 @@ export function DataTableDemo() {
                   //   column.toggleVisibility(!!value)
                   // }
                 >
-                  24hrs
+                  1 Hr
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem
                   key={2}
@@ -377,7 +455,7 @@ export function DataTableDemo() {
                   //   column.toggleVisibility(!!value)
                   // }
                 >
-                  1D
+                  24 Hrs
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem
                   key={3}
@@ -387,20 +465,12 @@ export function DataTableDemo() {
                   //   column.toggleVisibility(!!value)
                   // }
                 >
-                  30 D
+                  7 D
                 </DropdownMenuCheckboxItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
-        {/* <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm bg-black"
-        /> */}
       </div>
       <div className="rounded-md border">
         <Table>
@@ -452,30 +522,6 @@ export function DataTableDemo() {
           </TableBody>
         </Table>
       </div>
-      {/* <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
-      </div> */}
     </div>
   );
 }
