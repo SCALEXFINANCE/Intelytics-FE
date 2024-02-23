@@ -138,7 +138,7 @@ export function OverviewTable() {
             className=" rounded"
           />
 
-          <div className="capitalize text-teal-500">{row.getValue("name")}</div>
+          <div className="capitalize text-white">{row.getValue("name")}</div>
         </div>
       ),
     },
@@ -146,7 +146,7 @@ export function OverviewTable() {
       accessorKey: "category",
       header: "Category",
       cell: ({ row }) => (
-        <div className="capitalize text-teal-500">
+        <div className="capitalize text-teal-300">
           {row.getValue("category")}
         </div>
       ),
@@ -172,11 +172,11 @@ export function OverviewTable() {
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
         }).format(amount);
 
-        return (
-          <div className=" text-center font-medium">{row.getValue("tvl")}</div>
-        );
+        return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
     {
@@ -202,8 +202,12 @@ export function OverviewTable() {
         }).format(amount);
 
         return (
-          <div className=" text-center font-medium">
-            {row.getValue("1 Hour Change")}
+          <div
+            className={`text-center font-medium  ${
+              amount < 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {row.getValue("1 Hour Change")} %
           </div>
         );
       },
@@ -230,7 +234,15 @@ export function OverviewTable() {
           currency: "USD",
         }).format(amount);
 
-        return <div className=" text-center font-medium">{row.getValue("24 Hours Change")}</div>;
+        return (
+          <div
+            className={`text-center font-medium  ${
+              amount < 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {row.getValue("24 Hours Change")} %
+          </div>
+        );
       },
     },
     {
@@ -255,7 +267,15 @@ export function OverviewTable() {
           currency: "USD",
         }).format(amount);
 
-        return <div className=" text-center font-medium">{row.getValue("7 Days Change")}</div>;
+        return (
+          <div
+            className={`text-center font-medium  ${
+              amount < 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {row.getValue("7 Days Change")} %
+          </div>
+        );
       },
     },
     {
@@ -280,7 +300,11 @@ export function OverviewTable() {
           currency: "USD",
         }).format(amount);
 
-        return <div className=" text-center font-medium">{row.getValue("volume")}</div>;
+        return (
+          <div className=" text-center font-medium">
+            {row.getValue("volume")}
+          </div>
+        );
       },
     },
     //   {
@@ -315,6 +339,8 @@ export function OverviewTable() {
   ];
 
   const [data, setdata] = useState<Coin[]>([]);
+
+  // const [refetch, setRefetch] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -359,15 +385,15 @@ export function OverviewTable() {
         const totalTvlAstro = astro.tvl;
         const oneDayAstro = astro.change_1d;
         const oneHourAstro = astro.change_1h;
-        const sevenDayAstro =astro.change_7d;
+        const sevenDayAstro = astro.change_7d;
 
         const helix = protocols.find(
-          (protocol: { id: string }) => protocol.id === astroportId
+          (protocol: { id: string }) => protocol.id === helixId
         );
         const totalTvlHelix = helix.tvl;
         const oneDayHelix = helix.change_1d;
         const oneHourHelix = helix.change_1h;
-        const sevenDayHelix =helix.change_7d;
+        const sevenDayHelix = helix.change_7d;
 
         const data: Coin[] = [
           {
@@ -390,7 +416,7 @@ export function OverviewTable() {
           },
           {
             name: "Helix",
-            category: "Deriviative",
+            category: "Derivative",
             tvl: Math.round(totalTvlHelix * 100) / 100,
             "1 Hour Change": Math.round(oneDayHelix * 100) / 100,
             "24 Hours Change": Math.round(oneHourHelix * 100) / 100,
@@ -399,7 +425,7 @@ export function OverviewTable() {
           },
           {
             name: "Hydro",
-            category: "Liquid Stacking",
+            category: "Liquid Staking",
             tvl: Math.round(totalTvlHydro * 100) / 100,
             "1 Hour Change": Math.round(oneDayHydro * 100) / 100,
             "24 Hours Change": Math.round(oneHourHydro * 100) / 100,
@@ -414,6 +440,15 @@ export function OverviewTable() {
       }
     };
     fetchData();
+
+    const interval = setInterval(() => {
+      fetchData();
+      // setRefetch(!refetch);
+    }, 30000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const table = useReactTable({
@@ -441,7 +476,7 @@ export function OverviewTable() {
         <div className="bg-black p-3 px-5 rounded-xl flex gap-4 w-full justify-between">
           <div className="flex items-center gap-4">
             <Image src="./protocolranking.svg" alt="" height={30} width={30} />
-            <div className=" font-semibold ">Protocol Ranking</div>
+            <div className=" font-semibold ">Protocol Ranking </div>
           </div>
 
           <div className=" flex gap-4">
@@ -527,12 +562,12 @@ export function OverviewTable() {
       </div>
       <div className="rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader >
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className=" text-white">
                       {header.isPlaceholder
                         ? null
                         : flexRender(

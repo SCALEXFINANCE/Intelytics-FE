@@ -60,9 +60,9 @@ const Sidebar = () => {
               `}
             >
               <Link
-                href={"/overview"}
+                href={"/"}
                 className={`p-2  rounded-md   ${
-                  router.pathname === "/overview"
+                  router.pathname === "/"
                     ? "bg-gray-800 text-white "
                     : ""
                 }`}

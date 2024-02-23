@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-// import { TopProtocolTable } from "@/components/TopProtocolTable";
+import { TopProtocolTable } from "@/components/TopProtocolTable";
 
 const topprotocol = () => {
   return (
@@ -14,10 +14,8 @@ const topprotocol = () => {
       </div>
 
       <div>
-        {/* <TopProtocolTable/> */}
+        <TopProtocolTable />
       </div>
-
-
     </div>
   );
 };
