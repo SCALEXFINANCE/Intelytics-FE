@@ -304,11 +304,7 @@ export function OverviewTable() {
           currency: "USD",
         }).format(amount);
 
-        return (
-          <div className=" text-center font-medium">
-            {row.getValue("volume")}
-          </div>
-        );
+        return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
     //   {
@@ -353,11 +349,14 @@ export function OverviewTable() {
         const response2 = await axios.get(
           "https://api.llama.fi/summary/dexs/astroport?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
         );
+        const response3 = await axios.get(
+          "https://api.llama.fi/summary/dexs/helix?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
+        );
         // Volume API Testing.
         const astroportVolume = response2.data;
-
-        // console.log(astroportVolume);
         const astroport24hVolume = astroportVolume.total24h;
+        const helixVolume = response3.data;
+        const helix24hVolume = helixVolume.total24h;
 
         // console.log(astroport24hVolume);
 
@@ -407,7 +406,7 @@ export function OverviewTable() {
             "1 Hour Change": Math.round(oneDayDojo * 100) / 100,
             "24 Hours Change": Math.round(oneHourDojo * 100) / 100,
             "7 Days Change": Math.round(sevenDayDojo * 100) / 100,
-            volume: 25.2,
+            volume: 0,
           },
           {
             name: "Astroport",
@@ -416,7 +415,7 @@ export function OverviewTable() {
             "1 Hour Change": Math.round(oneDayAstro * 100) / 100,
             "24 Hours Change": Math.round(oneHourAstro * 100) / 100,
             "7 Days Change": Math.round(sevenDayAstro * 100) / 100,
-            volume: 22.1,
+            volume: Math.round(astroport24hVolume * 100) / 100,
           },
           {
             name: "Helix",
@@ -425,7 +424,7 @@ export function OverviewTable() {
             "1 Hour Change": Math.round(oneDayHelix * 100) / 100,
             "24 Hours Change": Math.round(oneHourHelix * 100) / 100,
             "7 Days Change": Math.round(sevenDayHelix * 100) / 100,
-            volume: 22.1,
+            volume: Math.round(helix24hVolume * 100) / 100,
           },
           {
             name: "Hydro",
@@ -434,7 +433,7 @@ export function OverviewTable() {
             "1 Hour Change": Math.round(oneDayHydro * 100) / 100,
             "24 Hours Change": Math.round(oneHourHydro * 100) / 100,
             "7 Days Change": Math.round(sevenDayHydro * 100) / 100,
-            volume: 22.1,
+            volume: 0,
           },
           // ...
         ];

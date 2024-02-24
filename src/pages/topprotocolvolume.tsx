@@ -9,7 +9,8 @@
 // export default topprotocolvolume
 
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Image from "next/image";
 import { ChainsTable } from "@/components/ChainsTable";
 
@@ -27,6 +28,88 @@ const topprotocolvolume = () => {
   const injClicked = () => {
     setSelected("inj");
   };
+
+  const [onehr ,setonehr] = useState()
+  const [oneday ,setoneday] = useState()
+  const [sevday ,setsevday] = useState()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://api.llama.fi/protocols");
+        const response2 = await axios.get(
+          "https://api.llama.fi/summary/dexs/astroport?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
+        );
+        const response3 = await axios.get(
+          "https://api.llama.fi/summary/dexs/helix?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
+        );
+        // Volume API Testing.
+        const astroportVolume = response2.data;
+        const astroport24hVolume = astroportVolume.total24h;
+        const helixVolume = response3.data;
+        const helix24hVolume = helixVolume.total24h;
+
+        // console.log(astroport24hVolume);
+
+        // Protocol (TVL) API Testing.
+        const protocols = response.data;
+        const dojoswapId = "3965";
+        const hydroprotocolId = "4084";
+        const astroportId = "3117";
+        const helixId = "2259";
+        const dojoswap = protocols.find(
+          (protocol: { id: string }) => protocol.id === dojoswapId
+        );
+        const totalTvlDojo = dojoswap.tvl;
+        const oneDayDojo = dojoswap.change_1d;
+        const oneHourDojo = dojoswap.change_1h;
+        const sevenDayDojo = dojoswap.change_7d;
+
+        const hydro = protocols.find(
+          (protocol: { id: string }) => protocol.id === hydroprotocolId
+        );
+        const totalTvlHydro = hydro.tvl;
+        const oneDayHydro = hydro.change_1d;
+        const oneHourHydro = hydro.change_1h;
+        const sevenDayHydro = hydro.change_7d;
+
+        const astro = protocols.find(
+          (protocol: { id: string }) => protocol.id === astroportId
+        );
+        const totalTvlAstro = astro.tvl;
+        const oneDayAstro = astro.change_1d;
+        const oneHourAstro = astro.change_1h;
+        const sevenDayAstro = astro.change_7d;
+
+        const helix = protocols.find(
+          (protocol: { id: string }) => protocol.id === helixId
+        );
+        const totalTvlHelix = helix.tvl;
+        const oneDayHelix = helix.change_1d;
+        const oneHourHelix = helix.change_1h;
+        const sevenDayHelix = helix.change_7d;
+        const onehr = oneHourAstro + oneHourDojo + oneHourHelix + oneHourHydro;
+        const oneDay = oneDayAstro + oneDayDojo + oneDayHelix + oneDayHydro;
+        const sevenday =
+          sevenDayAstro + sevenDayDojo + sevenDayHelix + sevenDayHydro;
+          setonehr(onehr)
+          setoneday(oneDay)
+          setsevday(sevenday)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+
+    const interval = setInterval(() => {
+      fetchData();
+      // setRefetch(!refetch);
+    }, 30000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   return (
     <div className=" flex gap-4 flex-col">
       {/* <div>DEFI-overview</div> */}
@@ -61,19 +144,16 @@ const topprotocolvolume = () => {
         <div className="py-6 px-2 flex gap-4  flex-col w-1/4">
           <div className=" bg-gray-700 p-2 gap-3 rounded-xl">
             <div> Total Volume (24hr)</div>
-            <div>$234,232,232</div>
+            <div>${oneday}</div>
           </div>
-          <div className=" bg-gray-700 p-2 gap-3 rounded-xl">
-            <div> Total Volume (7hr)</div>
-            <div>$234,232,232</div>
-          </div>
+          
           <div className=" bg-gray-700 p-2 gap-3 rounded-xl">
             <div> Total Volume (1hr)</div>
-            <div>$234,232,232</div>
+            <div>${onehr}</div>
           </div>
           <div className=" bg-gray-700 p-2 gap-3 rounded-xl">
             <div> Total Volume (7DAY)</div>
-            <div>$234,232,232</div>
+            <div>${sevday} </div>
           </div>
         </div>
 

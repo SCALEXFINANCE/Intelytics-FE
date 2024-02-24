@@ -110,6 +110,8 @@ const dojoswap = () => {
           <div className=" text-xl pt-1">${sevd}</div>
         </div>
       </div>
+
+      {/* <iframe width="640px" height="360px" src="https://defillama.com/chart/protocol/dojoswap?&theme=dark" title="DefiLlama"  ></iframe> */}
     </div>
   );
 };

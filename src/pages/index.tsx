@@ -4,6 +4,8 @@ import axios from "axios";
 import Image from "next/image";
 import { OverviewTable } from "@/components/OverviewTable";
 import Charted from "@/components/ChartComponent";
+import App from "@/components/TestChart";
+
 const overview = () => {
   const [selected, setSelected] = useState<string>("all");
 
@@ -25,6 +27,7 @@ const overview = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://api.llama.fi/protocols");
+        
 
         // Protocol (TVL) API Testing.
         const protocols = response.data;
@@ -79,6 +82,7 @@ const overview = () => {
     };
   }, []);
 
+ 
   return (
     <div className=" flex gap-4 flex-col">
       {/* <div>DEFI-overview</div> */}
@@ -123,8 +127,10 @@ const overview = () => {
         </div>
 
         {/* right */}
-        <div className=" px-48">
+        {/* <App /> */}
+        <div className="">
           <Charted />
+          {/* <div id="chart"></div> */}
         </div>
       </div>
 
