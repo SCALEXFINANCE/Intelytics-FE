@@ -62,9 +62,7 @@ const Sidebar = () => {
               <Link
                 href={"/"}
                 className={`p-2  rounded-md   ${
-                  router.pathname === "/"
-                    ? "bg-gray-800 text-white "
-                    : ""
+                  router.pathname === "/" ? "bg-gray-800 text-white " : ""
                 }`}
               >
                 Overview
@@ -112,9 +110,11 @@ const Sidebar = () => {
               className=" w-[1.8rem] h-[1.8rem]"
             />
             <Link
-              href={" "}
+              href={"/nft"}
               className={`p-2 rounded-md text-xl text-white font-bold ${
-                router.pathname === " " ? "bg-gray-800 text-white  " : ""
+                router.pathname === "/nft"
+                  ? "bg-gray-800 w-full text-white  "
+                  : ""
               }`}
             >
               NFT
@@ -122,7 +122,7 @@ const Sidebar = () => {
           </div>
 
           {/* lending */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 ">
             <Image
               src="/lending.svg"
               alt=""
@@ -131,9 +131,11 @@ const Sidebar = () => {
               className=" w-[2rem] h-[2.8rem]"
             />
             <Link
-              href={""}
+              href={"/lending"}
               className={`p-2 rounded-md text-xl text-white font-bold ${
-                router.pathname === "" ? "bg-gray-800 text-white  " : ""
+                router.pathname === "/lending"
+                  ? "bg-gray-800 w-full text-white  "
+                  : ""
               }`}
             >
               Lending
@@ -192,7 +194,7 @@ const Sidebar = () => {
           {isOpenTradingBot && (
             <div className="flex  flex-col  pl-7 gap-4  text-lg text-gray-400 animate-fade-down animate-duration-400">
               <Link
-                href={"/portfolio"}
+                href={"/"}
                 className={`p-2 rounded-md ${
                   router.pathname === "/portfolio"
                     ? "bg-gray-800 text-white  "
@@ -202,7 +204,7 @@ const Sidebar = () => {
                 Portfolio
               </Link>
               <Link
-                href={"/activetrades"}
+                href={"/"}
                 className={`p-2 rounded-md ${
                   router.pathname === "/activetrades"
                     ? "bg-gray-800 text-white  "
@@ -212,7 +214,7 @@ const Sidebar = () => {
                 Active Trades
               </Link>
               <Link
-                href={"/sleepertrades"}
+                href={"/"}
                 className={`p-2 rounded-md ${
                   router.pathname === "/sleepertrades"
                     ? "bg-gray-800 text-white  "
@@ -222,7 +224,7 @@ const Sidebar = () => {
                 Sleeper Trades
               </Link>
               <Link
-                href={"/dca"}
+                href={"/"}
                 className={`p-2 rounded-md ${
                   router.pathname === "/dca" ? "bg-gray-800 text-white  " : ""
                 }`}

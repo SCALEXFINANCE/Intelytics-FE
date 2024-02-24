@@ -40,36 +40,36 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 
 const data: CoinTP[] = [
   {
-    name: "Dojo Swap",
+    name: "Dojo-Swap",
     category: "Dex",
-   
+    slug: "dojoswap",
   },
   {
     name: "Astroport",
     category: "Dex",
-  
+    slug: "astroport",
   },
   {
     name: "Helix",
     category: "Deriviative",
- 
-    
+    slug: "helix",
   },
   {
     name: "Hydro",
     category: "Liquid Stacking",
- 
-     
+    slug: "hydro",
   },
   // ...
 ];
 
 export type CoinTP = {
   name: string;
-  category: string
+  category: string;
+  slug: string;
 };
 
 export const columns: ColumnDef<CoinTP>[] = [
@@ -108,7 +108,10 @@ export const columns: ColumnDef<CoinTP>[] = [
           className=" rounded"
         />
 
-        <div className="capitalize text-teal-500">{row.getValue("name")}</div>
+        <Link href={`/${row.getValue("name")}`}>
+          {" "}
+          <div className="capitalize text-white">{row.getValue("name")}</div>
+        </Link>
       </div>
     ),
   },
@@ -116,10 +119,10 @@ export const columns: ColumnDef<CoinTP>[] = [
     accessorKey: "category",
     header: "Category",
     cell: ({ row }) => (
-      <div className="capitalize text-teal-500">{row.getValue("category")}</div>
+      <div className="capitalize text-white">{row.getValue("category")}</div>
     ),
   },
-   
+
   //   {
   //     id: "actions",
   //     enableHiding: false,

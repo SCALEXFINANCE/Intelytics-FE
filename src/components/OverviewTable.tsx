@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
@@ -138,7 +139,10 @@ export function OverviewTable() {
             className=" rounded"
           />
 
-          <div className="capitalize text-white">{row.getValue("name")}</div>
+          <Link href={`/${row.getValue("name")}`}>
+            {" "}
+            <div className="capitalize text-white">{row.getValue("name")}</div>
+          </Link>
         </div>
       ),
     },
@@ -397,7 +401,7 @@ export function OverviewTable() {
 
         const data: Coin[] = [
           {
-            name: "Dojo Swap",
+            name: "Dojo-Swap",
             category: "Dex",
             tvl: Math.round(totalTvlDojo * 100) / 100,
             "1 Hour Change": Math.round(oneDayDojo * 100) / 100,
@@ -562,7 +566,7 @@ export function OverviewTable() {
       </div>
       <div className="rounded-md border">
         <Table>
-          <TableHeader >
+          <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
