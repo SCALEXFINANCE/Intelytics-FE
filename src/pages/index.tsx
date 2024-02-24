@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { OverviewTable } from "@/components/OverviewTable";
+import Charted from "@/components/ChartComponent";
 const overview = () => {
   const [selected, setSelected] = useState<string>("all");
 
@@ -102,7 +103,7 @@ const overview = () => {
       </div>
 
       {/* graph card */}
-      <div className="bg-black p-5 px-5 rounded-xl flex gap-5">
+      <div className="bg-black p-5 px-5 rounded-xl flex gap-5 justify-between">
         {/* left */}
         <div className="py-6 px-2 flex gap-2 flex-col w-1/4">
           <div className=" text-gray-400">Total Value Locked</div>
@@ -122,7 +123,9 @@ const overview = () => {
         </div>
 
         {/* right */}
-        <div>Graph</div>
+        <div className=" px-48">
+          <Charted />
+        </div>
       </div>
 
       {/* table options */}

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { ChainsTable } from "@/components/ChainsTable";
+import ChartChains from "@/components/ChartChains";
 
 const chains = () => {
   const [selected, setSelected] = useState<string>("all");
@@ -108,7 +109,7 @@ const chains = () => {
       </div>
 
       {/* graph card */}
-      <div className="bg-black p-5 px-5 rounded-xl flex gap-5 w-full">
+      <div className="bg-black p-5 px-5 rounded-xl flex  justify-between w-full">
         {/* left */}
         <div className="py-6 px-2 flex gap-2 flex-col w-1/4">
           <div className=" text-gray-400">Total Value Locked</div>
@@ -128,7 +129,10 @@ const chains = () => {
         </div>
 
         {/* right */}
-        <div className=" flex justify-center w-3/4">Graph</div>
+        {/* <div className=" flex justify-center w-3/4">Graph</div> */}
+        <div className=" px-10">
+          <ChartChains />
+        </div>
       </div>
 
       {/* table options */}
