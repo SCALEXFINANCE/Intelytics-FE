@@ -566,7 +566,7 @@ export function ChainsTable() {
           </div>
         </div>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border border-gray-700">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

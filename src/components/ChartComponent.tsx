@@ -25,7 +25,12 @@ ChartJs.register(
   LineElement
 );
 
-const Charted = () => {
+interface Props {
+  height: string | number | undefined;
+  width: string | number | undefined;
+}
+
+const Charted = ({ height, width }: any) => {
   const [chartData, setChartData] = useState([]);
   const chartValues = async () => {
     try {
@@ -75,12 +80,12 @@ const Charted = () => {
       const sevenday =
         sevenDayAstro + sevenDayDojo + sevenDayHelix + sevenDayHydro;
 
-    //   const formatted = new Intl.NumberFormat("en-US", {
-    //     style: "currency",
-    //     currency: "USD",
-    //     minimumFractionDigits: 2,
-    //     maximumFractionDigits: 2,
-    //   }).format(value);
+      //   const formatted = new Intl.NumberFormat("en-US", {
+      //     style: "currency",
+      //     currency: "USD",
+      //     minimumFractionDigits: 2,
+      //     maximumFractionDigits: 2,
+      //   }).format(value);
 
       const values = [onehr, oneday, sevenday];
       setChartData(values as []);
@@ -96,7 +101,11 @@ const Charted = () => {
       {
         label: "Total Value Locked",
         data: chartData,
-        fill: false,
+        fill: true,
+        // fill: 'origin',
+         
+        // fillColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgba(75,192,192 , 0.5)", 
         borderColor: "rgb(75, 192, 192)",
         tension: 0.3,
       },
@@ -113,8 +122,8 @@ const Charted = () => {
     chartValues();
   }, []);
   return (
-    <div className="shadow-xl  p-8 rounded-xl">
-      <Line data={data} options={options} />
+    <div className=" shadow-xl  p-8 rounded-xl">
+      <Line data={data} options={options} width={width} height={height} />
     </div>
   );
 };

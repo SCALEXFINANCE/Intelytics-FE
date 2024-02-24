@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import { ChainsTable } from "@/components/ChainsTable";
 import ChartChains from "@/components/ChartChains";
+import SearchBar from "@/components/Searchbar";
 
 const chains = () => {
   const [selected, setSelected] = useState<string>("all");
@@ -21,6 +22,9 @@ const chains = () => {
   };
 
   const [totalTVL, setTotalTVL] = useState<string>();
+  const [stable, setStable] = useState<string>();
+  const [volume, setVolume] = useState<string>();
+  const [funding, setFunding] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,6 +59,9 @@ const chains = () => {
 
         const value =
           totalTvlAstro + totalTvlDojo + totalTvlHelix + totalTvlHydro;
+        const dex = totalTvlAstro + totalTvlDojo;
+        const der = totalTvlHelix;
+        const liq = totalTvlHydro;
 
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
@@ -62,6 +69,30 @@ const chains = () => {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         }).format(value);
+
+        const formatted2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(dex);
+        setStable(formatted2);
+
+        const formatted3 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(der);
+        setVolume(formatted3);
+
+        const formatted4 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(liq);
+        setFunding(formatted4);
 
         setTotalTVL(formatted);
       } catch (error) {
@@ -84,11 +115,7 @@ const chains = () => {
     <div className=" flex gap-4 flex-col">
       {/* <div>DEFI-overview</div> */}
 
-      {/* Search bar demo */}
-      <div className=" bg-black p-5 border-2 border-gray-800 rounded-xl flex gap-4">
-        <Image src="/search.svg" alt="" height={30} width={30} />
-        <div className=" text-gray-400 "> Search your Token here...</div>
-      </div>
+      <SearchBar />
 
       <div className=" text-lg  p-3 border-2 border-yellow-600 rounded-2xl">
         Currently tracking protocols on Injective only, More Chains are coming
@@ -96,7 +123,7 @@ const chains = () => {
       </div>
 
       {/* button block */}
-      <div className=" bg-black p-3 px-5 rounded-xl flex gap-4">
+      {/* <div className=" bg-black p-3 px-5 rounded-xl flex gap-4">
         <button className=" bg-gray-700 px-6 p-1 rounded" onClick={allClicked}>
           All
         </button>
@@ -106,7 +133,7 @@ const chains = () => {
         <button className=" bg-gray-700 px-6 p-1 rounded" onClick={injClicked}>
           INJ
         </button>
-      </div>
+      </div> */}
 
       {/* graph card */}
       <div className="bg-black p-5 px-5 rounded-xl flex  justify-between w-full">

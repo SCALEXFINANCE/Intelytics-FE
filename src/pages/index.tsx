@@ -5,6 +5,7 @@ import Image from "next/image";
 import { OverviewTable } from "@/components/OverviewTable";
 import Charted from "@/components/ChartComponent";
 import App from "@/components/TestChart";
+import SearchBar from "@/components/Searchbar";
 
 const overview = () => {
   const [selected, setSelected] = useState<string>("all");
@@ -22,12 +23,14 @@ const overview = () => {
   };
 
   const [totalTVL, setTotalTVL] = useState<string>();
+  const [stable, setStable] = useState<string>();
+  const [volume, setVolume] = useState<string>();
+  const [funding, setFunding] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://api.llama.fi/protocols");
-        
 
         // Protocol (TVL) API Testing.
         const protocols = response.data;
@@ -57,6 +60,9 @@ const overview = () => {
 
         const value =
           totalTvlAstro + totalTvlDojo + totalTvlHelix + totalTvlHydro;
+        const dex = totalTvlAstro + totalTvlDojo;
+        const der = totalTvlHelix;
+        const liq = totalTvlHydro;
 
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
@@ -66,6 +72,30 @@ const overview = () => {
         }).format(value);
 
         setTotalTVL(formatted);
+
+        const formatted2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(dex);
+        setStable(formatted2);
+
+        const formatted3 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(der);
+        setVolume(formatted3);
+
+        const formatted4 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(liq);
+        setFunding(formatted4);
       } catch (error) {
         console.log(error);
       }
@@ -82,18 +112,13 @@ const overview = () => {
     };
   }, []);
 
- 
   return (
     <div className=" flex gap-4 flex-col">
       {/* <div>DEFI-overview</div> */}
 
-      {/* Search bar demo */}
-      <div className=" bg-black p-5 border-2 border-gray-800 rounded-xl flex gap-4">
-        <Image src="/search.svg" alt="" height={30} width={30} />
-        <div className=" text-gray-400 "> Search your Token here...</div>
-      </div>
+      <SearchBar />
 
-      {/* button block */}
+      {/* button block
       <div className=" bg-black p-3 px-5 rounded-xl flex gap-4">
         <button className=" bg-gray-700 px-6 p-1 rounded" onClick={allClicked}>
           All
@@ -104,32 +129,32 @@ const overview = () => {
         <button className=" bg-gray-700 px-6 p-1 rounded" onClick={injClicked}>
           INJ
         </button>
-      </div>
+      </div> */}
 
       {/* graph card */}
       <div className="bg-black p-5 px-5 rounded-xl flex gap-5 justify-between">
         {/* left */}
-        <div className="py-6 px-2 flex gap-2 flex-col w-1/4">
+        <div className="py-6 px-2 flex gap-2 flex-col w-1/3">
           <div className=" text-gray-400">Total Value Locked</div>
           <div className=" text-4xl">{totalTVL}</div>
           <div className="flex justify-between pt-4">
             <div>Stable Coins</div>
-            <div>$125.4</div>
+            <div>{stable}</div>
           </div>
           <div className="flex justify-between  ">
             <div>Volume</div>
-            <div>$125.4</div>
+            <div>{volume}</div>
           </div>
           <div className="flex justify-between  ">
             <div>Total Funding Amount</div>
-            <div>$125.4</div>
+            <div>{funding}</div>
           </div>
         </div>
 
         {/* right */}
         {/* <App /> */}
         <div className="">
-          <Charted />
+          <Charted height={200} width={600} />
           {/* <div id="chart"></div> */}
         </div>
       </div>

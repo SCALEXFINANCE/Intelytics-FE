@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { ChainsTable } from "@/components/ChainsTable";
+import SearchBar from "@/components/Searchbar";
 
 const topprotocolvolume = () => {
   const [selected, setSelected] = useState<string>("all");
@@ -29,9 +30,9 @@ const topprotocolvolume = () => {
     setSelected("inj");
   };
 
-  const [onehr ,setonehr] = useState()
-  const [oneday ,setoneday] = useState()
-  const [sevday ,setsevday] = useState()
+  const [onehr, setonehr] = useState();
+  const [oneday, setoneday] = useState();
+  const [sevday, setsevday] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,9 +93,9 @@ const topprotocolvolume = () => {
         const oneDay = oneDayAstro + oneDayDojo + oneDayHelix + oneDayHydro;
         const sevenday =
           sevenDayAstro + sevenDayDojo + sevenDayHelix + sevenDayHydro;
-          setonehr(onehr)
-          setoneday(oneDay)
-          setsevday(sevenday)
+        setonehr(onehr);
+        setoneday(oneDay);
+        setsevday(sevenday);
       } catch (error) {
         console.log(error);
       }
@@ -114,11 +115,7 @@ const topprotocolvolume = () => {
     <div className=" flex gap-4 flex-col">
       {/* <div>DEFI-overview</div> */}
 
-      {/* Search bar demo */}
-      <div className=" bg-black p-5 border-2 border-gray-800 rounded-xl flex gap-4">
-        <Image src="/search.svg" alt="" height={30} width={30} />
-        <div className=" text-gray-400 "> Search your Token here...</div>
-      </div>
+      <SearchBar />
 
       <div className=" text-lg  p-3 border-2 border-yellow-600 rounded-2xl">
         Currently tracking protocols on Injective only, More Chains are coming
@@ -126,7 +123,7 @@ const topprotocolvolume = () => {
       </div>
 
       {/* button block */}
-      <div className=" bg-black p-3 px-5 rounded-xl flex gap-4">
+      {/* <div className=" bg-black p-3 px-5 rounded-xl flex gap-4">
         <button className=" bg-gray-700 px-6 p-1 rounded" onClick={allClicked}>
           All
         </button>
@@ -136,7 +133,7 @@ const topprotocolvolume = () => {
         <button className=" bg-gray-700 px-6 p-1 rounded" onClick={injClicked}>
           INJ
         </button>
-      </div>
+      </div> */}
 
       {/* graph card */}
       <div className="bg-black p-5 px-5 rounded-xl flex gap-5 w-full">
@@ -146,7 +143,7 @@ const topprotocolvolume = () => {
             <div> Total Volume (24hr)</div>
             <div>${oneday}</div>
           </div>
-          
+
           <div className=" bg-gray-700 p-2 gap-3 rounded-xl">
             <div> Total Volume (1hr)</div>
             <div>${onehr}</div>

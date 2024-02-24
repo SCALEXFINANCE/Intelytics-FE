@@ -563,7 +563,7 @@ export function OverviewTable() {
           className="max-w-sm bg-black"
         /> */}
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border border-gray-700">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

@@ -185,7 +185,7 @@ export function TopProtocolTable() {
   return (
     <div className="w-full pb-8">
       <div className="flex items-center py-4"></div>
-      <div className="rounded-md border">
+      <div className="rounded-md border border-gray-700">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
