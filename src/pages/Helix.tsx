@@ -76,6 +76,7 @@ const dojoswap = () => {
         access to global financial primitives, endless on-chain gateways, and
         true institutional liquidity
       </div>
+       <div className=" flex">
 
       <div className="px-3">
         <div className="flex gap-4 pt-5 ">
@@ -95,8 +96,8 @@ const dojoswap = () => {
           <div className=" text-xl pt-1">${sevd}</div>
         </div>
       </div>
-
       <HelixChart />
+       </div>
     </div>
   );
 };

@@ -94,29 +94,32 @@ export default function DojoSwap() {
         CW20 tokens.
       </div>
 
-      <div className="px-3">
-        <div className="flex gap-4 pt-5 ">
-          <div className="text-2xl ">Total Value Locked:</div>
-          <div className=" text-xl pt-1">${tvl}</div>
+      <div className=" flex">
+        <div className="px-3 p-7">
+          <div className="flex gap-4 pt-5 ">
+            <div className="text-2xl ">Total Value Locked:</div>
+            <div className=" text-xl pt-1">${tvl}</div>
+          </div>
+          <div className="flex gap-4 pt-2">
+            <div className="text-2xl ">1 Hour Change:</div>
+            <div className=" text-xl pt-1">${oneh}</div>
+          </div>
+          <div className="flex gap-4 pt-2">
+            <div className="text-2xl ">24 Hour Change:</div>
+            <div className=" text-xl pt-1">${oned}</div>
+          </div>
+          <div className="flex gap-4 pt-2">
+            <div className="text-2xl ">7 Day Change:</div>
+            <div className=" text-xl pt-1">${sevd}</div>
+          </div>
         </div>
-        <div className="flex gap-4 pt-2">
-          <div className="text-2xl ">1 Hour Change:</div>
-          <div className=" text-xl pt-1">${oneh}</div>
-        </div>
-        <div className="flex gap-4 pt-2">
-          <div className="text-2xl ">24 Hour Change:</div>
-          <div className=" text-xl pt-1">${oned}</div>
-        </div>
-        <div className="flex gap-4 pt-2">
-          <div className="text-2xl ">7 Day Change:</div>
-          <div className=" text-xl pt-1">${sevd}</div>
-        </div>
+
+        <DojoChart />
       </div>
 
       {/* <iframe width="640px" height="360px" src="https://defillama.com/chart/protocol/dojoswap?&theme=dark" title="DefiLlama"  ></iframe> */}
 
       {/* <DojoSwapChart /> */}
-      <DojoChart />
     </div>
   );
 }

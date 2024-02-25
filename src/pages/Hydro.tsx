@@ -82,26 +82,28 @@ const dojoswap = () => {
         strategy planned, with a Real-Yield Aggregator feature coming soon
       </div>
 
-      <div className="px-3">
-        <div className="flex gap-4 pt-5 ">
-          <div className="text-2xl ">Total Value Locked:</div>
-          <div className=" text-xl pt-1">${tvl}</div>
+      <div className="flex">
+        <div className="px-3">
+          <div className="flex gap-4 pt-5 ">
+            <div className="text-2xl ">Total Value Locked:</div>
+            <div className=" text-xl pt-1">${tvl}</div>
+          </div>
+          <div className="flex gap-4 pt-2">
+            <div className="text-2xl ">1 Hour Change:</div>
+            <div className=" text-xl pt-1">${oneh}</div>
+          </div>
+          <div className="flex gap-4 pt-2">
+            <div className="text-2xl ">24 Hour Change:</div>
+            <div className=" text-xl pt-1">${oned}</div>
+          </div>
+          <div className="flex gap-4 pt-2">
+            <div className="text-2xl ">7 Day Change:</div>
+            <div className=" text-xl pt-1">${sevd}</div>
+          </div>
         </div>
-        <div className="flex gap-4 pt-2">
-          <div className="text-2xl ">1 Hour Change:</div>
-          <div className=" text-xl pt-1">${oneh}</div>
-        </div>
-        <div className="flex gap-4 pt-2">
-          <div className="text-2xl ">24 Hour Change:</div>
-          <div className=" text-xl pt-1">${oned}</div>
-        </div>
-        <div className="flex gap-4 pt-2">
-          <div className="text-2xl ">7 Day Change:</div>
-          <div className=" text-xl pt-1">${sevd}</div>
-        </div>
-      </div>
 
-      <HydroChart />
+        <HydroChart />
+      </div>
     </div>
   );
 };

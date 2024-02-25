@@ -19,7 +19,7 @@ function InjectiveChart() {
               {
                 "width": "100%",
                 "height": "100%",
-                "symbol": "DEFILLAMA:INJ_TVL",
+                "symbol": "BINANCE:INJUSDT",
                 "interval": "D",
                 "timezone": "Etc/UTC",
                 "theme": "dark",
@@ -29,7 +29,7 @@ function InjectiveChart() {
                 "allow_symbol_change": false,
                 "save_image": false,
                 "calendar": false,
-                "hide_top_toolbar": true,
+                 
                 "hide_legend": true,
                 "studies": [
                   "Volume@tv-basicstudies"

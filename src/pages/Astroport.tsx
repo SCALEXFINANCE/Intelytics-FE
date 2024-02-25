@@ -79,6 +79,7 @@ const dojoswap = () => {
         crypto asset. Astroport prioritizes flexibility, combining various
         specialized pool types and routing seamlessly across them.
       </div>
+      <div className=" flex"> 
 
       <div className="px-3">
         <div className="flex gap-4 pt-5 ">
@@ -100,6 +101,7 @@ const dojoswap = () => {
       </div>
 
       <AstroChart />
+      </div>
     </div>
   );
 };

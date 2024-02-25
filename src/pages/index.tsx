@@ -35,12 +35,11 @@ const overview = () => {
 
         const response4 = await axios.get("https://api.llama.fi/v2/chains");
         const chains = response4.data;
-         
-      const injective = chains.find((chain : any) => chain.gecko_id === "injective-protocol");
-      const injectiveTvl = injective.tvl;
 
-
-       
+        const injective = chains.find(
+          (chain: any) => chain.gecko_id === "injective-protocol"
+        );
+        const injectiveTvl = injective.tvl;
 
         // Protocol (TVL) API Testing.
         const protocols = response.data;
@@ -163,8 +162,9 @@ const overview = () => {
         </div>
 
         {/* right */}
-        <div className="">
+        <div className=" flex flex-col">
           {/* <Charted height={200} width={600} /> */}
+          <div className=" px-10 text-xl">Injective Total value Locked </div>
           <InjectiveChart />
         </div>
       </div>
