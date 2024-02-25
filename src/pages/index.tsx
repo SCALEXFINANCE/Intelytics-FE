@@ -27,6 +27,8 @@ const overview = () => {
   const [stable, setStable] = useState<string>();
   const [volume, setVolume] = useState<string>();
   const [funding, setFunding] = useState<string>();
+  const [injprice, setInjPrice] = useState<string>();
+  const [injcap, setInjCap] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +48,16 @@ const overview = () => {
         // const injectiveMarketCap = injectiveCoin.market_cap;
         // console.log(injectivePrice);
         // console.log(injectiveMarketCap);
+
+        const response6 = await axios.get(
+          "https://coins.llama.fi/prices/current/ethereum:0xe28b3b32b6c345a34ff64674606124dd5aceca30,secret:secret14706vxakdzkz9a36872cs62vpl5qd84kpwvpew,binance-smart-chain:0xa2b726b1145a4773f68593cf171187d8ebe4d495,cosmos:ibc%2F64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273?searchWidth=4h"
+        );
+
+        const price =
+          response6.data.coins[
+            "ethereum:0xe28b3b32b6c345a34ff64674606124dd5aceca30"
+          ].price;
+        console.log(price);
 
         const injective = chains.find(
           (chain: any) => chain.gecko_id === "injective-protocol"
@@ -117,6 +129,22 @@ const overview = () => {
           maximumFractionDigits: 2,
         }).format(liq);
         setFunding(formatted4);
+
+        const formatted5 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(price);
+        setInjPrice(formatted5);
+
+        const formatted6 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(injectiveMarketCap);
+        setInjCap(formatted6);
       } catch (error) {
         console.log(error);
       }
@@ -172,9 +200,11 @@ const overview = () => {
           </div>
           <div className="flex justify-between">
             <div>INJ Price</div>
+            <div>{injprice}</div>
           </div>
           <div className="flex justify-between ">
-            <div>INJ Market Cap</div>
+            {/* <div>INJ Market Cap</div> */}
+            {/* <div>{injcap}</div> */}
           </div>
         </div>
 
