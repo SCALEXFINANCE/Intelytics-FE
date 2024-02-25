@@ -35,6 +35,17 @@ const overview = () => {
 
         const response4 = await axios.get("https://api.llama.fi/v2/chains");
         const chains = response4.data;
+        // const response5 = await axios.get(
+        //   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en"
+        // );
+        // const coingeckoAPI = response5.data;
+        // const injectiveCoin = coingeckoAPI.find(
+        //   (coin) => coin.id === "injective-protocol"
+        // );
+        // const injectivePrice = injectiveCoin.current_price;
+        // const injectiveMarketCap = injectiveCoin.market_cap;
+        // console.log(injectivePrice);
+        // console.log(injectiveMarketCap);
 
         const injective = chains.find(
           (chain: any) => chain.gecko_id === "injective-protocol"
@@ -159,13 +170,19 @@ const overview = () => {
             <div>Liquid Staking</div>
             <div>{funding}</div>
           </div>
+          <div className="flex justify-between">
+            <div>INJ Price</div>
+          </div>
+          <div className="flex justify-between ">
+            <div>INJ Market Cap</div>
+          </div>
         </div>
 
         {/* right */}
         <div className=" flex flex-col">
           {/* <Charted height={200} width={600} /> */}
           <div className=" px-10 p-3 text-xl text-right">
-            Injective Total value Locked{" "}
+            Injective Total Value Locked{" "}
           </div>
           <InjectiveChart />
         </div>
