@@ -164,7 +164,9 @@ const overview = () => {
         {/* right */}
         <div className=" flex flex-col">
           {/* <Charted height={200} width={600} /> */}
-          <div className=" px-10 text-xl">Injective Total value Locked </div>
+          <div className=" px-10 p-3 text-xl text-right">
+            Injective Total value Locked{" "}
+          </div>
           <InjectiveChart />
         </div>
       </div>

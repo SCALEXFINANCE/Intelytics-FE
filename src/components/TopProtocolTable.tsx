@@ -60,7 +60,7 @@ const data: CoinTP[] = [
   },
   {
     name: "Hydro",
-    category: "Liquid Stacking",
+    category: "Liquid Staking",
     slug: "hydro",
   },
   // ...
