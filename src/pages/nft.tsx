@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const nft = () => {
+const Nft = () => {
   return (
     <div className=" flex flex-col items-center justify-center pt-20">
       <div className=" font-extrabold text-5xl ">Cooking Right Now</div>
@@ -10,4 +10,4 @@ const nft = () => {
   );
 };
 
-export default nft;
+export default Nft;

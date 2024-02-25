@@ -42,6 +42,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 
 export type Coin = {
   name: string;
@@ -52,7 +53,7 @@ export type Coin = {
   "24 Hours Change": number;
   "7 Days Change": number;
   stakes: number;
-  volume: number;
+  volume: number | string;
 };
 
 export function ChainsTable() {
@@ -100,9 +101,10 @@ export function ChainsTable() {
             className=" rounded"
           />
 
-          <div className="capitalize text-white text-nowrap">
-            {row.getValue("name")}
-          </div>
+          <Link href={`/${row.getValue("name")}`}>
+            {" "}
+            <div className="capitalize text-white">{row.getValue("name")}</div>
+          </Link>
         </div>
       ),
     },
@@ -321,6 +323,9 @@ export function ChainsTable() {
           currency: "USD",
         }).format(amount);
 
+        if (row.getValue("volume") == "-")
+          return <div className=" text-center font-medium">-</div>;
+
         return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
@@ -364,11 +369,14 @@ export function ChainsTable() {
         const response2 = await axios.get(
           "https://api.llama.fi/summary/dexs/astroport?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
         );
+        const response3 = await axios.get(
+          "https://api.llama.fi/summary/dexs/helix?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
+        );
         // Volume API Testing.
         const astroportVolume = response2.data;
-
-        // console.log(astroportVolume);
         const astroport24hVolume = astroportVolume.total24h;
+        const helixVolume = response3.data;
+        const helix24hVolume = helixVolume.total24h;
 
         // console.log(astroport24hVolume);
 
@@ -412,7 +420,7 @@ export function ChainsTable() {
 
         const data: Coin[] = [
           {
-            name: "Dojo Swap",
+            name: "Dojo-Swap",
             protocol: 124,
             address: 0,
             tvl: Math.round(totalTvlDojo * 100) / 100,
@@ -420,7 +428,7 @@ export function ChainsTable() {
             "24 Hours Change": Math.round(oneHourDojo * 100) / 100,
             "7 Days Change": Math.round(sevenDayDojo * 100) / 100,
             stakes: 0,
-            volume: 25.2,
+            volume: "-",
           },
           {
             name: "Astroport",
@@ -431,7 +439,7 @@ export function ChainsTable() {
             "24 Hours Change": Math.round(oneHourAstro * 100) / 100,
             "7 Days Change": Math.round(sevenDayAstro * 100) / 100,
             stakes: 0,
-            volume: 22.1,
+            volume: Math.round(astroport24hVolume * 100) / 100,
           },
           {
             name: "Helix",
@@ -442,7 +450,7 @@ export function ChainsTable() {
             "24 Hours Change": Math.round(oneHourHelix * 100) / 100,
             "7 Days Change": Math.round(sevenDayHelix * 100) / 100,
             stakes: 0,
-            volume: 22.1,
+            volume: Math.round(helix24hVolume * 100) / 100,
           },
           {
             name: "Hydro",
@@ -453,7 +461,7 @@ export function ChainsTable() {
             "24 Hours Change": Math.round(oneHourHydro * 100) / 100,
             "7 Days Change": Math.round(sevenDayHydro * 100) / 100,
             stakes: 0,
-            volume: 22.1,
+            volume: "-",
           },
           // ...
         ];

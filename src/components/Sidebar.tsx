@@ -68,9 +68,9 @@ const Sidebar = () => {
                 Overview
               </Link>
               <Link
-                href={"/chains"}
+                href={"/Chains"}
                 className={`p-2  rounded-md ${
-                  router.pathname === "/chains"
+                  router.pathname === "/Chains"
                     ? "bg-gray-800 text-white  "
                     : ""
                 }`}
@@ -78,9 +78,9 @@ const Sidebar = () => {
                 Chains
               </Link>
               <Link
-                href={"/airdrops"}
+                href={"/Airdrops"}
                 className={`p-2  rounded-md ${
-                  router.pathname === "/airdrops"
+                  router.pathname === "/Airdrops"
                     ? "bg-gray-800 text-white  "
                     : ""
                 }`}
@@ -88,9 +88,9 @@ const Sidebar = () => {
                 Airdrops
               </Link>
               <Link
-                href={"/topprotocol"}
+                href={"/Topprotocol"}
                 className={`p-2  rounded-md ${
-                  router.pathname === "/topprotocol"
+                  router.pathname === "/Topprotocol"
                     ? "bg-gray-800 text-white  "
                     : ""
                 }`}
@@ -110,9 +110,9 @@ const Sidebar = () => {
               className=" w-[1.8rem] h-[1.8rem]"
             />
             <Link
-              href={"/nft"}
+              href={"/Nft"}
               className={`p-2 rounded-md text-xl text-white font-bold ${
-                router.pathname === "/nft"
+                router.pathname === "/Nft"
                   ? "bg-gray-800 w-full text-white  "
                   : ""
               }`}
@@ -131,9 +131,9 @@ const Sidebar = () => {
               className=" w-[2rem] h-[2.8rem]"
             />
             <Link
-              href={"/lending"}
+              href={"/Lending"}
               className={`p-2 rounded-md text-xl text-white font-bold ${
-                router.pathname === "/lending"
+                router.pathname === "/Lending"
                   ? "bg-gray-800 w-full text-white  "
                   : ""
               }`}
@@ -162,9 +162,9 @@ const Sidebar = () => {
           {isOpenVolume && (
             <div className="flex  flex-col  pl-7 gap-4  text-lg text-gray-400 animate-fade-down animate-duration-400">
               <Link
-                href={"/topprotocolvolume"}
+                href={"/Topprotocolvolume"}
                 className={`p-2 rounded-md ${
-                  router.pathname === "/topprotocolvolume"
+                  router.pathname === "/Topprotocolvolume"
                     ? "bg-gray-800 text-white  "
                     : ""
                 }`}

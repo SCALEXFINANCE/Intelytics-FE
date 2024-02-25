@@ -6,7 +6,7 @@ import { ChainsTable } from "@/components/ChainsTable";
 import ChartChains from "@/components/ChartChains";
 import SearchBar from "@/components/Searchbar";
 
-const chains = () => {
+const Chains = () => {
   const [selected, setSelected] = useState<string>("all");
 
   const allClicked = () => {
@@ -139,19 +139,19 @@ const chains = () => {
       <div className="bg-black p-5 px-5 rounded-xl flex  justify-between w-full">
         {/* left */}
         <div className="py-6 px-2 flex gap-2 flex-col w-1/4">
-          <div className=" text-gray-400">Total Value Locked</div>
+          <div className=" text-gray-400">Injective Total Value Locked</div>
           <div className=" text-4xl">{totalTVL}</div>
           <div className="flex justify-between pt-4">
-            <div>Stable Coins</div>
-            <div>$125.4</div>
+            <div>Top Protocols TVL</div>
+            <div>{stable}</div>
           </div>
           <div className="flex justify-between  ">
             <div>Volume</div>
-            <div>$125.4</div>
+            <div>{volume}</div>
           </div>
           <div className="flex justify-between  ">
-            <div>Total Funding Amount</div>
-            <div>$125.4</div>
+            <div>Liquid Staking</div>
+            <div>{funding}</div>
           </div>
         </div>
 
@@ -169,4 +169,4 @@ const chains = () => {
   );
 };
 
-export default chains;
+export default Chains;

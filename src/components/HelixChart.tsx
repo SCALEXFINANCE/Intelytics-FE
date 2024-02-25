@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, memo, useState } from "react";
 
-function DojoChart() {
+function HelixChart() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   const container: any = useRef();
@@ -19,7 +19,7 @@ function DojoChart() {
               {
                 "width": "100%",
                 "height": "100%",
-                "symbol": "DEFILLAMA:DINO_TVL",
+                "symbol": "DEFILLAMA:HAY_TVL",
                 "interval": "D",
                 "timezone": "Etc/UTC",
                 "theme": "dark",
@@ -54,4 +54,4 @@ function DojoChart() {
   );
 }
 
-export default memo(DojoChart);
+export default memo(HelixChart);

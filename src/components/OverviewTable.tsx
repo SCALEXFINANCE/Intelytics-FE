@@ -51,7 +51,7 @@ export type Coin = {
   "1 Hour Change": number;
   "24 Hours Change": number;
   "7 Days Change": number;
-  volume: number;
+  volume: number | string;
 };
 
 export function OverviewTable() {
@@ -304,6 +304,9 @@ export function OverviewTable() {
           currency: "USD",
         }).format(amount);
 
+        if (row.getValue("volume") == "-")
+          return <div className=" text-center font-medium">-</div>;
+
         return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
@@ -406,7 +409,7 @@ export function OverviewTable() {
             "1 Hour Change": Math.round(oneDayDojo * 100) / 100,
             "24 Hours Change": Math.round(oneHourDojo * 100) / 100,
             "7 Days Change": Math.round(sevenDayDojo * 100) / 100,
-            volume: 0,
+            volume: "-",
           },
           {
             name: "Astroport",
@@ -433,7 +436,7 @@ export function OverviewTable() {
             "1 Hour Change": Math.round(oneDayHydro * 100) / 100,
             "24 Hours Change": Math.round(oneHourHydro * 100) / 100,
             "7 Days Change": Math.round(sevenDayHydro * 100) / 100,
-            volume: 0,
+            volume: "-",
           },
           // ...
         ];

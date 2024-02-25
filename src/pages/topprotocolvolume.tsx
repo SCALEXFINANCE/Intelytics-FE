@@ -15,7 +15,7 @@ import Image from "next/image";
 import { ChainsTable } from "@/components/ChainsTable";
 import SearchBar from "@/components/Searchbar";
 
-const topprotocolvolume = () => {
+const Topprotocolvolume = () => {
   const [selected, setSelected] = useState<string>("all");
 
   const allClicked = () => {
@@ -136,26 +136,22 @@ const topprotocolvolume = () => {
       </div> */}
 
       {/* graph card */}
-      <div className="bg-black p-5 px-5 rounded-xl flex gap-5 w-full">
+      <div className="bg-black p-5 px-5 rounded-xl flex gap-5 w-full text-xl">
         {/* left */}
-        <div className="py-6 px-2 flex gap-4  flex-col w-1/4">
-          <div className=" bg-gray-700 p-2 gap-3 rounded-xl">
-            <div> Total Volume (24hr)</div>
-            <div>${oneday}</div>
-          </div>
 
-          <div className=" bg-gray-700 p-2 gap-3 rounded-xl">
-            <div> Total Volume (1hr)</div>
-            <div>${onehr}</div>
-          </div>
-          <div className=" bg-gray-700 p-2 gap-3 rounded-xl">
-            <div> Total Volume (7DAY)</div>
-            <div>${sevday} </div>
-          </div>
+        <div className=" bg-gray-700 p-5 rounded-xl w-1/3">
+          <div className=" pb-3"> Total Volume (24hr)</div>
+          <div>${oneday}</div>
         </div>
 
-        {/* right */}
-        <div className=" flex justify-center w-3/4">Graph</div>
+        <div className=" bg-gray-700 p-5 gap-3 rounded-xl w-1/3">
+          <div className=" pb-3"> Total Volume (1hr)</div>
+          <div>${onehr}</div>
+        </div>
+        <div className=" bg-gray-700 p-5 gap-3 rounded-xl w-1/3">
+          <div className=" pb-3"> Total Volume (7DAY)</div>
+          <div>${sevday} </div>
+        </div>
       </div>
 
       {/* table options */}
@@ -165,4 +161,4 @@ const topprotocolvolume = () => {
   );
 };
 
-export default topprotocolvolume;
+export default Topprotocolvolume;

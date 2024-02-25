@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, memo, useState } from "react";
 
-function DojoChart() {
+function InjectiveChart() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   const container: any = useRef();
@@ -19,7 +19,7 @@ function DojoChart() {
               {
                 "width": "100%",
                 "height": "100%",
-                "symbol": "DEFILLAMA:DINO_TVL",
+                "symbol": "DEFILLAMA:INJ_TVL",
                 "interval": "D",
                 "timezone": "Etc/UTC",
                 "theme": "dark",
@@ -46,7 +46,7 @@ function DojoChart() {
   }, [container, scriptLoaded]);
 
   return (
-    <div className="w-[80vw] h-[50vh] p-10">
+    <div className="w-[50vw] h-[50vh] p-10">
       <div className="tradingview-widget-container" ref={container as any}>
         <div className="tradingview-widget-container__widget"></div>
       </div>
@@ -54,4 +54,4 @@ function DojoChart() {
   );
 }
 
-export default memo(DojoChart);
+export default memo(InjectiveChart);

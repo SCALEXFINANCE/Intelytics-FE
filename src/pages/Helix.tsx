@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import Image from "next/image";
+import HelixChart from "@/components/HelixChart";
 
 const dojoswap = () => {
   const [tvl, settvl] = useState<number>();
@@ -94,6 +95,8 @@ const dojoswap = () => {
           <div className=" text-xl pt-1">${sevd}</div>
         </div>
       </div>
+
+      <HelixChart />
     </div>
   );
 };

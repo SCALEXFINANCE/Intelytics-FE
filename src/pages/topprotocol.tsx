@@ -3,7 +3,7 @@ import Image from "next/image";
 import { TopProtocolTable } from "@/components/TopProtocolTable";
 import SearchBar from "@/components/Searchbar";
 
-const topprotocol = () => {
+const Topprotocol = () => {
   return (
     <div className=" flex gap-4 flex-col">
       {/* <div>DEFI-topprotocol</div> */}
@@ -17,4 +17,4 @@ const topprotocol = () => {
   );
 };
 
-export default topprotocol;
+export default Topprotocol;

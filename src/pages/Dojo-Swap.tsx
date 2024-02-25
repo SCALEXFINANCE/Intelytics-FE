@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import Image from "next/image";
+import DojoChart from "@/components/DojoChart";
+// import DojoSwapChart from "@/components/DojoChart";
 
-const dojoswap = () => {
+export default function DojoSwap() {
   const [tvl, settvl] = useState<number>();
   const [oned, setoned] = useState<number>();
   const [oneh, setoneh] = useState<number>();
@@ -112,8 +114,9 @@ const dojoswap = () => {
       </div>
 
       {/* <iframe width="640px" height="360px" src="https://defillama.com/chart/protocol/dojoswap?&theme=dark" title="DefiLlama"  ></iframe> */}
+
+      {/* <DojoSwapChart /> */}
+      <DojoChart />
     </div>
   );
-};
-
-export default dojoswap;
+}
