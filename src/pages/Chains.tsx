@@ -37,6 +37,21 @@ const Chains = () => {
       const injective = chains.find((chain : any) => chain.gecko_id === "injective-protocol");
       const injectiveTvl = injective.tvl;
 
+      const response7 = await axios.get(
+        "https://api.llama.fi/v2/historicalChainTvl/Injective"
+      );
+
+      const protocols2 = response7.data;
+      console.log(protocols2);
+
+      const values: any = [];
+      const tvl2 = [];
+      tvl2.push(...protocols2.slice(-1));
+      tvl2.forEach((data: any) => {
+        values.push(data.tvl);
+      });
+      console.log(values);
+
         // Protocol (TVL) API Testing.
         const protocols = response.data;
         const dojoswapId = "3965";
@@ -74,7 +89,7 @@ const Chains = () => {
           currency: "USD",
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
-        }).format(injectiveTvl);
+        }).format(values);
 
         setTotalTVL(formatted)
 

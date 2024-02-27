@@ -158,13 +158,13 @@ const overview = () => {
         }).format(price);
         setInjPrice(formatted5);
 
-        const formatted6 = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }).format(injectiveMarketCap);
-        setInjCap(formatted6);
+        // const formatted6 = new Intl.NumberFormat("en-US", {
+        //   style: "currency",
+        //   currency: "USD",
+        //   minimumFractionDigits: 2,
+        //   maximumFractionDigits: 2,
+        // }).format(injectiveMarketCap);
+        // setInjCap(formatted6);
       } catch (error) {
         console.log(error);
       }
