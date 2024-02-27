@@ -4,8 +4,9 @@ import axios from "axios";
 import React from "react";
 import Image from "next/image";
 import HydroChart from "@/components/HydroChart";
+import Charted from "@/components/ChartComponent";
 
-const dojoswap = () => {
+const hydro = () => {
   const [tvl, settvl] = useState<string>();
   const [oned, setoned] = useState<number>();
   const [oneh, setoneh] = useState<number>();
@@ -121,7 +122,7 @@ const dojoswap = () => {
             <div className="px-5 pt-5 text-right ">
               Hydro Total Value Locked
             </div>
-            <HydroChart />
+            <Charted />
           </div>
         </div>
 
@@ -138,9 +139,10 @@ const dojoswap = () => {
           Injective’s LSDFi growth strategy planned, with a Real-Yield
           Aggregator feature coming soon
         </div>
+        
       </div>
     </div>
   );
 };
 
-export default dojoswap;
+export default hydro;

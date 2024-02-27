@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import HelixChart from "@/components/HelixChart";
 
-const dojoswap = () => {
+const helix = () => {
   const [tvl, settvl] = useState<string>();
   const [oned, setoned] = useState<number>();
   const [oneh, setoneh] = useState<number>();
@@ -136,4 +136,4 @@ const dojoswap = () => {
   );
 };
 
-export default dojoswap;
+export default helix;

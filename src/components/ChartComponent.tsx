@@ -34,51 +34,19 @@ const Charted = ({ height, width }: any) => {
   const [chartData, setChartData] = useState([]);
   const chartValues = async () => {
     try {
-      const response = await axios.get("https://api.llama.fi/protocols");
+      const response = await axios.get(
+        "https://api.llama.fi/protocol/hydro-protocol"
+      );
 
       const protocols = response.data;
-      const dojoswapId = "3965";
-      const hydroprotocolId = "4084";
-      const astroportId = "3117";
-      const helixId = "2259";
-      const dojoswap = protocols.find(
-        (protocol: { id: string }) => protocol.id === dojoswapId
-      );
-      const totalTvlDojo = dojoswap.tvl;
-      const oneDayDojo = dojoswap.change_1d;
-      const oneHourDojo = dojoswap.change_1h;
-      const sevenDayDojo = dojoswap.change_7d;
-
-      const hydro = protocols.find(
-        (protocol: { id: string }) => protocol.id === hydroprotocolId
-      );
-      const totalTvlHydro = hydro.tvl;
-      const oneDayHydro = hydro.change_1d;
-      const oneHourHydro = hydro.change_1h;
-      const sevenDayHydro = hydro.change_7d;
-
-      const astro = protocols.find(
-        (protocol: { id: string }) => protocol.id === astroportId
-      );
-      const totalTvlAstro = astro.tvl;
-      const oneDayAstro = astro.change_1d;
-      const oneHourAstro = astro.change_1h;
-      const sevenDayAstro = astro.change_7d;
-
-      const helix = protocols.find(
-        (protocol: { id: string }) => protocol.id === helixId
-      );
-      const totalTvlHelix = helix.tvl;
-      const oneDayHelix = helix.change_1d;
-      const oneHourHelix = helix.change_1h;
-      const sevenDayHelix = helix.change_7d;
-
-      const value =
-        totalTvlAstro + totalTvlDojo + totalTvlHelix + totalTvlHydro;
-      const onehr = oneHourAstro + oneHourDojo + oneHourHelix + oneHourHydro;
-      const oneday = oneDayAstro + oneDayDojo + oneDayHelix + oneDayHydro;
-      const sevenday =
-        sevenDayAstro + sevenDayDojo + sevenDayHelix + sevenDayHydro;
+      console.log(protocols.chainTvls.Injective.tvl);
+      const tvl = protocols.chainTvls.Injective.tvl;
+      const values: any = [];
+      tvl.forEach((data:any) => {
+        values.push(data.totalLiquidityUSD);
+      });
+      console.log(values);
+      // console.log(values);
 
       //   const formatted = new Intl.NumberFormat("en-US", {
       //     style: "currency",
@@ -87,26 +55,56 @@ const Charted = ({ height, width }: any) => {
       //     maximumFractionDigits: 2,
       //   }).format(value);
 
-      const values = [onehr, oneday, sevenday];
+      // const values = [onehr, oneday, sevenday];
       setChartData(values as []);
-      console.log(chartData);
+      // console.log(chartData);
     } catch (error) {
       console.log(error);
     }
   };
 
   const data = {
-    labels: ["1Hr", "24Hrs", "7Days"],
+    labels: [
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+    ],
     datasets: [
       {
         label: "Total Value Locked",
         data: chartData,
         fill: true,
         // fill: 'origin',
-         
+
         // fillColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgba(75,192,192 , 0.5)", 
-        borderColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgb(23,34,62)",
+        borderColor: "rgb(41,96,250)",
         tension: 0.3,
       },
     ],
@@ -122,7 +120,7 @@ const Charted = ({ height, width }: any) => {
     chartValues();
   }, []);
   return (
-    <div className=" shadow-xl  p-8 rounded-xl">
+    <div className=" shadow-xl w-[50vw] h-[50vh] p-4 rounded-xl">
       <Line data={data} options={options} width={width} height={height} />
     </div>
   );

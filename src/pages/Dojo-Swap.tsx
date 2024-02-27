@@ -16,14 +16,6 @@ export default function DojoSwap() {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://api.llama.fi/protocols");
-        const response2 = await axios.get(
-          "https://api.llama.fi/summary/dexs/astroport?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
-        );
-        // Volume API Testing.
-        const astroportVolume = response2.data;
-
-        // console.log(astroportVolume);
-        const astroport24hVolume = astroportVolume.total24h;
 
         // console.log(astroport24hVolume);
 
@@ -121,7 +113,7 @@ export default function DojoSwap() {
 
           <div className=" flex flex-col ">
             <div className="px-5 pt-5 text-right ">
-              Dojo Swap Total Value Locked
+              Dojo Swap Total Value Locked (excludes Staking)
             </div>
             <DojoChart />
           </div>

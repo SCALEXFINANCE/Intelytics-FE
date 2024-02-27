@@ -59,6 +59,28 @@ const overview = () => {
           ].price;
         console.log(price);
 
+        const response7 = await axios.get(
+          "https://api.llama.fi/v2/historicalChainTvl/Injective"
+        );
+
+        const protocols2 = response7.data;
+        console.log(protocols2);
+
+        const values: any = [];
+        const tvl2 = [];
+        tvl2.push(...protocols2.slice(-1));
+        tvl2.forEach((data: any) => {
+          values.push(data.tvl);
+        });
+        console.log(values);
+        const formatted10 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(values);
+        setTotalTVL(formatted10);
+
         const injective = chains.find(
           (chain: any) => chain.gecko_id === "injective-protocol"
         );
@@ -103,8 +125,6 @@ const overview = () => {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         }).format(injectiveTvl);
-
-        setTotalTVL(formatted);
 
         const formatted2 = new Intl.NumberFormat("en-US", {
           style: "currency",
@@ -211,7 +231,7 @@ const overview = () => {
         {/* right */}
         <div className=" flex flex-col">
           {/* <Charted height={200} width={600} /> */}
-          <div className="px-3 text-xl  t">Injective Price </div>
+          <div className="px-3 text-xl  t">Injective Total Value Locked</div>
           <InjectiveChart />
         </div>
       </div>

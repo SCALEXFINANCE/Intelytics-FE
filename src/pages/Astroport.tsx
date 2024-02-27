@@ -117,8 +117,8 @@ const dojoswap = () => {
             </div>
           </div>
           <div className=" flex flex-col ">
-            <div className="px-5 pt-5 text-right ">
-              Astroport Total Value Locked
+            <div className="px-2 py-4 pt-5 text-right ">
+              Astroport Total Value Locked in Injective Chain
             </div>
             <AstroChart />
           </div>
