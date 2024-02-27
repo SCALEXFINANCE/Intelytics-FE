@@ -80,10 +80,10 @@ const dojoswap = () => {
 
       <div className=" flex gap-3 flex-col">
         <div className="flex gap-8 mt-10  bg-gray-900 rounded-xl">
-          <div className="px-3">
+          <div className="px-4 pt-5">
             <div className="flex gap-4 pt-5 ">
               <div className="text-2xl ">Total Value Locked:</div>
-              <div className=" text-xl pt-1">${tvl}</div>
+              <div className=" text-xl pt-1">{tvl}</div>
             </div>
             <div className="flex gap-4 pt-2">
               <div className="text-2xl ">1 Hour Change:</div>
@@ -117,7 +117,12 @@ const dojoswap = () => {
             </div>
           </div>
 
-          <HydroChart />
+          <div className=" flex flex-col ">
+            <div className="px-5 pt-5 text-right ">
+              Hydro Total Value Locked
+            </div>
+            <HydroChart />
+          </div>
         </div>
 
         <div className=" px-3">Description</div>

@@ -116,7 +116,12 @@ const dojoswap = () => {
               </div>
             </div>
           </div>
-          <HelixChart />
+          <div className=" flex flex-col ">
+            <div className="px-5 pt-5 text-right ">
+              Helix Total Value Locked
+            </div>
+            <HelixChart />
+          </div>
         </div>
 
         <div className=" px-3">Description</div>

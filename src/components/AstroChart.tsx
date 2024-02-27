@@ -46,7 +46,7 @@ function AstroChart() {
   }, [container, scriptLoaded]);
 
   return (
-    <div className="w-[50vw] h-[50vh] p-10">
+    <div className="w-[50vw] h-[50vh] p-5">
       <div className="tradingview-widget-container" ref={container as any}>
         <div className="tradingview-widget-container__widget"></div>
       </div>

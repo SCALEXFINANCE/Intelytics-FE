@@ -55,7 +55,7 @@ const data: CoinTP[] = [
   },
   {
     name: "Helix",
-    category: "Deriviative",
+    category: "Derivative",
     slug: "helix",
   },
   {

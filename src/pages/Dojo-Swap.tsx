@@ -119,7 +119,12 @@ export default function DojoSwap() {
             </div>
           </div>
 
-          <DojoChart />
+          <div className=" flex flex-col ">
+            <div className="px-5 pt-5 text-right ">
+              Dojo Swap Total Value Locked
+            </div>
+            <DojoChart />
+          </div>
         </div>
 
         <div className=" px-3">Description</div>

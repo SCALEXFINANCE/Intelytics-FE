@@ -46,9 +46,9 @@ function InjectiveChart() {
   }, [container, scriptLoaded]);
 
   return (
-    <div className="w-[50vw] h-[50vh] p-3">
+    <div className="w-[50vw] h-[50vh] p-3 rounded-xl">
       <div className="tradingview-widget-container" ref={container as any}>
-        <div className="tradingview-widget-container__widget"></div>
+        <div className="tradingview-widget-container__widget "></div>
       </div>
     </div>
   );

@@ -64,7 +64,7 @@ const dojoswap = () => {
     <div>
       <div className="flex gap-4">
         <a>
-          <div className=" font-bold text-4xl p-3 ">Astrport</div>
+          <div className=" font-bold text-4xl p-3 ">Astroport</div>
         </a>
 
         <a href="https://twitter.com/astroport_fi">
@@ -81,30 +81,47 @@ const dojoswap = () => {
       <div className="flex flex-col gap-5">
         <div className="flex gap-8 mt-10  bg-gray-900 rounded-xl">
           <div className="px-3">
-            <div className="flex gap-4 pt-5 ">
+            <div className="flex gap-4 pt-8 ">
               <div className="text-2xl ">Total Value Locked:</div>
               <div className=" text-xl pt-1">{tvl}</div>
             </div>
             <div className="flex gap-4 pt-2">
               <div className="text-2xl ">1 Hour Change:</div>
-              <div className={`text-xl pt-1 ${
+              <div
+                className={`text-xl pt-1 ${
                   oneh < 0 ? "text-red-500" : "text-green-500"
-                }`}>{oneh}%</div>
+                }`}
+              >
+                {oneh}%
+              </div>
             </div>
             <div className="flex gap-4 pt-2">
               <div className="text-2xl ">24 Hour Change:</div>
-              <div className={`text-xl pt-1 ${
+              <div
+                className={`text-xl pt-1 ${
                   oned < 0 ? "text-red-500" : "text-green-500"
-                }`}>{oned}%</div>
+                }`}
+              >
+                {oned}%
+              </div>
             </div>
             <div className="flex gap-4 pt-2">
               <div className="text-2xl ">7 Day Change:</div>
-              <div className={`text-xl pt-1 ${
+              <div
+                className={`text-xl pt-1 ${
                   sevd < 0 ? "text-red-500" : "text-green-500"
-                }`}>{sevd}%</div>
+                }`}
+              >
+                {sevd}%
+              </div>
             </div>
           </div>
-          <AstroChart />
+          <div className=" flex flex-col ">
+            <div className="px-5 pt-5 text-right ">
+              Astroport Total Value Locked
+            </div>
+            <AstroChart />
+          </div>
         </div>
         <div className=" px-3">Description</div>
 
