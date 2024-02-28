@@ -29,7 +29,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className=" h-screen px-8 w-1/6 pt-8 pb-4  flex gap-4 flex-col bg-gradient-to-b from-black to-blue-950">
+    <div className=" h-screen px-8 w-1/6 pt-8 pb-4  flex gap-4 flex-col bg-gradient-to-b from-black to-blue-950 overflow-y-scroll no-scrollbar">
       <Link href={"/"}>
         <Image src={Logo} alt="" />
       </Link>

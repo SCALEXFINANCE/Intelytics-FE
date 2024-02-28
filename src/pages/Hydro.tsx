@@ -90,7 +90,7 @@ const hydro = () => {
               <div className="text-2xl ">1 Hour Change:</div>
               <div
                 className={`text-xl pt-1 ${
-                  oneh < 0 ? "text-red-500" : "text-green-500"
+                  oneh! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
                 {oneh}%
@@ -100,7 +100,7 @@ const hydro = () => {
               <div className="text-2xl ">24 Hour Change:</div>
               <div
                 className={`text-xl pt-1 ${
-                  oned < 0 ? "text-red-500" : "text-green-500"
+                  oned! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
                 {oned}%
@@ -110,7 +110,7 @@ const hydro = () => {
               <div className="text-2xl ">7 Day Change:</div>
               <div
                 className={`text-xl pt-1 ${
-                  sevd < 0 ? "text-red-500" : "text-green-500"
+                  sevd! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
                 {sevd}%
@@ -139,7 +139,6 @@ const hydro = () => {
           Injective’s LSDFi growth strategy planned, with a Real-Yield
           Aggregator feature coming soon
         </div>
-        
       </div>
     </div>
   );

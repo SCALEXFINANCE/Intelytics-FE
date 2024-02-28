@@ -141,20 +141,20 @@ const Topprotocolvolume = () => {
 
         <div className=" bg-gray-700 p-5 rounded-xl w-1/3">
           <div className=" pb-3"> Total Volume (24hr)</div>
-          <div className={`${oneday < 0 ? "text-red-500" : "text-green-500"}`}>
+          <div className={`${oneday! < 0 ? "text-red-500" : "text-green-500"}`}>
             {oneday}%
           </div>
         </div>
 
         <div className=" bg-gray-700 p-5 gap-3 rounded-xl w-1/3">
           <div className=" pb-3"> Total Volume (1hr)</div>
-          <div className={`${onehr < 0 ? "text-red-500" : "text-green-500"}`}>
+          <div className={`${onehr! < 0 ? "text-red-500" : "text-green-500"}`}>
             {onehr}%
           </div>
         </div>
         <div className=" bg-gray-700 p-5 gap-3 rounded-xl w-1/3">
           <div className=" pb-3"> Total Volume (7DAY)</div>
-          <div className={`${sevday < 0 ? "text-red-500" : "text-green-500"}`}>
+          <div className={`${sevday! < 0 ? "text-red-500" : "text-green-500"}`}>
             {sevday}%{" "}
           </div>
         </div>

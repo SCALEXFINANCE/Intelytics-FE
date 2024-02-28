@@ -83,7 +83,7 @@ export default function DojoSwap() {
               <div className="text-xl ">1 Hour Change:</div>
               <div
                 className={`text-xl pt-1 ${
-                  oneh < 0 ? "text-red-500" : "text-green-500"
+                  oneh! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
                 {oneh}%
@@ -93,7 +93,7 @@ export default function DojoSwap() {
               <div className="text-xl ">24 Hour Change:</div>
               <div
                 className={`text-xl pt-1 ${
-                  oned < 0 ? "text-red-500" : "text-green-500"
+                  oned! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
                 {oned}%
@@ -103,7 +103,7 @@ export default function DojoSwap() {
               <div className="text-xl ">7 Day Change:</div>
               <div
                 className={`text-xl pt-1 ${
-                  sevd < 0 ? "text-red-500" : "text-green-500"
+                  sevd! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
                 {sevd}%
