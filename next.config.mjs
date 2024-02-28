@@ -9,4 +9,21 @@ const nextConfig = {
 },
 };
 
+ 
+  //  headers() {
+  //   return [
+  //     {
+  //       // Adding favicon
+  //       source: '/public/favicon.svg',
+  //       headers: [
+  //         {
+  //           key: 'Link',
+  //           value: '/public/favicon.svg; rel="shortcut icon"',
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // }
+ 
+
 export default nextConfig;
