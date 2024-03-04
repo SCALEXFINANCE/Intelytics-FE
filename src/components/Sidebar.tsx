@@ -78,6 +78,14 @@ const Sidebar = () => {
                 Chains
               </Link>
               <Link
+                href={"/Tokens"}
+                className={`p-2  rounded-md   ${
+                  router.pathname === "/Tokens" ? "bg-gray-800 text-white " : ""
+                }`}
+              >
+                Tokens
+              </Link>
+              <Link
                 href={"/Airdrops"}
                 className={`p-2  rounded-md ${
                   router.pathname === "/Airdrops"
