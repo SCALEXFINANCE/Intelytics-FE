@@ -56,7 +56,6 @@
 
 // export default memo(DojoChart);
 
-
 import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJs,
@@ -101,7 +100,7 @@ const DojoChart = ({ height, width }: any) => {
       console.log(protocols.chainTvls.Injective.tvl);
       const tvl = protocols.chainTvls.Injective.tvl;
       const values: any = [];
-      tvl.forEach((data:any) => {
+      tvl.forEach((data: any) => {
         values.push(data.totalLiquidityUSD);
       });
       console.log(values);
@@ -179,11 +178,10 @@ const DojoChart = ({ height, width }: any) => {
     chartValues();
   }, []);
   return (
-    <div className=" shadow-xl w-[50vw] h-[50vh] p-4 rounded-xl">
+    <div className=" shadow-xl w-[50vw] h-[50vh] p-4  rounded-xl">
       <Line data={data} options={options} width={width} height={height} />
     </div>
   );
 };
 
 export default DojoChart;
-

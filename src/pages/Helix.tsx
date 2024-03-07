@@ -66,27 +66,17 @@ const helix = () => {
         <a href="https://www.helix.com/">
           <div className=" font-bold text-4xl p-3 ">Helix</div>
         </a>
-
-        <a href="https://twitter.com/HelixApp_">
-          <Image
-            src={"/twitter.png"}
-            alt=""
-            height={25}
-            width={25}
-            className=" pt-5"
-          />
-        </a>
       </div>
 
       <div className=" flex flex-col gap-5">
-        <div className="flex gap-8 mt-10  bg-gray-900 rounded-xl">
+        <div className="flex gap-8 mt-10 justify-between  bg-gray-900 rounded-xl">
           <div className="px-3 p-7">
-            <div className="flex gap-4 pt-5 ">
-              <div className="text-2xl ">Total Value Locked:</div>
-              <div className=" text-xl pt-1">{tvl}</div>
+            <div className="flex gap-2 pt-5  flex-col">
+              <div className="text-xl ">Total Value Locked:</div>
+              <div className=" text-2xl pt-1">{tvl}</div>
             </div>
-            <div className="flex gap-4 pt-2">
-              <div className="text-2xl ">1 Hour Change:</div>
+            <div className="flex gap-4 pt-5 justify-between">
+              <div className="text-xl ">1 Hour Change:</div>
               <div
                 className={`text-xl pt-1 ${
                   oneh! < 0 ? "text-red-500" : "text-green-500"
@@ -95,8 +85,8 @@ const helix = () => {
                 {oneh}%
               </div>
             </div>
-            <div className="flex gap-4 pt-2">
-              <div className="text-2xl ">24 Hour Change:</div>
+            <div className="flex gap-4 pt-2 justify-between">
+              <div className="text-xl ">24 Hour Change:</div>
               <div
                 className={`text-xl pt-1 ${
                   oned! < 0 ? "text-red-500" : "text-green-500"
@@ -105,8 +95,8 @@ const helix = () => {
                 {oned}%
               </div>
             </div>
-            <div className="flex gap-4 pt-2">
-              <div className="text-2xl ">7 Day Change:</div>
+            <div className="flex gap-4 pt-2 justify-between">
+              <div className="text-xl ">7 Day Change:</div>
               <div
                 className={`text-xl pt-1 ${
                   sevd! < 0 ? "text-red-500" : "text-green-500"
@@ -115,9 +105,43 @@ const helix = () => {
                 {sevd}%
               </div>
             </div>
+
+            <div className=" flex flex-col pt-10">
+              <div className="text-lg">Socials</div>
+              <div className=" flex flex-row gap-5 items-center">
+                <a href="https://twitter.com/helixapp_">
+                  <Image
+                    src={"/twitter.png"}
+                    alt=""
+                    height={20}
+                    width={20}
+                    className=" pt-5"
+                  />
+                </a>
+                <a href="https://t.me/helixapp">
+                  <Image
+                    src={"/telegram.jpg"}
+                    alt=""
+                    height={30}
+                    width={30}
+                    className=" pt-5"
+                  />
+                </a>
+
+                <a href="https://discord.com/invite/injective">
+                  <Image
+                    src={"/discord.jpg"}
+                    alt=""
+                    height={25}
+                    width={25}
+                    className=" pt-5"
+                  />
+                </a>
+              </div>
+            </div>
           </div>
           <div className=" flex flex-col ">
-            <div className="px-5 pt-5 text-right ">
+            <div className="px-24 pt-5 text-right ">
               Helix Total Value Locked
             </div>
             <HelixChart />
