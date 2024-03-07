@@ -235,13 +235,10 @@ export function TokensTable() {
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
           currency: "USD",
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
         }).format(amount);
 
-        return <div className=" text-center font-medium">{amount}</div>;
+        return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
     {
@@ -262,14 +259,14 @@ export function TokensTable() {
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
+       
           currency: "USD",
         }).format(amount);
 
         if (row.getValue("Total Supply") == "-")
           return <div className=" text-center font-medium">-</div>;
 
-        return <div className=" text-center font-medium">{amount}</div>;
+        return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
     {
