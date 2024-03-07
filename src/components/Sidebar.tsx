@@ -105,6 +105,19 @@ const Sidebar = ({ visible, setVisible }: any) => {
                   onClick={() => {
                     setVisible(false);
                   }}
+                  href={"/Tokens"}
+                  className={`p-2  rounded-md ${
+                    router.pathname === "/Tokens"
+                      ? "bg-gray-800 text-white  "
+                      : ""
+                  }`}
+                >
+                  Tokens
+                </Link>
+                <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/Airdrops"}
                   className={`p-2  rounded-md ${
                     router.pathname === "/Airdrops"
