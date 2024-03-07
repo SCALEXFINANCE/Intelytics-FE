@@ -77,9 +77,9 @@ const hydro = () => {
               <div className=" text-3xl pt-1">{tvl}</div>
             </div>
             <div className="flex gap-4 pt-5 justify-between">
-              <div className="text-xl ">1 Hour Change:</div>
+              <div className="text-sm ">1 Hour Change:</div>
               <div
-                className={`text-xl pt-1 ${
+                className={`text-sm pt-1 ${
                   oneh! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
@@ -87,9 +87,9 @@ const hydro = () => {
               </div>
             </div>
             <div className="flex gap-4 pt-2 justify-between">
-              <div className="text-xl ">24 Hour Change:</div>
+              <div className="text-sm ">24 Hour Change:</div>
               <div
-                className={`text-xl pt-1 ${
+                className={`text-sm pt-1 ${
                   oned! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
@@ -97,9 +97,9 @@ const hydro = () => {
               </div>
             </div>
             <div className="flex gap-4 pt-2 justify-between">
-              <div className="text-xl ">7 Day Change:</div>
+              <div className="text-sm ">7 Day Change:</div>
               <div
-                className={`text-xl pt-1 ${
+                className={`text-sm pt-1 ${
                   sevd! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
@@ -108,7 +108,7 @@ const hydro = () => {
             </div>
 
             <div className=" flex flex-col pt-10">
-              <div className="text-lg">Socials</div>
+              <div className="text-base">Socials</div>
               <div className=" flex flex-row gap-5 items-center">
                 <a href="https://twitter.com/hydro_fi">
                   <Image
@@ -121,7 +121,7 @@ const hydro = () => {
                 </a>
                 <a href="https://t.me/Hydro_LSDfi">
                   <Image
-                    src={"/telegram.jpg"}
+                    src={"/telegram.png"}
                     alt=""
                     height={30}
                     width={30}
@@ -151,14 +151,12 @@ const hydro = () => {
           </div>
 
           <div className=" flex flex-col ">
-            <div className="px-16 pt-5 text-right ">
-              Hydro Total Value Locked
-            </div>
+            <div className="px-4 pt-5   ">Hydro Total Value Locked</div>
             <Charted />
           </div>
         </div>
 
-        <div className=" px-3">Description</div>
+        <div className=" px-3 text-xl">Description</div>
 
         <div className=" p-5 text-xl bg-gray-900 rounded-xl">
           Hydro Protocol is the ultimate platform for staked assets on the

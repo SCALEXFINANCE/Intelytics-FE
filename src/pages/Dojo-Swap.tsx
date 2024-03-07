@@ -69,40 +69,42 @@ export default function DojoSwap() {
               <div className="text-xl ">Total Value Locked:</div>
               <div className=" text-3xl pt-1">{tvl}</div>
             </div>
-            <div className="flex gap-4 pt-5 justify-between">
-              <div className="text-xl ">1 Hour Change:</div>
-              <div
-                className={`text-xl pt-1 ${
-                  oneh! < 0 ? "text-red-500" : "text-green-500"
-                }`}
-              >
-                {oneh}%
+            <div className=" text-sm">
+              <div className="flex gap-4 pt-5 justify-between">
+                <div className=" ">1 Hour Change:</div>
+                <div
+                  className={` pt-1 ${
+                    oneh! < 0 ? "text-red-500" : "text-green-500"
+                  }`}
+                >
+                  {oneh}%
+                </div>
               </div>
-            </div>
-            <div className="flex gap-4 pt-2 justify-between">
-              <div className="text-xl ">24 Hour Change:</div>
-              <div
-                className={`text-xl pt-1 ${
-                  oned! < 0 ? "text-red-500" : "text-green-500"
-                }`}
-              >
-                {oned}%
+              <div className="flex gap-4 pt-2 justify-between">
+                <div className="  ">24 Hour Change:</div>
+                <div
+                  className={`pt-1 ${
+                    oned! < 0 ? "text-red-500" : "text-green-500"
+                  }`}
+                >
+                  {oned}%
+                </div>
               </div>
-            </div>
-            <div className="flex gap-4 pt-2 justify-between">
-              <div className="text-xl ">7 Day Change:</div>
-              <div
-                className={`text-xl pt-1 ${
-                  sevd! < 0 ? "text-red-500" : "text-green-500"
-                }`}
-              >
-                {sevd}%
+              <div className="flex gap-4 pt-2 justify-between">
+                <div className="  ">7 Day Change:</div>
+                <div
+                  className={`  pt-1 ${
+                    sevd! < 0 ? "text-red-500" : "text-green-500"
+                  }`}
+                >
+                  {sevd}%
+                </div>
               </div>
             </div>
             <div>
               {/* Socials Box */}
               <div className=" flex flex-col pt-10">
-                <div className="text-lg">Socials</div>
+                <div className=" text-base">Socials</div>
                 <div className=" flex flex-row gap-5 items-center">
                   <a href="https://twitter.com/dojo_trading">
                     <Image
@@ -115,7 +117,7 @@ export default function DojoSwap() {
                   </a>
                   <a href="https://t.me/dojo_swap">
                     <Image
-                      src={"/telegram.jpg"}
+                      src={"/telegram.png"}
                       alt=""
                       height={30}
                       width={30}
@@ -146,14 +148,14 @@ export default function DojoSwap() {
           </div>
 
           <div className=" flex flex-col">
-            <div className="text-right px-24 pb-2 pt-5 ">
+            <div className=" px-4   pb-2 pt-5 ">
               Dojo Swap Total Value Locked (excludes Staking)
             </div>
             <DojoChart />
           </div>
         </div>
 
-        <div className=" px-3">Description</div>
+        <div className=" px-3 text-xl">Description</div>
 
         <div className=" p-5 text-xl bg-gray-900 rounded-xl">
           Dojoswap is a{" "}
