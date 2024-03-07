@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { OverviewTable } from "@/components/OverviewTable";
+import { OverviewTable, OverviewTableMobile } from "@/components/OverviewTable";
 import Charted from "@/components/ChartComponent";
 import App from "@/components/TestChart";
 import SearchBar from "@/components/Searchbar";
@@ -201,11 +201,13 @@ const overview = () => {
       </div> */}
 
       {/* graph card */}
-      <div className="bg-black p-5 px-5 rounded-xl flex gap-5 justify-between">
+      <div className="bg-black p-5 px-5 rounded-xl flex flex-col-reverse lg:flex-row gap-5 justify-between">
         {/* left */}
-        <div className="py-6 px-2 flex gap-2 flex-col w-1/3">
-          <div className=" text-gray-400">Injective Total Value Locked</div>
-          <div className=" text-4xl">{totalTVL}</div>
+        <div className="lg:py-6 lg:px-2  flex gap-2 flex-col lg:w-1/3 w-full">
+          <div className=" lg:text-gray-400 hidden lg:inline">
+            Injective Total Value Locked
+          </div>
+          <div className=" text-4xl hidden lg:inline">{totalTVL}</div>
           <div className="flex justify-between pt-4">
             <div>Top Protocols TVL</div>
             <div>{stable}</div>
@@ -231,13 +233,27 @@ const overview = () => {
         {/* right */}
         <div className=" flex flex-col">
           {/* <Charted height={200} width={600} /> */}
-          <div className="px-3 text-xl  t">Injective Total Value Locked</div>
+          <div className="lg:px-3 lg:text-xl lg:inline hidden">
+            Injective Total Value Locked
+          </div>
           <InjectiveChart />
+        </div>
+
+        <div className="lg:hidden flex flex-col ">
+          <div className=" text-gray-400 text-sm inline lg:hidden ">
+            Injective Total Value Locked
+          </div>
+          <div className=" text-3xl inline lg:hidden ">{totalTVL}</div>
         </div>
       </div>
 
       {/* table options */}
-      <OverviewTable />
+      <div className="hidden lg:inline">
+        <OverviewTable />
+      </div>
+      <div className="inline lg:hidden">
+        <OverviewTableMobile />
+      </div>
     </div>
   );
 };
