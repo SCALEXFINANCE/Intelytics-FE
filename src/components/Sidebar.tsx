@@ -2,14 +2,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useMemo } from "react";
 import Logo from "./assets/logo.png";
-import Defi from "./assets/defi.png";
-import NFT from "./assets/nft2.png";
-import Lending from "./assets/lending.png";
-import Volume from "./assets/volume.png";
-import TradingBot from "./assets/tradingbot.png";
 import Image from "next/image";
 
-const Sidebar = () => {
+const Sidebar = ({ visible, setVisible }: any) => {
   const [currPage, setCurrpage] = useState<string>("");
   const router = useRouter();
 
@@ -33,11 +28,28 @@ const Sidebar = () => {
       {/* <div className="">
         <Image src={"./burger.svg"} alt="" height={20} width={20} />
       </div> */}
-      <div className=" h-screen lg:px-8 lg:w-1/6 w-0 pt-8 pb-4  flex gap-4 flex-col bg-gradient-to-b from-black to-blue-950 overflow-y-scroll no-scrollbar">
-        <div>
-          <Link href={"/"}>
+      <div
+        className={`h-screen lg:px-8 lg:w-1/6 lg:relative absolute ${
+          visible ? "w-full z-10 px-10" : "w-0"
+        } pt-8 pb-4  flex gap-4 flex-col bg-gradient-to-b from-black to-blue-950 overflow-y-scroll no-scrollbar`}
+      >
+        <div className="flex items-center justify-between">
+          <Link
+            onClick={() => {
+              setVisible(false);
+            }}
+            href={"/"}
+          >
             <Image src={Logo} alt="" />
           </Link>
+          <button
+            onClick={() => {
+              setVisible(false);
+            }}
+            className=" -translate-y-[10%] text-6xl font-light hover:text-gray-400 select-none rotate-45 block lg:hidden  text-white "
+          >
+            +
+          </button>
         </div>
 
         <div className=" text-gray-500"> Dashboard</div>
@@ -66,6 +78,9 @@ const Sidebar = () => {
               `}
               >
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/"}
                   className={`p-2  rounded-md   ${
                     router.pathname === "/" ? "bg-gray-800 text-white " : ""
@@ -74,6 +89,9 @@ const Sidebar = () => {
                   Overview
                 </Link>
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/Chains"}
                   className={`p-2  rounded-md ${
                     router.pathname === "/Chains"
@@ -84,6 +102,9 @@ const Sidebar = () => {
                   Chains
                 </Link>
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/Airdrops"}
                   className={`p-2  rounded-md ${
                     router.pathname === "/Airdrops"
@@ -94,6 +115,9 @@ const Sidebar = () => {
                   Airdrops
                 </Link>
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/Topprotocol"}
                   className={`p-2  rounded-md ${
                     router.pathname === "/Topprotocol"
@@ -116,6 +140,9 @@ const Sidebar = () => {
                 className=" w-[1.8rem] h-[1.8rem]"
               />
               <Link
+                onClick={() => {
+                  setVisible(false);
+                }}
                 href={"/Nft"}
                 className={`p-2 rounded-md text-xl text-white font-bold ${
                   router.pathname === "/Nft"
@@ -137,6 +164,9 @@ const Sidebar = () => {
                 className=" w-[2rem] h-[2.8rem]"
               />
               <Link
+                onClick={() => {
+                  setVisible(false);
+                }}
                 href={"/Lending"}
                 className={`p-2 rounded-md text-xl text-white font-bold ${
                   router.pathname === "/Lending"
@@ -168,6 +198,9 @@ const Sidebar = () => {
             {isOpenVolume && (
               <div className="flex  flex-col  pl-7 gap-4  text-lg text-gray-400 animate-fade-down animate-duration-400">
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/Topprotocolvolume"}
                   className={`p-2 rounded-md ${
                     router.pathname === "/Topprotocolvolume"
@@ -200,6 +233,9 @@ const Sidebar = () => {
             {isOpenTradingBot && (
               <div className="flex  flex-col  pl-7 gap-4  text-lg text-gray-400 animate-fade-down animate-duration-400">
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/"}
                   className={`p-2 rounded-md ${
                     router.pathname === "/portfolio"
@@ -210,6 +246,9 @@ const Sidebar = () => {
                   Portfolio
                 </Link>
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/"}
                   className={`p-2 rounded-md ${
                     router.pathname === "/activetrades"
@@ -220,6 +259,9 @@ const Sidebar = () => {
                   Active Trades
                 </Link>
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/"}
                   className={`p-2 rounded-md ${
                     router.pathname === "/sleepertrades"
@@ -230,6 +272,9 @@ const Sidebar = () => {
                   Sleeper Trades
                 </Link>
                 <Link
+                  onClick={() => {
+                    setVisible(false);
+                  }}
                   href={"/"}
                   className={`p-2 rounded-md ${
                     router.pathname === "/dca" ? "bg-gray-800 text-white  " : ""

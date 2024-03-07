@@ -136,24 +136,24 @@ const Topprotocolvolume = () => {
       </div> */}
 
       {/* graph card */}
-      <div className="bg-black p-5 px-5 rounded-xl flex gap-5 w-full text-xl">
+      <div className="bg-black p-5 px-5 rounded-xl lg:flex lg:flex-row flex-col gap-3 w-full text-xl">
         {/* left */}
 
-        <div className=" bg-gray-700 p-5 rounded-xl w-1/3">
+        <div className=" bg-gray-700 p-3 lg:p-5 rounded-xl lg:w-1/3 w-full">
           <div className=" pb-3"> Total Volume (24hr)</div>
           <div className={`${oneday! < 0 ? "text-red-500" : "text-green-500"}`}>
             {oneday}%
           </div>
         </div>
 
-        <div className=" bg-gray-700 p-5 gap-3 rounded-xl w-1/3">
+        <div className=" bg-gray-700 p-3 lg:p-5 gap-3 rounded-xl my-4 lg:my-0 lg:w-1/3 w-full">
           <div className=" pb-3"> Total Volume (1hr)</div>
           <div className={`${onehr! < 0 ? "text-red-500" : "text-green-500"}`}>
             {onehr}%
           </div>
         </div>
-        <div className=" bg-gray-700 p-5 gap-3 rounded-xl w-1/3">
-          <div className=" pb-3"> Total Volume (7DAY)</div>
+        <div className=" bg-gray-700 p-3 lg:p-5 gap-3 rounded-xl lg:w-1/3 w-full">
+          <div className=" pb-3"> Total Volume (7days)</div>
           <div className={`${sevday! < 0 ? "text-red-500" : "text-green-500"}`}>
             {sevday}%{" "}
           </div>
