@@ -110,13 +110,13 @@ export function TokensTable() {
       header: "Name",
       cell: ({ row }) => (
         <div className=" flex gap-2 items-center">
-          {/* <Image
+          <Image
             alt=""
             src={`/${row.getValue("name")}.jpg`}
             width={30}
             height={30}
-            className=" rounded"
-          /> */}
+            className=" rounded-2xl"
+          />
           {/* <Link href={`/${row.getValue("name")}`}> */}{" "}
           <div className="capitalize text-white">{row.getValue("name")}</div>
           {/* </Link> */}
@@ -300,35 +300,6 @@ export function TokensTable() {
         return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
-    //   {
-    //     id: "actions",
-    //     enableHiding: false,
-    //     cell: ({ row }) => {
-    //       const payment = row.original;
-
-    //       return (
-    //         <DropdownMenu>
-    //           <DropdownMenuTrigger asChild>
-    //             <Button variant="ghost" className="h-8 w-8 p-0">
-    //               <span className="sr-only">Open menu</span>
-    //               <DotsHorizontalIcon className="h-4 w-4" />
-    //             </Button>
-    //           </DropdownMenuTrigger>
-    //           <DropdownMenuContent align="end">
-    //             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-    //             <DropdownMenuItem
-    //               onClick={() => navigator.clipboard.writeText(payment.id)}
-    //             >
-    //               Copy payment ID
-    //             </DropdownMenuItem>
-    //             <DropdownMenuSeparator />
-    //             <DropdownMenuItem>View customer</DropdownMenuItem>
-    //             <DropdownMenuItem>View payment details</DropdownMenuItem>
-    //           </DropdownMenuContent>
-    //         </DropdownMenu>
-    //       );
-    //     },
-    //   },
   ];
 
   const [data, setdata] = useState<Token[]>([]);
@@ -338,63 +309,112 @@ export function TokensTable() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // ninja
         const response1 = await axios.get(
           "https://coins.llama.fi/prices/current/injective:factory%2Finj1xtel2knkt8hmc9dnzpjz6kdmacgcfmlv5f308w%2Fninja,coingecko:dog-wif-nuchucks?searchWidth=4h"
         );
+        const apiUrl2 = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/factory-inj1xtel2knkt8hmc9dnzpjz6kdmacgcfmlv5f308w-ninja"
+        );
+        const liquidityData2 = apiUrl2.data;
+        const ninjaLiq = liquidityData2.pairs[0].liquidity.usd;
         const ninjaPrice =
           response1.data.coins["coingecko:dog-wif-nuchucks"].price;
 
+        // alien
         const response2 = await axios.get(
           "https://coins.llama.fi/prices/current/coingecko:alien?searchWidth=4h"
         );
+        const apiUrl3 = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/factory-inj1mly2ykhf6f9tdj58pvndjf4q8dzdl4myjqm9t6-ALIEN"
+        );
+        const liquidityData3 = apiUrl3.data;
+        const alienLiq = liquidityData3.pairs[0].liquidity.usd;
         const alienPrice = response2.data.coins["coingecko:alien"].price;
 
+        // kira
         const response3 = await axios.get(
           "https://coins.llama.fi/prices/current/injective:factory%2Finj1xy3kvlr4q4wdd6lrelsrw2fk2ged0any44hhwq%2FKIRA,coingecko:kira-the-injective-cat?searchWidth=4h"
         );
+        const apiUrl4 = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/factory-inj1xy3kvlr4q4wdd6lrelsrw2fk2ged0any44hhwq-KIRA"
+        );
+        const liquidityData4 = apiUrl4.data;
+        const kiraLiq = liquidityData4.pairs[0].liquidity.usd;
         const kiraPrice =
           response3.data.coins["coingecko:kira-the-injective-cat"].price;
 
+        // dojo
         const response4 = await axios.get(
           "https://coins.llama.fi/prices/current/coingecko:dojo-token?searchWidth=4h"
         );
+        const apiUrl = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/inj1zdj9kqnknztl2xclm5ssv25yre09f8908d4923"
+        );
+        const liquidityData = apiUrl.data;
+        const dojoLiq = liquidityData.pairs[0].liquidity.usd;
         const dojoPrice = response4.data.coins["coingecko:dojo-token"].price;
 
+        // katana
         const response5 = await axios.get(
           "https://coins.llama.fi/prices/current/coingecko:dogwifkatana?searchWidth=4h"
         );
-        const rollPrice = response5.data.coins["coingecko:dogwifkatana"].price;
+        const apiUrl8 = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/inj1qv98cmfdaj5f382a0klq7ps4mnjp6calzh20h3"
+        );
+        const liquidityData8 = apiUrl8.data;
+        const rollLiq = liquidityData8.pairs[0].liquidity.usd;
+        const rollPrice = liquidityData8.pairs[0].priceUsd;
 
+        // stinj
         const response6 = await axios.get(
           "https://coins.llama.fi/prices/current/coingecko:stride-staked-injective?searchWidth=4h"
         );
+        const apiUrl5 = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/ibc-AC87717EA002B0123B10A05063E69BCA274BA2C44D842AEEB41558D2856DCE93"
+        );
+        const liquidityData5 = apiUrl5.data;
+        const sushiLiq = liquidityData5.pairs[0].liquidity.usd;
         const sushiPrice =
           response6.data.coins["coingecko:stride-staked-injective"].price;
 
+        // zignaly
         const response7 = await axios.get(
           "https://coins.llama.fi/prices/current/coingecko:zignaly?searchWidth=4h"
         );
+        const apiUrl6 = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/peggy0xb2617246d0c6c0087f18703d576831899ca94f01"
+        );
+        const liquidityData6 = apiUrl6.data;
+        const kageLiq = liquidityData6.pairs[0].liquidity.usd;
         const kagePrice = response7.data.coins["coingecko:zignaly"].price;
 
+        // white-whale dinj mib
         const response8 = await axios.get(
           "https://coins.llama.fi/prices/current/coingecko:white-whale?searchWidth=4h"
         );
-        const mibPrice = response8.data.coins["coingecko:white-whale"].price;
+        const apiUrl7 = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/inj134wfjutywny9qnyux2xgdmm0hfj7mwpl39r3r9"
+        );
+        const liquidityData7 = apiUrl7.data;
+        const mibLiq = liquidityData7.pairs[0].liquidity.usd;
+        // console.log(liquidityData7.pairs[0].priceUsd)
+        const mibPrice = liquidityData7.pairs[0].priceUsd;
 
-        const ninjaLiq = 1;
+        // const ninjaLiq = 1;
         // const sushiPrice = 2;
-        const sushiLiq = 1;
-        const alienLiq = 1;
+        // const sushiLiq = 1;
+        // const alienLiq = 1;
 
-        const kiraLiq = 5;
+        // const kiraLiq = 5;
 
-        const dojoLiq = 1;
+        // const dojoLiq = 1;
         // const mibPrice = 2;
-        const mibLiq = 7;
+        // const mibLiq = 7;
         // const kagePrice = 4;
-        const kageLiq = 1;
+        // const kageLiq = 1;
         // const rollPrice = 2;
-        const rollLiq = 2;
+        // const rollLiq = 2;
 
         const data: Token[] = [
           {
@@ -429,7 +449,7 @@ export function TokensTable() {
           },
           {
             name: "Stinj",
-            category: "CW404",
+            category: "Utility",
             Price: sushiPrice,
             Liquidity: sushiLiq,
             "Market Cap": 15000 * sushiPrice,
@@ -448,7 +468,7 @@ export function TokensTable() {
             FDV: 20000000 * dojoPrice,
           },
           {
-            name: "White-Whale",
+            name: "Dinj",
             category: "Utility ",
             Price: mibPrice,
             Liquidity: mibLiq,
@@ -459,7 +479,7 @@ export function TokensTable() {
           },
           {
             name: "Zignaly",
-            category: "Bot ",
+            category: "Utility",
             Price: kagePrice,
             Liquidity: kageLiq,
             "Market Cap": 51600000 * kagePrice,
@@ -468,7 +488,7 @@ export function TokensTable() {
             FDV: 100000000 * kagePrice,
           },
           {
-            name: "Katana",
+            name: "Roll",
             category: "Gaming ",
             Price: rollPrice,
             Liquidity: rollLiq,
