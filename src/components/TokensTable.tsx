@@ -64,8 +64,6 @@ export function TokensTable() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
- 
-
   const columns: ColumnDef<Token>[] = [
     {
       accessorKey: "name",
@@ -221,7 +219,6 @@ export function TokensTable() {
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
-       
           currency: "USD",
         }).format(amount);
 
