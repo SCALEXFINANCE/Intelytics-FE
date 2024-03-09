@@ -126,7 +126,7 @@ export default function DojoSwap() {
                   </a>
                   <a href="https://t.me/dojo_swap">
                     <Image
-                      src={"/telegram.jpg"}
+                      src={"/telegram.png"}
                       alt=""
                       height={30}
                       width={30}
@@ -170,7 +170,7 @@ export default function DojoSwap() {
           </div>
         </div>
 
-        <div className=" px-3">Description</div>
+        <div className=" px-3 text-xl">Description</div>
 
         <div className=" p-5 lg:text-xl text-base bg-gray-900 rounded-xl">
           Dojoswap is a{" "}

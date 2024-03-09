@@ -130,7 +130,7 @@ const dojoswap = () => {
                 </a>
                 <a href="https://t.me/astroport_fi">
                   <Image
-                    src={"/telegram.jpg"}
+                    src={"/telegram.png"}
                     alt=""
                     height={30}
                     width={30}
@@ -171,7 +171,7 @@ const dojoswap = () => {
             <div className="lg:text-3xl text-2xl pt-1">{tvl}</div>
           </div>
         </div>
-        <div className=" px-3">Description</div>
+        <div className=" px-3 text-xl">Description</div>
 
         <div className="  p-5 lg:text-xl text-base bg-gray-900 rounded-xl">
           Astroport is the central space station of the DeFi solar system, where

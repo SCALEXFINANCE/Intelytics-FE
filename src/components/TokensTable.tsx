@@ -221,7 +221,6 @@ export function TokensTable() {
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
-       
           currency: "USD",
         }).format(amount);
 
@@ -289,7 +288,7 @@ export function TokensTable() {
         );
         const liquidityData3 = apiUrl3.data;
         const alienLiq = liquidityData3.pairs[0].liquidity.usd;
-        const alienPrice = response2.data.coins["coingecko:alien"].price;
+        const alienPrice = liquidityData3.pairs[0].priceUsd;
 
         // kira
         const response3 = await axios.get(
@@ -312,7 +311,7 @@ export function TokensTable() {
         );
         const liquidityData = apiUrl.data;
         const dojoLiq = liquidityData.pairs[0].liquidity.usd;
-        const dojoPrice = response4.data.coins["coingecko:dojo-token"].price;
+        const dojoPrice = liquidityData.pairs[0].priceUsd;
 
         // katana
         const response5 = await axios.get(
@@ -421,10 +420,10 @@ export function TokensTable() {
             category: "Utility ",
             Price: dojoPrice,
             Liquidity: dojoLiq,
-            "Market Cap": 200000000 * dojoPrice,
-            "Circulating Supply": 200000000,
-            "Total Supply": 80000000,
-            FDV: 80000000 * dojoPrice,
+            "Market Cap": 20000000 * dojoPrice,
+            "Circulating Supply": 20000000,
+            "Total Supply": 800000000,
+            FDV: 800000000 * dojoPrice,
           },
           {
             name: "Dinj",

@@ -81,7 +81,7 @@ const helix = () => {
           <div className="px-3 lg:p-7">
             <div className="lg:flex lg:gap-2 lg:pt-5 lg:flex-col hidden">
               <div className="text-xl ">Total Value Locked:</div>
-              <div className=" text-2xl pt-1">{tvl}</div>
+              <div className=" text-3xl pt-1">{tvl}</div>
             </div>
             <div className="flex gap-4 pt-5 justify-between">
               <div className="lg:text-xl text-sm ">1 Hour Change:</div>
@@ -128,7 +128,7 @@ const helix = () => {
                 </a>
                 <a href="https://t.me/helixapp">
                   <Image
-                    src={"/telegram.jpg"}
+                    src={"/telegram.png"}
                     alt=""
                     height={30}
                     width={30}
@@ -162,7 +162,7 @@ const helix = () => {
           </div>
         </div>
 
-        <div className=" px-3">Description</div>
+        <div className=" px-3 text-xl">Description</div>
 
         <div className=" p-5 lg:text-xl text-base bg-gray-900 rounded-xl">
           Explore limitless financial possibilities. Helix provides unmatched

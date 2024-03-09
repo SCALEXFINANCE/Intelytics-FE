@@ -85,9 +85,9 @@ const hydro = () => {
               <div className=" text-3xl pt-1">{tvl}</div>
             </div>
             <div className="flex gap-4 pt-5 justify-between">
-              <div className="lg:text-xl text-sm ">1 Hour Change:</div>
+              <div className="text-xl ">1 Hour Change:</div>
               <div
-                className={`lg:text-xl text-sm pt-1 ${
+                className={`text-xl pt-1 ${
                   oneh! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
@@ -129,7 +129,7 @@ const hydro = () => {
                 </a>
                 <a href="https://t.me/Hydro_LSDfi">
                   <Image
-                    src={"/telegram.jpg"}
+                    src={"/telegram.png"}
                     alt=""
                     height={30}
                     width={30}
@@ -172,7 +172,7 @@ const hydro = () => {
           </div>
         </div>
 
-        <div className=" px-3">Description</div>
+        <div className=" px-3 text-xl">Description</div>
 
         <div className=" p-5 lg:text-xl text-base bg-gray-900 rounded-xl">
           Hydro Protocol is the ultimate platform for staked assets on the
