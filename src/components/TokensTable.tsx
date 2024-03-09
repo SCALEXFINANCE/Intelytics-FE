@@ -64,45 +64,7 @@ export function TokensTable() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
-  // const data: Coin[] = [
-  //   {
-  //     name: "Dojo Swap",
-  //     category: "Dex",
-  //     tvl: 23.4,
-  //     "1 Hour Change": 23.4,
-  //     "24 Hours Change": 66.4,
-  //     "7 Days Change": 29.1,
-  //     volume: 25.2,
-  //   },
-  //   {
-  //     name: "Astroport",
-  //     category: "Dex",
-  //     tvl: 21.4,
-  //     "1 Hour Change": 23.4,
-  //     "24 Hours Change": 77.4,
-  //     "7 Days Change": 30.1,
-  //     volume: 22.1,
-  //   },
-  //   {
-  //     name: "Helix",
-  //     category: "Deriviative",
-  //     tvl: 21.4,
-  //     "1 Hour Change": 23.4,
-  //     "24 Hours Change": 77.4,
-  //     "7 Days Change": 30.1,
-  //     volume: 22.1,
-  //   },
-  //   {
-  //     name: "Hydro",
-  //     category: "Liquid Stacking",
-  //     tvl: 21.4,
-  //     "1 Hour Change": 23.4,
-  //     "24 Hours Change": 77.4,
-  //     "7 Days Change": 30.1,
-  //     volume: 22.1,
-  //   },
-  //   // ...
-  // ];
+  
 
   const columns: ColumnDef<Token>[] = [
     {
