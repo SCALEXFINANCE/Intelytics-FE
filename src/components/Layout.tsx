@@ -11,7 +11,7 @@ const Layout = ({ children }: any) => {
         <div className="  bg-slate-950 flex-1 px-6 pt-8 pb-4 text-white border-1 border-dashed overflow-y-scroll">
           <div className="lg:hidden bg-slate-950 w-full pt-0 pb-5 flex items-center justify-between">
             <Image
-              className="w-[10rem] h-[1.8rem]"
+              className="w-[10rem] h-[1.5rem]"
               src={Logo}
               alt="Intelitics logo"
             />

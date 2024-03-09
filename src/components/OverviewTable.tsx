@@ -826,7 +826,7 @@ export function OverviewTableMobile() {
           {
             name: "Dojo-Swap",
             category: "Dex",
-            tvl:  totalTvlDojo ,
+            tvl: totalTvlDojo,
             "1 Hour Change": Math.round(oneDayDojo * 100) / 100,
             "24 Hours Change": Math.round(oneHourDojo * 100) / 100,
             "7 Days Change": Math.round(sevenDayDojo * 100) / 100,
@@ -835,7 +835,7 @@ export function OverviewTableMobile() {
           {
             name: "Astroport",
             category: "Dex",
-            tvl:  totalTvlAstro  ,
+            tvl: totalTvlAstro,
             "1 Hour Change": Math.round(oneDayAstro * 100) / 100,
             "24 Hours Change": Math.round(oneHourAstro * 100) / 100,
             "7 Days Change": Math.round(sevenDayAstro * 100) / 100,
@@ -853,7 +853,7 @@ export function OverviewTableMobile() {
           {
             name: "Hydro",
             category: "Liquid Staking",
-            tvl:  totalTvlHydro ,
+            tvl: totalTvlHydro,
             "1 Hour Change": Math.round(oneDayHydro * 100) / 100,
             "24 Hours Change": Math.round(oneHourHydro * 100) / 100,
             "7 Days Change": Math.round(sevenDayHydro * 100) / 100,
@@ -1051,7 +1051,9 @@ export function OverviewTableMobile() {
                   className=" rounded"
                 />
                 <div className="flex flex-col px-2">
-                  <h4>{coin.name}</h4>
+                  <Link href={`/${coin.name}`}>
+                    <h4>{coin.name}</h4>
+                  </Link>
                   <p className="text-teal-300 text-sm">{coin.category}</p>
                 </div>
               </div>

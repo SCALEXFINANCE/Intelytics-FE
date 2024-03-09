@@ -162,6 +162,16 @@ const Charted = ({ height, width }: any) => {
         display: false,
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value: any) {
+            return "$" + value / 1000000 + "M";
+          },
+        },
+      },
+    },
   };
   useEffect(() => {
     chartValues();

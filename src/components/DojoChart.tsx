@@ -173,12 +173,22 @@ const DojoChart = ({ height, width }: any) => {
         display: true,
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value: any) {
+            return "$" + value / 1000000 + "M";
+          },
+        },
+      },
+    },
   };
   useEffect(() => {
     chartValues();
   }, []);
   return (
-    <div className=" shadow-xl w-[50vw] h-[50vh] p-4  rounded-xl">
+    <div className=" shadow-xl lg:w-[50vw]  lg:h-[50vh] w-[84vw] lg:p-4  rounded-xl">
       <Line data={data} options={options} width={width} height={height} />
     </div>
   );
