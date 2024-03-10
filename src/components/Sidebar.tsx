@@ -40,7 +40,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
             }}
             href={"/"}
           >
-            <Image src={Logo} alt="" />
+            <Image src={Logo} alt="" height={23} />
           </Link>
           <button
             onClick={() => {
