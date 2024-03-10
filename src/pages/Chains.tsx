@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
-import { ChainsTable } from "@/components/ChainsTable";
+import { ChainsTable, ChainsTableMob } from "@/components/ChainsTable";
 import ChartChains from "@/components/ChartChains";
 import SearchBar from "@/components/Searchbar";
+import ChartChainsMob from "@/components/ChartChainsMob";
 
 const Chains = () => {
   const [selected, setSelected] = useState<string>("all");
@@ -33,24 +34,26 @@ const Chains = () => {
 
         const response4 = await axios.get("https://api.llama.fi/v2/chains");
         const chains = response4.data;
-         
-      const injective = chains.find((chain : any) => chain.gecko_id === "injective-protocol");
-      const injectiveTvl = injective.tvl;
 
-      const response7 = await axios.get(
-        "https://api.llama.fi/v2/historicalChainTvl/Injective"
-      );
+        const injective = chains.find(
+          (chain: any) => chain.gecko_id === "injective-protocol"
+        );
+        const injectiveTvl = injective.tvl;
 
-      const protocols2 = response7.data;
-      console.log(protocols2);
+        const response7 = await axios.get(
+          "https://api.llama.fi/v2/historicalChainTvl/Injective"
+        );
 
-      const values: any = [];
-      const tvl2 = [];
-      tvl2.push(...protocols2.slice(-1));
-      tvl2.forEach((data: any) => {
-        values.push(data.tvl);
-      });
-      console.log(values);
+        const protocols2 = response7.data;
+        console.log(protocols2);
+
+        const values: any = [];
+        const tvl2 = [];
+        tvl2.push(...protocols2.slice(-1));
+        tvl2.forEach((data: any) => {
+          values.push(data.tvl);
+        });
+        console.log(values);
 
         // Protocol (TVL) API Testing.
         const protocols = response.data;
@@ -91,7 +94,7 @@ const Chains = () => {
           maximumFractionDigits: 2,
         }).format(values);
 
-        setTotalTVL(formatted)
+        setTotalTVL(formatted);
 
         const formatted2 = new Intl.NumberFormat("en-US", {
           style: "currency",
@@ -116,8 +119,6 @@ const Chains = () => {
           maximumFractionDigits: 2,
         }).format(liq);
         setFunding(formatted4);
-
-      
       } catch (error) {
         console.log(error);
       }
@@ -140,7 +141,7 @@ const Chains = () => {
 
       <SearchBar />
 
-      <div className=" text-lg  p-3 border-2 border-yellow-600 rounded-2xl">
+      <div className=" lg:text-lg text-sm  lg:p-3 p-2 border-2 border-yellow-600 rounded-2xl">
         Currently tracking protocols on Injective only, More Chains are coming
         soon!!
       </div>
@@ -159,11 +160,13 @@ const Chains = () => {
       </div> */}
 
       {/* graph card */}
-      <div className="bg-black p-5 px-5 rounded-xl flex  justify-between w-full">
+      <div className="bg-black p-5 px-5 rounded-xl flex flex-col-reverse lg:flex-row  justify-between w-full">
         {/* left */}
-        <div className="py-6 px-2 flex gap-2 flex-col w-1/4">
-          <div className=" text-gray-400">Injective Total Value Locked</div>
-          <div className=" text-4xl">{totalTVL}</div>
+        <div className="lg:py-6 lg:px-2  flex gap-2 flex-col lg:w-1/4 w-full">
+          <div className=" text-gray-400 hidden lg:inline">
+            Injective Total Value Locked
+          </div>
+          <div className=" text-4xl hidden lg:inline">{totalTVL}</div>
           <div className="flex justify-between pt-4">
             <div>Top Protocols TVL</div>
             <div>{stable}</div>
@@ -180,14 +183,29 @@ const Chains = () => {
 
         {/* right */}
         {/* <div className=" flex justify-center w-3/4">Graph</div> */}
-        <div className=" px-10">
+        <div className="hidden lg:inline px-10">
           <ChartChains />
+        </div>
+        <div className="px-10 inline lg:hidden">
+          <ChartChainsMob />
+        </div>
+
+        <div className="lg:hidden flex flex-col ">
+          <div className=" text-gray-400 text-sm inline lg:hidden ">
+            Injective Total Value Locked
+          </div>
+          <div className=" text-3xl inline lg:hidden ">{totalTVL}</div>
         </div>
       </div>
 
       {/* table options */}
-
+      
+      <div className="hidden lg:inline">
       <ChainsTable />
+      </div>
+      <div className="inline lg:hidden">
+        <ChainsTableMob/>
+      </div>
     </div>
   );
 };

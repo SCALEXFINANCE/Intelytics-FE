@@ -64,8 +64,6 @@ export function TokensTable() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
-  
-
   const columns: ColumnDef<Token>[] = [
     {
       accessorKey: "name",
@@ -89,7 +87,7 @@ export function TokensTable() {
       accessorKey: "category",
       header: "Category",
       cell: ({ row }) => (
-        <div className="capitalize text-teal-300">
+        <div className="capitalize text-teal-300 text-right lg:text-justify">
           {row.getValue("category")}
         </div>
       ),
@@ -288,7 +286,7 @@ export function TokensTable() {
         );
         const liquidityData3 = apiUrl3.data;
         const alienLiq = liquidityData3.pairs[0].liquidity.usd;
-        const alienPrice = liquidityData3.pairs[0].priceUsd;
+        const alienPrice = response2.data.coins["coingecko:alien"].price;
 
         // kira
         const response3 = await axios.get(
@@ -311,7 +309,7 @@ export function TokensTable() {
         );
         const liquidityData = apiUrl.data;
         const dojoLiq = liquidityData.pairs[0].liquidity.usd;
-        const dojoPrice = liquidityData.pairs[0].priceUsd;
+        const dojoPrice = response4.data.coins["coingecko:dojo-token"].price;
 
         // katana
         const response5 = await axios.get(
@@ -420,10 +418,10 @@ export function TokensTable() {
             category: "Utility ",
             Price: dojoPrice,
             Liquidity: dojoLiq,
-            "Market Cap": 20000000 * dojoPrice,
-            "Circulating Supply": 20000000,
-            "Total Supply": 800000000,
-            FDV: 800000000 * dojoPrice,
+            "Market Cap": 200000000 * dojoPrice,
+            "Circulating Supply": 200000000,
+            "Total Supply": 80000000,
+            FDV: 80000000 * dojoPrice,
           },
           {
             name: "Dinj",
@@ -495,7 +493,7 @@ export function TokensTable() {
   return (
     <div className="w-full pb-8">
       <div className="flex items-center py-4">
-        <div className="bg-black p-3 px-5 rounded-xl flex gap-4 w-full justify-between">
+        <div className="bg-black lg:p-3  px-5 rounded-xl flex gap-4 w-full justify-between">
           <div className="flex items-center gap-4">
             {/* <Image src="./protocolranking.svg" alt="" height={30} width={30} /> */}
             <div className=" font-semibold ">Tokens </div>

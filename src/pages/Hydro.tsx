@@ -62,24 +62,32 @@ const hydro = () => {
   }, []);
 
   return (
-    <div>
-      <div className="flex gap-4">
-        <a href="https://hydroprotocol.finance/">
-          <div className=" font-bold text-4xl p-3 ">Hydro</div>
+    <div className="pt-4 lg:pt-0">
+      <div className="lg:flex lg:gap-2   flex items-center  bg-gray-900 rounded-xl p-2">
+        <Image
+          alt=""
+          src={"/Hydro.jpg"}
+          height={40}
+          width={40}
+          className=" rounded"
+        />
+        <a href="https://hydroprotocol.finance/" className="lg:p-2">
+          <div className=" font-bold lg:text-4xl text-base px-2 "> Hydro</div>
+          <div className=" text-teal-400  px-2">Liquid Staking</div>
         </a>
       </div>
 
       <div className=" flex gap-3 flex-col">
-        <div className="flex gap-8 mt-10 justify-between  bg-gray-900 rounded-xl">
+        <div className="flex flex-col-reverse lg:flex-row lg:gap-8 gap-2 lg:mt-10 mt-5 justify-between  bg-gray-900 rounded-xl">
           <div className="px-4 pt-5">
-            <div className="flex gap-2 pt-5 flex-col ">
+            <div className="lg:flex lg:gap-2 lg:pt-5 lg:flex-col hidden  ">
               <div className="text-xl ">Total Value Locked:</div>
               <div className=" text-3xl pt-1">{tvl}</div>
             </div>
             <div className="flex gap-4 pt-5 justify-between">
-              <div className="text-sm ">1 Hour Change:</div>
+              <div className="text-xl ">1 Hour Change:</div>
               <div
-                className={`text-sm pt-1 ${
+                className={`text-xl pt-1 ${
                   oneh! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
@@ -87,9 +95,9 @@ const hydro = () => {
               </div>
             </div>
             <div className="flex gap-4 pt-2 justify-between">
-              <div className="text-sm ">24 Hour Change:</div>
+              <div className="lg:text-xl text-sm ">24 Hour Change:</div>
               <div
-                className={`text-sm pt-1 ${
+                className={`lg:text-xl text-sm pt-1 ${
                   oned! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
@@ -97,9 +105,9 @@ const hydro = () => {
               </div>
             </div>
             <div className="flex gap-4 pt-2 justify-between">
-              <div className="text-sm ">7 Day Change:</div>
+              <div className="lg:text-xl text-sm ">7 Day Change:</div>
               <div
-                className={`text-sm pt-1 ${
+                className={`lg:text-xl text-sm pt-1 ${
                   sevd! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
@@ -107,8 +115,8 @@ const hydro = () => {
               </div>
             </div>
 
-            <div className=" flex flex-col pt-10">
-              <div className="text-base">Socials</div>
+            <div className=" flex flex-col pt-10 pb-5">
+              <div className="text-lg">Socials</div>
               <div className=" flex flex-row gap-5 items-center">
                 <a href="https://twitter.com/hydro_fi">
                   <Image
@@ -151,14 +159,22 @@ const hydro = () => {
           </div>
 
           <div className=" flex flex-col ">
-            <div className="px-4 pt-5   ">Hydro Total Value Locked</div>
+            <div className="lg:text-right lg:px-24 px-2 pb-2 pt-6 lg:pt-5 text-sm">
+              Hydro Total Value Locked
+            </div>
             <Charted />
+          </div>
+          <div className="flex   px-3 pt-5 flex-col lg:hidden ">
+            <div className="lg:text-xl text-gray-400 text-sm  ">
+              Total Value Locked:
+            </div>
+            <div className="lg:text-3xl text-2xl pt-1">{tvl}</div>
           </div>
         </div>
 
         <div className=" px-3 text-xl">Description</div>
 
-        <div className=" p-5 text-xl bg-gray-900 rounded-xl">
+        <div className=" p-5 lg:text-xl text-base bg-gray-900 rounded-xl">
           Hydro Protocol is the ultimate platform for staked assets on the
           Injective Network.Liquid Staking Derivatives is a huge theme in DeFi,
           and Hydro is right in the middle of it, looking to bring you

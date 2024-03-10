@@ -107,16 +107,7 @@ const Charted = ({ height, width }: any) => {
       });
       console.log(values);
 
-      //   const formatted = new Intl.NumberFormat("en-US", {
-      //     style: "currency",
-      //     currency: "USD",
-      //     minimumFractionDigits: 2,
-      //     maximumFractionDigits: 2,
-      //   }).format(value);
-
-      // const values = [onehr, oneday, sevenday];
       setChartData(values as []);
-      // console.log(chartData);
     } catch (error) {
       console.log(error);
     }
@@ -159,9 +150,6 @@ const Charted = ({ height, width }: any) => {
         label: "Total Value Locked",
         data: chartData,
         fill: true,
-        // fill: 'origin',
-
-        // fillColor: "rgb(75, 192, 192)",
         backgroundColor: "rgb(23,34,62)",
         borderColor: "rgb(41,96,250)",
         tension: 0.3,
@@ -171,7 +159,17 @@ const Charted = ({ height, width }: any) => {
   const options = {
     plugins: {
       legend: {
-        display: true,
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value: any) {
+            return "$" + value / 1000000 + "M";
+          },
+        },
       },
     },
   };
@@ -179,7 +177,7 @@ const Charted = ({ height, width }: any) => {
     chartValues();
   }, []);
   return (
-    <div className=" shadow-xl w-[50vw] h-[50vh] p-4 rounded-xl">
+    <div className=" shadow-xl lg:w-[50vw] lg:h-[50vh]  lg:p-4 ">
       <Line data={data} options={options} width={width} height={height} />
     </div>
   );
