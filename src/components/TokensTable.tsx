@@ -87,7 +87,7 @@ export function TokensTable() {
       accessorKey: "category",
       header: "Category",
       cell: ({ row }) => (
-        <div className="capitalize text-teal-300">
+        <div className="capitalize text-teal-300 text-right lg:text-justify">
           {row.getValue("category")}
         </div>
       ),
@@ -493,7 +493,7 @@ export function TokensTable() {
   return (
     <div className="w-full pb-8">
       <div className="flex items-center py-4">
-        <div className="bg-black p-3 px-5 rounded-xl flex gap-4 w-full justify-between">
+        <div className="bg-black lg:p-3  px-5 rounded-xl flex gap-4 w-full justify-between">
           <div className="flex items-center gap-4">
             {/* <Image src="./protocolranking.svg" alt="" height={30} width={30} /> */}
             <div className=" font-semibold ">Tokens </div>
