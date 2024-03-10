@@ -274,8 +274,7 @@ export function TokensTable() {
         );
         const liquidityData2 = apiUrl2.data;
         const ninjaLiq = liquidityData2.pairs[0].liquidity.usd;
-        const ninjaPrice =
-          response1.data.coins["coingecko:dog-wif-nuchucks"].price;
+        const ninjaPrice = liquidityData2.pairs[0].priceUsd;
 
         // alien
         const response2 = await axios.get(
@@ -286,7 +285,7 @@ export function TokensTable() {
         );
         const liquidityData3 = apiUrl3.data;
         const alienLiq = liquidityData3.pairs[0].liquidity.usd;
-        const alienPrice = response2.data.coins["coingecko:alien"].price;
+        const alienPrice = liquidityData3.pairs[0].priceUsd;
 
         // kira
         const response3 = await axios.get(
@@ -297,8 +296,7 @@ export function TokensTable() {
         );
         const liquidityData4 = apiUrl4.data;
         const kiraLiq = liquidityData4.pairs[0].liquidity.usd;
-        const kiraPrice =
-          response3.data.coins["coingecko:kira-the-injective-cat"].price;
+        const kiraPrice = liquidityData4.pairs[0].priceUsd;
 
         // dojo
         const response4 = await axios.get(
@@ -309,7 +307,7 @@ export function TokensTable() {
         );
         const liquidityData = apiUrl.data;
         const dojoLiq = liquidityData.pairs[0].liquidity.usd;
-        const dojoPrice = response4.data.coins["coingecko:dojo-token"].price;
+        const dojoPrice = liquidityData.pairs[0].priceUsd;
 
         // katana
         const response5 = await axios.get(
@@ -331,8 +329,7 @@ export function TokensTable() {
         );
         const liquidityData5 = apiUrl5.data;
         const sushiLiq = liquidityData5.pairs[0].liquidity.usd;
-        const sushiPrice =
-          response6.data.coins["coingecko:stride-staked-injective"].price;
+        const sushiPrice = liquidityData5.pairs[0].priceUsd;
 
         // zignaly
         const response7 = await axios.get(
@@ -343,7 +340,7 @@ export function TokensTable() {
         );
         const liquidityData6 = apiUrl6.data;
         const kageLiq = liquidityData6.pairs[0].liquidity.usd;
-        const kagePrice = response7.data.coins["coingecko:zignaly"].price;
+        const kagePrice = liquidityData6.pairs[0].priceUsd;
 
         // white-whale dinj mib
         const response8 = await axios.get(
@@ -356,21 +353,6 @@ export function TokensTable() {
         const mibLiq = liquidityData7.pairs[0].liquidity.usd;
         // console.log(liquidityData7.pairs[0].priceUsd)
         const mibPrice = liquidityData7.pairs[0].priceUsd;
-
-        // const ninjaLiq = 1;
-        // const sushiPrice = 2;
-        // const sushiLiq = 1;
-        // const alienLiq = 1;
-
-        // const kiraLiq = 5;
-
-        // const dojoLiq = 1;
-        // const mibPrice = 2;
-        // const mibLiq = 7;
-        // const kagePrice = 4;
-        // const kageLiq = 1;
-        // const rollPrice = 2;
-        // const rollLiq = 2;
 
         const data: Token[] = [
           {
@@ -408,10 +390,10 @@ export function TokensTable() {
             category: "Utility",
             Price: sushiPrice,
             Liquidity: sushiLiq,
-            "Market Cap": 15000 * sushiPrice,
-            "Circulating Supply": 15000,
-            "Total Supply": 15000,
-            FDV: 15000 * sushiPrice,
+            "Market Cap": 24552.75 * sushiPrice,
+            "Circulating Supply": 24552.75,
+            "Total Supply": "-",
+            FDV: "-",
           },
           {
             name: "Dojo",
@@ -499,11 +481,11 @@ export function TokensTable() {
             <div className=" font-semibold ">Tokens </div>
           </div>
 
-          <div className=" flex gap-4">
+          <div className=" flex gap-4 p-2">
             {/* column dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="default" className="ml-auto ">
+                <Button variant="default" className="ml-auto">
                   Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>

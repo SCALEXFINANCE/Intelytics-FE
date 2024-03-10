@@ -85,9 +85,9 @@ const hydro = () => {
               <div className=" text-3xl pt-1">{tvl}</div>
             </div>
             <div className="flex gap-4 pt-5 justify-between">
-              <div className="text-xl ">1 Hour Change:</div>
+              <div className="lg:text-xl text-sm ">1 Hour Change:</div>
               <div
-                className={`text-xl pt-1 ${
+                className={`lg:text-xl text-sm pt-1 ${
                   oneh! < 0 ? "text-red-500" : "text-green-500"
                 }`}
               >
