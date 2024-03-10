@@ -77,9 +77,10 @@ export function TokensTable() {
             height={30}
             className=" rounded-2xl"
           />
-          {/* <Link href={`/${row.getValue("name")}`}> */}{" "}
-          <div className="capitalize text-white">{row.getValue("name")}</div>
-          {/* </Link> */}
+          <Link href={`/Tokens/${row.getValue("name")}`}>
+            {" "}
+            <div className="capitalize text-white">{row.getValue("name")}</div>
+          </Link>
         </div>
       ),
     },
@@ -275,7 +276,7 @@ export function TokensTable() {
         const liquidityData2 = apiUrl2.data;
         const ninjaLiq = liquidityData2.pairs[0].liquidity.usd;
         const ninjaPrice =
-          response1.data.coins["coingecko:dog-wif-nuchucks"].price;
+        liquidityData2.pairs[0].priceUsd;
 
         // alien
         const response2 = await axios.get(
@@ -286,7 +287,7 @@ export function TokensTable() {
         );
         const liquidityData3 = apiUrl3.data;
         const alienLiq = liquidityData3.pairs[0].liquidity.usd;
-        const alienPrice = response2.data.coins["coingecko:alien"].price;
+        const alienPrice = liquidityData3.pairs[0].priceUsd;
 
         // kira
         const response3 = await axios.get(
@@ -297,8 +298,7 @@ export function TokensTable() {
         );
         const liquidityData4 = apiUrl4.data;
         const kiraLiq = liquidityData4.pairs[0].liquidity.usd;
-        const kiraPrice =
-          response3.data.coins["coingecko:kira-the-injective-cat"].price;
+        const kiraPrice =liquidityData4.pairs[0].priceUsd;
 
         // dojo
         const response4 = await axios.get(
@@ -309,9 +309,9 @@ export function TokensTable() {
         );
         const liquidityData = apiUrl.data;
         const dojoLiq = liquidityData.pairs[0].liquidity.usd;
-        const dojoPrice = response4.data.coins["coingecko:dojo-token"].price;
+        const dojoPrice = liquidityData.pairs[0].priceUsd;
 
-        // katana
+        // roll
         const response5 = await axios.get(
           "https://coins.llama.fi/prices/current/coingecko:dogwifkatana?searchWidth=4h"
         );
@@ -331,8 +331,7 @@ export function TokensTable() {
         );
         const liquidityData5 = apiUrl5.data;
         const sushiLiq = liquidityData5.pairs[0].liquidity.usd;
-        const sushiPrice =
-          response6.data.coins["coingecko:stride-staked-injective"].price;
+        const sushiPrice = liquidityData5.pairs[0].priceUsd;
 
         // zignaly
         const response7 = await axios.get(
@@ -343,7 +342,7 @@ export function TokensTable() {
         );
         const liquidityData6 = apiUrl6.data;
         const kageLiq = liquidityData6.pairs[0].liquidity.usd;
-        const kagePrice = response7.data.coins["coingecko:zignaly"].price;
+        const kagePrice = liquidityData6.pairs[0].priceUsd;
 
         // white-whale dinj mib
         const response8 = await axios.get(
