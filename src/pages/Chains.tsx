@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
-import { ChainsTable } from "@/components/ChainsTable";
+import { ChainsTable, ChainsTableMob } from "@/components/ChainsTable";
 import ChartChains from "@/components/ChartChains";
 import SearchBar from "@/components/Searchbar";
 import ChartChainsMob from "@/components/ChartChainsMob";
@@ -141,7 +141,7 @@ const Chains = () => {
 
       <SearchBar />
 
-      <div className=" lg:text-lg text-sm  p-3 border-2 border-yellow-600 rounded-2xl">
+      <div className=" lg:text-lg text-sm  lg:p-3 p-2 border-2 border-yellow-600 rounded-2xl">
         Currently tracking protocols on Injective only, More Chains are coming
         soon!!
       </div>
@@ -199,8 +199,13 @@ const Chains = () => {
       </div>
 
       {/* table options */}
-
+      
+      <div className="hidden lg:inline">
       <ChainsTable />
+      </div>
+      <div className="inline lg:hidden">
+        <ChainsTableMob/>
+      </div>
     </div>
   );
 };

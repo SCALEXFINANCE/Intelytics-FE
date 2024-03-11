@@ -46,7 +46,7 @@ const SearchBar: React.FC = () => {
     <form>
       <div className=" w-full bg-black">
         <input
-          className=" w-full bg-black p-5 border-2 border-gray-800 rounded-xl  text-white"
+          className=" w-full bg-black lg:p-5 p-3 border-2 border-gray-800 rounded-xl  text-white"
           type="text"
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
@@ -56,7 +56,10 @@ const SearchBar: React.FC = () => {
       {showResults && (
         <ul className="search-results  bg-gray-800 w-[79%] text-lg border-2 border-gray-800 rounded z-20	absolute	">
           {filteredResults.map((result) => (
-            <li key={result.title} className="border-b-2 border-x-2 border-gray-400 p-2">
+            <li
+              key={result.title}
+              className="border-b-2 border-x-2 border-gray-400 p-2"
+            >
               <Link href={result.link}>{result.title}</Link>
             </li>
           ))}
