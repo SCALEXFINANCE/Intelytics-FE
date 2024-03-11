@@ -343,7 +343,7 @@ export function TokensTable() {
         const kagePrice = liquidityData6.pairs[0].priceUsd;
 
         // babyDojo
-         
+
         const apiUrl9 = await axios.get(
           "https://api.dexscreener.com/latest/dex/tokens/inj19dtllzcquads0hu3ykda9m58llupksqwekkfnw"
         );
@@ -445,7 +445,7 @@ export function TokensTable() {
             FDV: 100000000 * rollPrice,
           },
           {
-            name: "babyDOJO",
+            name: "BabyDOJO",
             category: "CW-20 ",
             Price: babyPrice,
             Liquidity: babyLiq,
@@ -519,7 +519,7 @@ export function TokensTable() {
                         key={column.id}
                         className="capitalize"
                         checked={column.getIsVisible()}
-                        onCheckedChange={(value) =>
+                        onCheckedChange={(value: any) =>
                           column.toggleVisibility(!!value)
                         }
                       >
