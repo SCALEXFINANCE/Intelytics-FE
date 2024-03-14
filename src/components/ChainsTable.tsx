@@ -520,7 +520,7 @@ export function ChainsTable() {
                         key={column.id}
                         className="capitalize"
                         checked={column.getIsVisible()}
-                        onCheckedChange={(value) =>
+                        onCheckedChange={(value:any) =>
                           column.toggleVisibility(!!value)
                         }
                       >
