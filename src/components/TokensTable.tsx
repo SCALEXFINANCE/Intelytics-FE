@@ -343,6 +343,15 @@ export function TokensTable() {
         const kageLiq = liquidityData6.pairs[0].liquidity.usd;
         const kagePrice = liquidityData6.pairs[0].priceUsd;
 
+        // babyDojo
+
+        const apiUrl9 = await axios.get(
+          "https://api.dexscreener.com/latest/dex/tokens/inj19dtllzcquads0hu3ykda9m58llupksqwekkfnw"
+        );
+        const liquidityData9 = apiUrl9.data;
+        const babyLiq = liquidityData9.pairs[0].liquidity.usd;
+        const babyPrice = liquidityData9.pairs[0].priceUsd;
+
         // white-whale dinj mib
         const response8 = await axios.get(
           "https://coins.llama.fi/prices/current/coingecko:white-whale?searchWidth=4h"
@@ -436,6 +445,16 @@ export function TokensTable() {
             "Total Supply": 100000000,
             FDV: 100000000 * rollPrice,
           },
+          {
+            name: "BabyDOJO",
+            category: "CW-20 ",
+            Price: babyPrice,
+            Liquidity: babyLiq,
+            "Market Cap": 4198646072.1 * babyPrice,
+            "Circulating Supply": 4198646072.1,
+            "Total Supply": 4198646072.1,
+            FDV: 4198646072.1 * babyPrice,
+          },
         ];
         setdata(data);
       } catch (error) {
@@ -501,7 +520,7 @@ export function TokensTable() {
                         key={column.id}
                         className="capitalize"
                         checked={column.getIsVisible()}
-                        onCheckedChange={(value) =>
+                        onCheckedChange={(value: any) =>
                           column.toggleVisibility(!!value)
                         }
                       >
