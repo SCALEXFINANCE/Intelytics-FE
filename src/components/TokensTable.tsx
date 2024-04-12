@@ -274,101 +274,78 @@ export function TokensTable() {
       try {
         // ninja
         const response1 = await axios.get(
-          "https://coins.llama.fi/prices/current/injective:factory%2Finj1xtel2knkt8hmc9dnzpjz6kdmacgcfmlv5f308w%2Fninja,coingecko:dog-wif-nuchucks?searchWidth=4h"
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=NINJA"
         );
         const apiUrl2 = await axios.get(
           "https://api.dexscreener.com/latest/dex/tokens/factory-inj1xtel2knkt8hmc9dnzpjz6kdmacgcfmlv5f308w-ninja"
         );
-        const liquidityData2 = apiUrl2.data;
-        const ninjaLiq = liquidityData2.pairs[0].liquidity.usd;
-        const ninjaPrice = liquidityData2.pairs[0].priceUsd;
+        const ninjaLiq = response1.data.liquidity[response1.data.liquidity.length-1]; 
+        const ninjaPrice = response1.data.price[response1.data.price.length-1];
 
         // alien
         const response2 = await axios.get(
-          "https://coins.llama.fi/prices/current/coingecko:alien?searchWidth=4h"
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=$ALIEN"
         );
         const apiUrl3 = await axios.get(
           "https://api.dexscreener.com/latest/dex/tokens/factory-inj1mly2ykhf6f9tdj58pvndjf4q8dzdl4myjqm9t6-ALIEN"
         );
         const liquidityData3 = apiUrl3.data;
-        const alienLiq = liquidityData3.pairs[0].liquidity.usd;
-        const alienPrice = liquidityData3.pairs[0].priceUsd;
+        const alienLiq = response2.data.liquidity[response2.data.liquidity.length-1]; 
+        const alienPrice = response2.data.price[response2.data.price.length-1];
 
         // kira
         const response3 = await axios.get(
-          "https://coins.llama.fi/prices/current/injective:factory%2Finj1xy3kvlr4q4wdd6lrelsrw2fk2ged0any44hhwq%2FKIRA,coingecko:kira-the-injective-cat?searchWidth=4h"
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=KIRA"
         );
-        const apiUrl4 = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/factory-inj1xy3kvlr4q4wdd6lrelsrw2fk2ged0any44hhwq-KIRA"
-        );
-        const liquidityData4 = apiUrl4.data;
-        const kiraLiq = liquidityData4.pairs[0].liquidity.usd;
-        const kiraPrice = liquidityData4.pairs[0].priceUsd;
+       
+        const kiraLiq = response3.data.liquidity[response3.data.liquidity.length-1]; 
+        const kiraPrice = response3.data.price[response3.data.price.length-1];
 
         // dojo
         const response4 = await axios.get(
-          "https://coins.llama.fi/prices/current/coingecko:dojo-token?searchWidth=4h"
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=DOJO"
         );
-        const apiUrl = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/inj1zdj9kqnknztl2xclm5ssv25yre09f8908d4923"
-        );
-        const liquidityData = apiUrl.data;
-        const dojoLiq = liquidityData.pairs[0].liquidity.usd;
-        const dojoPrice = liquidityData.pairs[0].priceUsd;
-
+         
+        const dojoLiq = response4.data.liquidity[response4.data.liquidity.length-1]; 
+        const dojoPrice = response4.data.price[response4.data.price.length-1];4
+        
         // roll
         const response5 = await axios.get(
-          "https://coins.llama.fi/prices/current/coingecko:dogwifkatana?searchWidth=4h"
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=ROLL"
         );
-        const apiUrl8 = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/inj1qv98cmfdaj5f382a0klq7ps4mnjp6calzh20h3"
-        );
-        const liquidityData8 = apiUrl8.data;
-        const rollLiq = liquidityData8.pairs[0].liquidity.usd;
-        const rollPrice = liquidityData8.pairs[0].priceUsd;
+         
+        const rollLiq = response5.data.liquidity[response5.data.liquidity.length-1]; 
+        const rollPrice = response5.data.price[response5.data.price.length-1];
 
         // stinj
         const response6 = await axios.get(
-          "https://coins.llama.fi/prices/current/coingecko:stride-staked-injective?searchWidth=4h"
-        );
-        const apiUrl5 = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/ibc-AC87717EA002B0123B10A05063E69BCA274BA2C44D842AEEB41558D2856DCE93"
-        );
-        const liquidityData5 = apiUrl5.data;
-        const sushiLiq = liquidityData5.pairs[0].liquidity.usd;
-        const sushiPrice = liquidityData5.pairs[0].priceUsd;
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=stINJ"
+        ); 
+        const sushiLiq = response6.data.liquidity[response6.data.liquidity.length-1]; 
+        const sushiPrice = response6.data.price[response6.data.price.length-1];
 
         // zignaly
         const response7 = await axios.get(
-          "https://coins.llama.fi/prices/current/coingecko:zignaly?searchWidth=4h"
-        );
-        const apiUrl6 = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/peggy0xb2617246d0c6c0087f18703d576831899ca94f01"
-        );
-        const liquidityData6 = apiUrl6.data;
-        const kageLiq = liquidityData6.pairs[0].liquidity.usd;
-        const kagePrice = liquidityData6.pairs[0].priceUsd;
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=ZIG"
+        ); 
+        const kageLiq = response7.data.liquidity[response7.data.liquidity.length-1]; 
+        const kagePrice = response7.data.price[response7.data.price.length-1];
 
         // babyDojo
 
         const apiUrl9 = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/inj19dtllzcquads0hu3ykda9m58llupksqwekkfnw"
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=babyDOJO"
         );
         const liquidityData9 = apiUrl9.data;
-        const babyLiq = liquidityData9.pairs[0].liquidity.usd;
-        const babyPrice = liquidityData9.pairs[0].priceUsd;
+        const babyLiq = liquidityData9.liquidity[apiUrl9.data.liquidity.length-1];
+        const babyPrice = liquidityData9.price[apiUrl9.data.price.length-1];
 
         // white-whale dinj mib
         const response8 = await axios.get(
-          "https://coins.llama.fi/prices/current/coingecko:white-whale?searchWidth=4h"
+          "http://50.117.104.207:3000/api/getTokenData?tokenName=dINJ"
         );
-        const apiUrl7 = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/inj134wfjutywny9qnyux2xgdmm0hfj7mwpl39r3r9"
-        );
-        const liquidityData7 = apiUrl7.data;
-        const mibLiq = liquidityData7.pairs[0].liquidity.usd;
-        // console.log(liquidityData7.pairs[0].priceUsd)
-        const mibPrice = liquidityData7.pairs[0].priceUsd;
+        const mibLiq = response8.data.liquidity[response8.data.liquidity.length-1]; 
+        const mibPrice = response8.data.price[response8.data.price.length-1];
 
 
         const response10 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=XNJ")

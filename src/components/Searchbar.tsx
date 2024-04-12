@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface SearchResultItem {
   title: string;
@@ -63,13 +64,18 @@ const SearchBar: React.FC = () => {
   return (
     <form>
       <div className=" w-full bg-black">
+        <div className=" w-full bg-black lg:p-5 p-3 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
+          <Image src="/search.png" alt="" height={30} width={30} />
         <input
-          className=" w-full bg-black lg:p-5 p-3 border-2 border-gray-800 rounded-xl  text-white"
+          className=" w-full bg-black text-white focus:outline-none "
           type="text"
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
           placeholder="Search your Token/Protocol here..."
         />
+
+        </div>
+        
       </div>
       {showResults && (
         <ul className="search-results  bg-gray-800 w-[79%] text-lg border-2 border-gray-800 rounded z-20	absolute	">
