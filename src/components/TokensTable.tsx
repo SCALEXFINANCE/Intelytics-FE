@@ -174,6 +174,9 @@ export function TokensTable() {
           maximumFractionDigits: 2,
         }).format(amount);
 
+        if (row.getValue("Market Cap") == "-")
+          return <div className=" text-center font-medium">-</div>;
+
         return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
@@ -198,6 +201,9 @@ export function TokensTable() {
         const formatted = new Intl.NumberFormat("en-US", {
           currency: "USD",
         }).format(amount);
+
+        if (row.getValue("Circulating Supply") == "-")
+          return <div className=" text-center font-medium">-</div>;
 
         return <div className=" text-center font-medium">{formatted}</div>;
       },
@@ -364,6 +370,41 @@ export function TokensTable() {
         // console.log(liquidityData7.pairs[0].priceUsd)
         const mibPrice = liquidityData7.pairs[0].priceUsd;
 
+
+        const response10 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=XNJ")
+        const response11 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=XNJ")
+        const response20 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=NONJA")
+        const response201 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=NONJA")
+        const response21 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=PING")
+        const response211 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=PING")
+        const response22 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=YKZ")
+        const response221 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=YKZ")
+        const response23 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=hINJ")
+        const response231 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=hINJ")
+        const response24 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=DIB")
+        const response241 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=DIB")
+        const response25 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=DUEL")
+        const response251 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=DUEL")
+        const response26 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=MONKS")
+        const response261 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=MONKS")
+
+        const nonjaPrice = response20.data.price;
+        const nonjaLiq = response201.data.liquidity[response211.data.liquidity.length-1]
+        const pingPrice = response21.data.price;
+        const pingLiq = response211.data.liquidity[response211.data.liquidity.length-1];
+        const ykzPrice = response22.data.price;
+        const ykzLiq = response221.data.liquidity[response211.data.liquidity.length-1];
+        const hingPrice = response23.data.price;
+        const hingLiq = response231.data.liquidity[response211.data.liquidity.length-1];
+        const dibPrice = response24.data.price;
+        const dibLiq = response241.data.liquidity[response211.data.liquidity.length-1];
+        const duelPrice = response25.data.price;
+        const duelLiq = response251.data.liquidity[response211.data.liquidity.length-1];
+        const monksPrice = response26.data.price;
+        const monksLiq = response261.data.liquidity[response211.data.liquidity.length-1];
+        const xnjPrice = response10.data.price
+        const xnjLiq = response11.data.liquidity[response211.data.liquidity.length-1];
+
         const data: Token[] = [
           {
             name: "Ninja",
@@ -455,6 +496,106 @@ export function TokensTable() {
             "Total Supply": 4198646072.1,
             FDV: 4198646072.1 * babyPrice,
           },
+          {
+            name: "XNJ",
+            category: "Gaming",
+            "Total Supply": "-",
+            "Circulating Supply": "-",
+            Price: xnjPrice,
+            "Market Cap": "-",
+            Liquidity: xnjLiq,
+            FDV: "-",
+          },
+          {
+            name: "Sushi",
+            category: "CW404",
+            "Total Supply": 15000,
+            "Circulating Supply": 15000,
+            Price: sushiPrice,
+            "Market Cap": 15000 * sushiPrice,
+            Liquidity: sushiLiq,
+            FDV: 15000 * sushiPrice,
+          },
+          {
+            name: "Nonja",
+            category: "Meme",
+            "Total Supply": 1000000000,
+            "Circulating Supply": 1000000000,
+            Price: nonjaPrice,
+            "Market Cap": 1000000000 * nonjaPrice,
+            Liquidity: nonjaLiq,
+            FDV: 1000000000 * nonjaPrice,
+          },
+          {
+            name: "Kage",
+            category: "Utility",
+            "Total Supply": 100000000,
+            "Circulating Supply": 26875564,
+            Price: kagePrice,
+            "Market Cap": 26875564 * kagePrice,
+            Liquidity: kageLiq,
+            FDV: 100000000 * kagePrice,
+          },
+          {
+            name: "Ping",
+            category: "Meme",
+            "Total Supply": 1000000000,
+            "Circulating Supply": 800000000,
+            Price: pingPrice,
+            "Market Cap": pingPrice,
+            Liquidity: pingLiq * 800000000,
+            FDV: pingPrice * 1000000000,
+          },
+          {
+            name: "Ykz",
+            category: "CW404",
+            "Total Supply": 10000,
+            "Circulating Supply": 9000,
+            Price: ykzPrice,
+            "Market Cap": ykzPrice * 9000,
+            Liquidity: ykzLiq,
+            FDV: ykzPrice * 10000,
+          },
+          {
+            name: "hINJ",
+            category: "CW20",
+            "Total Supply": 1820230.18,
+            "Circulating Supply": "-",
+            Price: hingPrice,
+            "Market Cap": "-",
+            Liquidity: hingLiq,
+            FDV: hingPrice * 1820230.18,
+          },
+          {
+            name: "Dib",
+            category: "Meme",
+            "Total Supply": 69000000000,
+            "Circulating Supply": 69000000000,
+            Price: dibPrice,
+            "Market Cap": dibPrice * 69000000000,
+            Liquidity: dibLiq,
+            FDV: dibPrice * 69000000000,
+          },
+          {
+            name: "Duel",
+            category: "Utility",
+            "Total Supply": 10000000000,
+            "Circulating Supply": 1454408582,
+            Price: duelPrice,
+            "Market Cap": duelPrice * 1454408582,
+            Liquidity: duelLiq,
+            FDV: duelPrice * 10000000000,
+          },
+          {
+            name: "Monks",
+            category: "Meme",
+            "Total Supply": 1000000000,
+            "Circulating Supply": "-",
+            Price: monksPrice,
+            "Market Cap": "-",
+            Liquidity: monksLiq,
+            FDV: monksPrice * 1000000000,
+          },
         ];
         setdata(data);
       } catch (error) {
@@ -479,7 +620,6 @@ export function TokensTable() {
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,

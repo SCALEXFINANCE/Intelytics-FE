@@ -49,8 +49,8 @@ export default function tokenName() {
       try {
         const response = await axios.get(
           `http://50.117.104.207:3000/api/getTokenData?tokenName=${String(
-            contents[slug].name
-          ).toUpperCase()}`
+            contents[slug].symbol
+          )}`
         );
         let Price = response.data.price;
         const last: any = [];
@@ -133,12 +133,19 @@ export default function tokenName() {
       try {
         const response = await axios.get(
           `http://50.117.104.207:3000/api/getTokenData?tokenName=${String(
-            contents[slug].name
-          ).toUpperCase()}`
+            contents[slug].symbol
+          )}`
         );
-        const Volume = response.data.liquidity;
+        console.log(response.data.volume);
+        const Volume = response.data.volume;
         const last: any = [];
-        last.push(...Volume.slice(-29));
+        console.log(Volume[Volume.length - 1])
+        for( var i = 0; i<30 ; i++ ){
+            last.push(Volume[Volume.length - 1].h24)
+            
+        }
+        console.log(last)
+     
         setChartData(last);
         // setChartData();
         // console.log(chartData);
@@ -290,24 +297,36 @@ export default function tokenName() {
 
               <div className=" bg-gray-900 p-4 rounded-xl">
                 <div className=" text-gray-400 text-sm">Token Info</div>
-                <div className="flex gap-2 pt-3">
+                <div className="flex gap-2 pt-3 items-center">
                   <Image
                     alt=""
                     src={`/${contents[slug].name}.jpg`}
-                    height={30}
-                    width={30}
+                    height={40}
+                    width={40}
                     className=" rounded-full"
                   />
-                  <a href=" " className=" flex items-center gap-1">
-                    <div className="text-lg font-bold ">
-                      {" "}
-                      {contents[slug].name}
-                    </div>
-                    <div>/</div>
-                    <div className=" text-teal-400 ">
+                  <div className=" flex flex-col ">
+                    <a href=" " className=" flex items-center gap-1">
+                      <div className="text-lg font-bold ">
+                        {" "}
+                        {contents[slug].name}
+                      </div>
+                      <div>/</div>
+                      <div className=" flex items-center gap-1">
+                        <Image
+                          alt=""
+                          src="/inj.png"
+                          height={20}
+                          width={20}
+                          className=" rounded-full"
+                        />
+                        <div className=" font-bold ">INJ</div>
+                      </div>
+                    </a>
+                    <div className=" text-teal-400  text-sm">
                       {contents[slug].category}
                     </div>
-                  </a>
+                  </div>
                 </div>
                 <div className=" pt-4">
                   <div className=" text-sm">Add to your watchlist</div>
@@ -327,11 +346,13 @@ export default function tokenName() {
                 <div className=" flex flex-col gap-4">
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Market Cap</div>
-                    <div>$123,343,321</div>
+                    {price && (
+                      <div>${price * contents[slug].circulatingSupply}</div>
+                    )}
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Volume (24h)</div>
-                    <div>{v24}</div>
+                    <div>${v24}</div>
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Total Supply</div>
@@ -346,24 +367,36 @@ export default function tokenName() {
             </div>
             <div className=" right px-6 lg:pt-16 pt-5 pb-4 text-white lg:w-5/6 w-full overflow-y-scroll no-scrollbar">
               <div className="bg-gray-900 p-4 rounded-xl w-full lg:hidden mobile-card">
-                <div className="flex gap-2 pt-3">
+                <div className="flex gap-2 pt-3 items-center">
                   <Image
                     alt=""
                     src={`/${contents[slug].name}.jpg`}
-                    height={30}
-                    width={30}
+                    height={40}
+                    width={40}
                     className=" rounded-full"
                   />
-                  <a href=" " className=" flex items-center gap-2">
-                    <div className="text-lg font-bold ">
-                      {" "}
-                      {contents[slug].name}
-                    </div>
-                    <div>/</div>
-                    <div className=" text-teal-400 ">
+                  <div className=" flex flex-col ">
+                    <a href=" " className=" flex items-center gap-1">
+                      <div className="text-lg font-bold ">
+                        {" "}
+                        {contents[slug].name}
+                      </div>
+                      <div>/</div>
+                      <div className=" flex items-center gap-1">
+                        <Image
+                          alt=""
+                          src="/inj.png"
+                          height={20}
+                          width={20}
+                          className=" rounded-full"
+                        />
+                        <div className=" font-bold ">INJ</div>
+                      </div>
+                    </a>
+                    <div className=" text-teal-400  text-sm">
                       {contents[slug].category}
                     </div>
-                  </a>
+                  </div>
                 </div>
                 <div className="pl-10">${price}</div>
                 <div className="pt-8">
@@ -517,19 +550,7 @@ export default function tokenName() {
                 <div className="bg-gray-900 rounded-xl pt-6 pb-6 pl-4 pr-4 w-full">
                   <div className=" font-bold lg:text-xl pb-2">About</div>
                   <div className=" lg:text-sm text-xs text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    ut magna ultricies, rhoncus urna vel, posuere purus. Donec
-                    vehicula lorem vitae turpis fringilla, at fringilla nulla
-                    pretium. Pellentesque habitant morbi tristique senectus et
-                    netus et malesuada fames ac turpis egestas. Ut quis dolor ut
-                    arcu facilisis ullamcorper. Proin quam ex, condimentum
-                    venenatis mollis in, tincidunt eu elit. Integer eget lacus
-                    sed odio mollis ultricies non nec lectus. Aliquam in sodales
-                    nisl. Phasellus lobortis augue nunc, ut porta libero
-                    ultricies a. Morbi tempus quam erat. Aenean tempor fermentum
-                    mi, a eleifend nibh. Phasellus enim nisl, porttitor quis
-                    nunc sit amet, ullamcorper luctus mi. Morbi interdum ex ac
-                    consequat pharetra.
+                     {contents[slug].description}
                   </div>
                 </div>
               </div>
