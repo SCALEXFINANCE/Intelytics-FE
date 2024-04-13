@@ -42,6 +42,24 @@ export default function tokenName() {
   const [price, setPrice] = useState();
   const [marketCap, setMarketCap] = useState<any>();
   const [v24, setv24] = useState();
+  const [min5, setMin5] = useState<any>();
+  const [hour1, setHr1] = useState();
+  const [hour24, sethour24] = useState();
+  const [cs ,setCs] = useState();
+  const [ts ,setTs] = useState()
+
+  const Data = () => {
+    if (price) {
+      const value = price * contents[slug].circulatingSupply;
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(value);
+      setMarketCap(formatted);
+    }
+  };
 
   const PriceChart = ({ height, width }: any) => {
     const [chartData, setChartData] = useState([]);
@@ -52,11 +70,32 @@ export default function tokenName() {
             contents[slug].symbol
           )}`
         );
+        const response2 = await axios.get(`http://50.117.104.207:3000/api/getDataByInterval/${String(
+          contents[slug].symbol)}/5m`)
+          const response3 = await axios.get(`http://50.117.104.207:3000/api/getDataByInterval/${String(
+          contents[slug].symbol)}/1h`)
+          const response4 = await axios.get(`http://50.117.104.207:3000/api/getDataByInterval/${String(
+          contents[slug].symbol)}/24h`)
+          console.log(response2.data.price[response2.data.price.length-1])
+          setMin5(response2.data.price[response2.data.price.length-1])
+          setHr1(response3.data.price[response3.data.price.length-1])
+          sethour24(response4.data.price[response4.data.price.length-1])
         let Price = response.data.price;
         const last: any = [];
         last.push(...Price.slice(-29));
         setPrice(Price[Price.length - 1]);
         setChartData(last);
+        if (price) {
+          const value = price * contents[slug].circulatingSupply;
+          const formatted = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(value);
+          setMarketCap(formatted);
+        }
+
         // setChartData();
         // console.log(chartData);
       } catch (error) {
@@ -139,13 +178,12 @@ export default function tokenName() {
         console.log(response.data.volume);
         const Volume = response.data.volume;
         const last: any = [];
-        console.log(Volume[Volume.length - 1])
-        for( var i = 0; i<30 ; i++ ){
-            last.push(Volume[Volume.length - 1].h24)
-            
+        console.log(Volume[Volume.length - 1]);
+        for (var i = 0; i < 30; i++) {
+          last.push(Volume[Volume.length - 1].h24);
         }
-        console.log(last)
-     
+        console.log(last);
+
         setChartData(last);
         // setChartData();
         // console.log(chartData);
@@ -234,6 +272,19 @@ export default function tokenName() {
   useEffect(() => {
     if (contents[slug]) {
       console.log("from effect", contents[slug].name);
+      const formatted3 = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+      }).format(contents[slug].circulatingSupply);
+      setCs(formatted3)
+      const formatted4 = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+         
+        maximumFractionDigits: 0,
+      }).format(contents[slug].totalSupply);
+      setTs(formatted4)
       const fetchData = async () => {
         try {
           const apiUrl = await axios.get(`${contents[slug].apiUrl}`);
@@ -241,7 +292,15 @@ export default function tokenName() {
           const volume = liquidityData.pairs[0].volume.h24;
           const price = liquidityData.pairs[0].priceUsd;
           const txns = liquidityData.pairs[0].txns;
-          setv24(volume);
+
+          const formatted2 = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(volume);
+
+          setv24(formatted2);
         } catch (error) {
           console.log(error);
         }
@@ -263,6 +322,8 @@ export default function tokenName() {
   //     setMarketCap(price * contents[slug].circulatingSupply)
   //   )
   // }
+
+  
 
   return (
     <>
@@ -328,8 +389,24 @@ export default function tokenName() {
                     </div>
                   </div>
                 </div>
-                <div className=" pt-4">
+                <div className=" pt-4 flex justify-between w-full items-center">
                   <div className=" text-sm">Add to your watchlist</div>
+                  <Image src="/star.png" alt="" height={20} width={20} />
+                </div>
+                <div className=" flex flex-col gap-2 mt-4">
+                {/* <div className=" flex justify-between w-full text-sm text-gray-300">
+                    <div>5 min Change</div>
+                    <div>${min5}</div>
+                  </div> */}
+                  <div className=" flex justify-between w-full text-sm text-gray-300">
+                    <div>1 hr Change</div>
+                    <div>${hour1}</div>
+                  </div>
+                  <div className=" flex justify-between w-full text-sm text-gray-300">
+                    <div>24 hr Change</div>
+                    <div>${hour24}</div>
+                  </div>
+                  
                 </div>
                 <div className=" flex flex-col gap-1 pt-4">
                   <div>Links:</div>
@@ -346,21 +423,23 @@ export default function tokenName() {
                 <div className=" flex flex-col gap-4">
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Market Cap</div>
-                    {price && (
+                    {marketCap}
+                    {/* {price && 
+                    (
                       <div>${price * contents[slug].circulatingSupply}</div>
-                    )}
+                    )} */}
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Volume (24h)</div>
-                    <div>${v24}</div>
+                    <div>{v24}</div>
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Total Supply</div>
-                    <div>${contents[slug].totalSupply}</div>
+                    <div>{ts}</div>
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300 items-center">
                     <div>Circulating Supply</div>
-                    <div>${contents[slug].circulatingSupply}</div>
+                    <div>{cs}</div>
                   </div>
                 </div>
               </div>
@@ -432,16 +511,16 @@ export default function tokenName() {
                 <div className=" flex flex-col gap-4 mt-4">
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>1 hr Change</div>
-                    <div>$123,343,321</div>
+                    <div>$ {hour1}</div>
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>24 hr Change</div>
-                    <div>$123,343,321</div>
+                    <div>${hour24}</div>
                   </div>
-                  <div className=" flex justify-between w-full text-sm text-gray-300">
+                  {/* <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>7 Day Change</div>
                     <div>${contents[slug].totalSupply}</div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className=" bg-gray-900 p-4 rounded-xl w-full lg:hidden mobile-card mt-5">
@@ -484,21 +563,22 @@ export default function tokenName() {
                 <div className=" flex flex-col gap-4">
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Market Cap</div>
-                    {price && (
+                    {marketCap}
+                    {/* {price && (
                       <div>${price * contents[slug].circulatingSupply}</div>
-                    )}
+                    )} */}
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Volume (24h)</div>
-                    <div>${v24}</div>
+                    <div>{v24}</div>
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>Total Supply</div>
-                    <div>${contents[slug].totalSupply}</div>
+                    <div>{ts}</div>
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300 items-center">
                     <div>Circulating Supply</div>
-                    <div>${contents[slug].circulatingSupply}</div>
+                    <div>{cs}</div>
                   </div>
                 </div>
               </div>
@@ -524,8 +604,8 @@ export default function tokenName() {
                   </div>
                 </div>
               </div>
-              <div className="pt-4 lg:pt-8 ">
-                <div className="lg:flex hidden lg:gap-2 lg:w-1/3 items-center  bg-gray-900 rounded-xl p-2">
+              <div className="pt-4 lg:pt-8 w-1/4">
+              <div className="flex gap-2 pt-3 items-center bg-gray-900 rounded-xl p-3">
                   <Image
                     alt=""
                     src={`/${contents[slug].name}.jpg`}
@@ -533,16 +613,28 @@ export default function tokenName() {
                     width={40}
                     className=" rounded-full"
                   />
-                  <a href=" " className="lg:p-2 flex items-center">
-                    <div className=" font-bold lg:text-xl text-base px-2 ">
-                      {" "}
-                      {contents[slug].name}
-                    </div>
-                    <div>/</div>
-                    <div className=" lg:text-lg text-teal-400  px-2">
+                  <div className=" flex flex-col ">
+                    <a href=" " className=" flex items-center gap-1">
+                      <div className="text-lg font-bold ">
+                        {" "}
+                        {contents[slug].name}
+                      </div>
+                      <div>/</div>
+                      <div className=" flex items-center gap-1">
+                        <Image
+                          alt=""
+                          src="/inj.png"
+                          height={20}
+                          width={20}
+                          className=" rounded-full"
+                        />
+                        <div className=" font-bold ">INJ</div>
+                      </div>
+                    </a>
+                    <div className=" text-teal-400  text-sm">
                       {contents[slug].category}
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
               <div className="pt-4 lg:pt-6">
@@ -550,7 +642,7 @@ export default function tokenName() {
                 <div className="bg-gray-900 rounded-xl pt-6 pb-6 pl-4 pr-4 w-full">
                   <div className=" font-bold lg:text-xl pb-2">About</div>
                   <div className=" lg:text-sm text-xs text-gray-400">
-                     {contents[slug].description}
+                    {contents[slug].description}
                   </div>
                 </div>
               </div>
