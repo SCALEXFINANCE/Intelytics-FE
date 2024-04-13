@@ -400,11 +400,11 @@ export default function tokenName() {
                   </div> */}
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>1 hr Change</div>
-                    <div>${hour1}</div>
+                    <div>{hour1}%</div>
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>24 hr Change</div>
-                    <div>${hour24}</div>
+                    <div>{hour24}%</div>
                   </div>
                   
                 </div>
@@ -511,11 +511,11 @@ export default function tokenName() {
                 <div className=" flex flex-col gap-4 mt-4">
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>1 hr Change</div>
-                    <div>$ {hour1}</div>
+                    <div>{hour1}%</div>
                   </div>
                   <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>24 hr Change</div>
-                    <div>${hour24}</div>
+                    <div>{hour24}%</div>
                   </div>
                   {/* <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>7 Day Change</div>
