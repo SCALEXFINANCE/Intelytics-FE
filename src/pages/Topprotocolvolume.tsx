@@ -12,7 +12,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { ChainsTable } from "@/components/ChainsTable";
+import { ChainsTable, ChainsTableMob } from "@/components/ChainsTable";
 import SearchBar from "@/components/Searchbar";
 
 const Topprotocolvolume = () => {
@@ -117,7 +117,7 @@ const Topprotocolvolume = () => {
 
       <SearchBar />
 
-      <div className=" text-lg  p-3 border-2 border-yellow-600 rounded-2xl">
+      <div className=" lg:text-lg text-sm  lg:p-3 p-2 border-2 border-yellow-600 rounded-2xl">
         Currently tracking protocols on Injective only, More Chains are coming
         soon!!
       </div>
@@ -136,25 +136,37 @@ const Topprotocolvolume = () => {
       </div> */}
 
       {/* graph card */}
-      <div className="bg-black p-5 px-5 rounded-xl flex gap-5 w-full text-xl">
+      <div className="bg-black lg:p-5 p-2 lg:px-5 rounded-xl lg:flex lg:flex-row flex-col gap-3 w-full text-xl">
         {/* left */}
 
-        <div className=" bg-gray-700 p-5 rounded-xl w-1/3">
-          <div className=" pb-3"> Total Volume (24hr)</div>
-          <div className={`${oneday! < 0 ? "text-red-500" : "text-green-500"}`}>
+        <div className=" bg-gray-800 p-2 lg:p-5 rounded-xl lg:w-1/3 w-full border-2 border-white lg:border-0">
+          <div className=" lg:text-lg text-sm pb-1"> Total Volume (24hr)</div>
+          <div
+            className={`text-base lg:text-lg ${
+              oneday! < 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
             {oneday}%
           </div>
         </div>
 
-        <div className=" bg-gray-700 p-5 gap-3 rounded-xl w-1/3">
-          <div className=" pb-3"> Total Volume (1hr)</div>
-          <div className={`${onehr! < 0 ? "text-red-500" : "text-green-500"}`}>
+        <div className=" bg-gray-800 p-2 lg:p-5 gap-3 rounded-xl my-4 lg:my-0 lg:w-1/3 w-full border-2 border-white lg:border-0">
+          <div className="lg:text-lg text-sm  pb-1"> Total Volume (1hr)</div>
+          <div
+            className={`text-base lg:text-lg ${
+              onehr! < 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
             {onehr}%
           </div>
         </div>
-        <div className=" bg-gray-700 p-5 gap-3 rounded-xl w-1/3">
-          <div className=" pb-3"> Total Volume (7DAY)</div>
-          <div className={`${sevday! < 0 ? "text-red-500" : "text-green-500"}`}>
+        <div className=" bg-gray-800 p-2 lg:p-5 gap-3 rounded-xl lg:w-1/3 w-full border-2 border-white lg:border-0  ">
+          <div className="lg:text-lg text-sm  pb-1"> Total Volume (7days)</div>
+          <div
+            className={`text-base lg:text-lg ${
+              sevday! < 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
             {sevday}%{" "}
           </div>
         </div>
@@ -162,7 +174,12 @@ const Topprotocolvolume = () => {
 
       {/* table options */}
 
-      <ChainsTable />
+      <div className="hidden lg:inline">
+        <ChainsTable />
+      </div>
+      <div className="inline lg:hidden">
+        <ChainsTableMob />
+      </div>
     </div>
   );
 };

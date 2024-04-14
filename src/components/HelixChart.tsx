@@ -98,11 +98,11 @@ const HelixChart = ({ height, width }: any) => {
       console.log(protocols.chainTvls.Injective.tvl);
       const tvl = protocols.chainTvls.Injective.tvl;
       const values: any = [];
-      const tvl2 = []
+      const tvl2 = [];
       tvl2.push(...tvl.slice(-29));
-        tvl2.forEach((data: any) => {
-          values.push(data.totalLiquidityUSD);
-        });
+      tvl2.forEach((data: any) => {
+        values.push(data.totalLiquidityUSD);
+      });
       console.log(values);
       // console.log(values);
 
@@ -173,12 +173,24 @@ const HelixChart = ({ height, width }: any) => {
         display: true,
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value: any) {
+            // console.log("lmao");
+
+            return "$" + value / 1000000 + "M";
+          },
+        },
+      },
+    },
   };
   useEffect(() => {
     chartValues();
   }, []);
   return (
-    <div className=" shadow-xl w-[50vw] h-[50vh] p-4 rounded-xl">
+    <div className=" shadow-xl lg:w-[50vw]  lg:h-[50vh] w-[84vw] lg:p-4 rounded-xl">
       <Line data={data} options={options} width={width} height={height} />
     </div>
   );
