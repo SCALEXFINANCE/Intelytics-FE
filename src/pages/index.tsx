@@ -186,8 +186,6 @@ const overview = () => {
     <div className=" flex gap-4 flex-col">
       {/* <div>DEFI-overview</div> */}
 
-      <SearchBar />
-
       {/* button block
       <div className=" bg-black p-3 px-5 rounded-xl flex gap-4">
         <button className=" bg-gray-700 px-6 p-1 rounded" onClick={allClicked}>
