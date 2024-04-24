@@ -7,6 +7,7 @@ import Charted from "@/components/ChartComponent";
 import App from "@/components/TestChart";
 import SearchBar from "@/components/Searchbar";
 import InjectiveChart from "@/components/InjectiveChart";
+import { TokensTable } from "@/components/TokensTable";
 
 const overview = () => {
   const [selected, setSelected] = useState<string>("all");
@@ -201,42 +202,68 @@ const overview = () => {
       </div> */}
 
       {/* graph card */}
-      <div className="bg-black p-5 px-5 rounded-xl flex flex-col-reverse lg:flex-row gap-5 justify-between">
+      <div className=" p-5 px-5  flex flex-col-reverse lg:flex-row gap-5 justify-between">
         {/* left */}
-        <div className="lg:py-6 lg:px-2  flex gap-2 flex-col lg:w-1/3 w-full">
-          <div className=" lg:text-gray-400 hidden lg:inline">
-            Injective Total Value Locked
-          </div>
-          <div className=" text-4xl hidden lg:inline">{totalTVL}</div>
-          <div className="flex justify-between pt-4">
-            <div>Top Protocols TVL</div>
-            <div>{stable}</div>
-          </div>
-          <div className="flex justify-between  ">
-            <div>Volume</div>
-            <div>{volume}</div>
-          </div>
-          <div className="flex justify-between  ">
-            <div>Liquid Staking</div>
-            <div>{funding}</div>
-          </div>
-          <div className="flex justify-between">
-            <div>INJ Price</div>
-            <div>{injprice}</div>
-          </div>
-          <div className="flex justify-between ">
-            {/* <div>INJ Market Cap</div> */}
-            {/* <div>{injcap}</div> */}
+        <div className="bg-black rounded-xl lg:px-2  flex gap-2 flex-col lg:w-1/3 w-full border border-gray-500">
+          <div className=" flex flex-col gap-2 p-6">
+          <div className=" flex gap-3">
+              <Image
+                alt=""
+                src="/TOKEN.png"
+                height={30}
+                width={30}
+                className=" rounded-full"
+              />
+              <div className=" font-bold text-gray-500">Token Info</div>
+            </div>
+            <div className=" flex gap-3">
+              <Image
+                alt=""
+                src="/inj.png"
+                height={30}
+                width={30}
+                className=" rounded-full"
+              />
+              <div className=" font-bold text-2xl ">INJECTIVE</div>
+            </div>
+            <div className=" lg:text-gray-400 hidden lg:inline">
+              Injective Total Value Locked
+            </div>
+            <div className=" text-4xl hidden lg:inline">{totalTVL}</div>
+            <div className="flex justify-between pt-4">
+              <div>Top Protocols TVL</div>
+              <div>{stable}</div>
+            </div>
+            <div className="flex justify-between  ">
+              <div>Volume</div>
+              <div>{volume}</div>
+            </div>
+            <div className="flex justify-between  ">
+              <div>Liquid Staking</div>
+              <div>{funding}</div>
+            </div>
+            <div className="flex justify-between">
+              <div>INJ Price</div>
+              <div>{injprice}</div>
+            </div>
+            <div className="flex justify-between ">
+              {/* <div>INJ Market Cap</div> */}
+              {/* <div>{injcap}</div> */}
+            </div>
           </div>
         </div>
 
         {/* right */}
-        <div className=" flex flex-col">
-          {/* <Charted height={200} width={600} /> */}
+        <div className=" flex flex-col bg-black rounded-xl border border-gray-500">
+          <div className=" p-4 ">
+            {/* <Charted height={200} width={600} /> */}
           <div className="lg:px-3 lg:text-xl lg:inline hidden">
             Injective Total Value Locked
           </div>
           <InjectiveChart />
+
+          </div>
+          
         </div>
 
         <div className="lg:hidden flex flex-col ">
@@ -249,7 +276,7 @@ const overview = () => {
 
       {/* table options */}
       <div className="hidden lg:inline">
-        <OverviewTable />
+        <TokensTable />
       </div>
       <div className="inline lg:hidden">
         <OverviewTableMobile />
