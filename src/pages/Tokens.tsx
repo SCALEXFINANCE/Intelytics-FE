@@ -1,6 +1,6 @@
-import SearchBar from '@/components/Searchbar'
-import { TokensTable } from '@/components/TokensTable'
-import React from 'react'
+import SearchBar from "@/components/Searchbar";
+import { TokensTable } from "@/components/TokensTable";
+import React from "react";
 
 const Tokens = () => {
   return (
@@ -8,10 +8,9 @@ const Tokens = () => {
       {/* <div>DEFI-overview</div> */}
 
       <SearchBar />
-      <TokensTable/>
+      <TokensTable />
+    </div>
+  );
+};
 
-    </div> 
-  )
-}
-
-export default Tokens
+export default Tokens;

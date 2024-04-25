@@ -16,9 +16,8 @@ import {
   LineElement,
 } from "chart.js";
 
-import { Bar, Line, Scatter, Bubble } from "react-chartjs-2";
-import { NextPage } from "next";
-import { Button } from "@/components/ui/button";
+import { Line } from "react-chartjs-2";
+import TradingChart from "@/components/Chart";
 
 ChartJs.register(
   CategoryScale,
@@ -45,8 +44,8 @@ export default function tokenName() {
   const [min5, setMin5] = useState<any>();
   const [hour1, setHr1] = useState();
   const [hour24, sethour24] = useState();
-  const [cs ,setCs] = useState();
-  const [ts ,setTs] = useState()
+  const [cs, setCs] = useState();
+  const [ts, setTs] = useState();
 
   const Data = () => {
     if (price) {
@@ -61,202 +60,6 @@ export default function tokenName() {
     }
   };
 
-  const PriceChart = ({ height, width }: any) => {
-    const [chartData, setChartData] = useState([]);
-    const chartValues = async () => {
-      try {
-        const response = await axios.get(
-          `http://50.117.104.207:3000/api/getTokenData?tokenName=${String(
-            contents[slug].symbol
-          )}`
-        );
-        const response2 = await axios.get(`http://50.117.104.207:3000/api/getDataByInterval/${String(
-          contents[slug].symbol)}/5m`)
-          const response3 = await axios.get(`http://50.117.104.207:3000/api/getDataByInterval/${String(
-          contents[slug].symbol)}/1h`)
-          const response4 = await axios.get(`http://50.117.104.207:3000/api/getDataByInterval/${String(
-          contents[slug].symbol)}/24h`)
-          console.log(response2.data.price[response2.data.price.length-1])
-          setMin5(response2.data.price[response2.data.price.length-1])
-          setHr1(response3.data.price[response3.data.price.length-1])
-          sethour24(response4.data.price[response4.data.price.length-1])
-        let Price = response.data.price;
-        const last: any = [];
-        last.push(...Price.slice(-29));
-        setPrice(Price[Price.length - 1]);
-        setChartData(last);
-        if (price) {
-          const value = price * contents[slug].circulatingSupply;
-          const formatted = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }).format(value);
-          setMarketCap(formatted);
-        }
-
-        // setChartData();
-        // console.log(chartData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const data = {
-      labels: [
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-      ],
-      datasets: [
-        {
-          label: "Price",
-          data: chartData,
-          fill: true,
-          // fill: 'origin',
-
-          // fillColor: "rgb(75, 192, 192)",
-          backgroundColor: "rgb(23,34,62)",
-          borderColor: "rgb(41,96,250)",
-          tension: 0.3,
-        },
-      ],
-    };
-    const options = {
-      plugins: {
-        legend: {
-          display: true,
-        },
-      },
-      scales: {},
-    };
-    useEffect(() => {
-      chartValues();
-    }, []);
-    return (
-      <div className=" shadow-xl lg:w-[35vw]  lg:h-[40vh] w-[80vw] lg:p-4 rounded-xl">
-        <Line data={data} options={options} width={width} height={height} />
-      </div>
-    );
-  };
-  const VolumeChart = ({ height, width }: any) => {
-    const [chartData, setChartData] = useState([]);
-    const chartValues = async () => {
-      try {
-        const response = await axios.get(
-          `http://50.117.104.207:3000/api/getTokenData?tokenName=${String(
-            contents[slug].symbol
-          )}`
-        );
-        console.log(response.data.volume);
-        const Volume = response.data.volume;
-        const last: any = [];
-        console.log(Volume[Volume.length - 1]);
-        for (var i = 0; i < 30; i++) {
-          last.push(Volume[Volume.length - 1].h24);
-        }
-        console.log(last);
-
-        setChartData(last);
-        // setChartData();
-        // console.log(chartData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const data = {
-      labels: [
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-      ],
-      datasets: [
-        {
-          label: "Volume",
-          data: chartData,
-          fill: true,
-          // fill: 'origin',
-
-          // fillColor: "rgb(75, 192, 192)",
-          backgroundColor: "rgb(23,34,62)",
-          borderColor: "rgb(41,96,250)",
-          tension: 0.3,
-        },
-      ],
-    };
-    const options = {
-      plugins: {
-        legend: {
-          display: true,
-        },
-      },
-      scales: {},
-    };
-    useEffect(() => {
-      chartValues();
-    }, []);
-    return (
-      <div className=" shadow-xl lg:w-[35vw]  lg:h-[40vh] w-[80vw] lg:p-4 rounded-xl">
-        <Line data={data} options={options} width={width} height={height} />
-      </div>
-    );
-  };
-
-  const [volume, setVolume] = useState();
   const [pricesel, setPriceSelected] = useState<Boolean>(true);
   const [volsel, setVolSelected] = useState<Boolean>(false);
 
@@ -277,14 +80,14 @@ export default function tokenName() {
         currency: "USD",
         maximumFractionDigits: 0,
       }).format(contents[slug].circulatingSupply);
-      setCs(formatted3)
+      setCs(formatted3);
       const formatted4 = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
-         
+
         maximumFractionDigits: 0,
       }).format(contents[slug].totalSupply);
-      setTs(formatted4)
+      setTs(formatted4);
       const fetchData = async () => {
         try {
           const apiUrl = await axios.get(`${contents[slug].apiUrl}`);
@@ -323,14 +126,12 @@ export default function tokenName() {
   //   )
   // }
 
-  
-
   return (
     <>
       {contents[slug] && (
         <>
           <div className="h-screen lg:flex lg:flex-row flex-col  justify-start">
-            <div className=" left h-screen lg:px-4 lg:w-1/6   lg:pt-8 pb-4 lg:flex hidden gap-6 flex-col bg-gradient-to-b from-black to-[#0e1734] ">
+            <div className=" left h-screen lg:px-4 lg:w-1/6 lg:pt-8 pb-4 lg:flex hidden gap-6 flex-col bg-gradient-to-b from-black to-[#0e1734] ">
               <div className="flex items-center justify-between">
                 <Link
                   onClick={() => {
@@ -394,7 +195,7 @@ export default function tokenName() {
                   <Image src="/star.png" alt="" height={20} width={20} />
                 </div>
                 <div className=" flex flex-col gap-2 mt-4">
-                {/* <div className=" flex justify-between w-full text-sm text-gray-300">
+                  {/* <div className=" flex justify-between w-full text-sm text-gray-300">
                     <div>5 min Change</div>
                     <div>${min5}</div>
                   </div> */}
@@ -406,7 +207,6 @@ export default function tokenName() {
                     <div>24 hr Change</div>
                     <div>{hour24}%</div>
                   </div>
-                  
                 </div>
                 <div className=" flex flex-col gap-1 pt-4">
                   <div>Links:</div>
@@ -452,9 +252,9 @@ export default function tokenName() {
                     src={`/${contents[slug].name}.jpg`}
                     height={40}
                     width={40}
-                    className=" rounded-full"
+                    className="rounded-full"
                   />
-                  <div className=" flex flex-col ">
+                  <div className="flex flex-col ">
                     <a href=" " className=" flex items-center gap-1">
                       <div className="text-lg font-bold ">
                         {" "}
@@ -479,16 +279,7 @@ export default function tokenName() {
                 </div>
                 <div className="pl-10">${price}</div>
                 <div className="pt-8">
-                  {pricesel && (
-                    <div>
-                      <PriceChart />
-                    </div>
-                  )}
-                  {volsel && (
-                    <div>
-                      <VolumeChart />
-                    </div>
-                  )}
+                  {/* <TradingChart token={contents[slug].symbol} /> */}
                   <div className=" flex gap-3 w-full items-center justify-center pt-3">
                     <div
                       className={` rounded p-1 pl-3 pr-3 ${
@@ -582,8 +373,8 @@ export default function tokenName() {
                   </div>
                 </div>
               </div>
-              <div className="w-full hidden lg:flex lg:flex-row flex-col gap-3  mt-5">
-                <div className=" lg:w-1/2 w-full bg-gray-900 rounded-xl p-6">
+              <div className="w-full hidden lg:flex lg:flex-row flex-col gap-3 mt-5 bg-white dark:bg-gray-900 flex-1 rounded h-[500px]">
+                {/* <div className=" lg:w-1/2 w-full bg-gray-900 rounded-xl p-6">
                   <div className=" w-full flex justify-between">
                     <div className="font-bold lg:text-xl">Price Chart</div>
 
@@ -602,10 +393,11 @@ export default function tokenName() {
                     </div>
                     <VolumeChart />
                   </div>
-                </div>
+                </div> */}
+                <TradingChart token={contents[slug].symbol} />
               </div>
               <div className="pt-4 lg:pt-8 w-1/4">
-              <div className="flex gap-2 pt-3 items-center bg-gray-900 rounded-xl p-3">
+                <div className="flex gap-2 pt-3 items-center bg-gray-900 rounded-xl p-3">
                   <Image
                     alt=""
                     src={`/${contents[slug].name}.jpg`}

@@ -274,113 +274,165 @@ export function TokensTable() {
       try {
         // ninja
         const response1 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=NINJA"
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=NINJA"
         );
         const apiUrl2 = await axios.get(
           "https://api.dexscreener.com/latest/dex/tokens/factory-inj1xtel2knkt8hmc9dnzpjz6kdmacgcfmlv5f308w-ninja"
         );
-        const ninjaLiq = response1.data.liquidity[response1.data.liquidity.length-1]; 
-        const ninjaPrice = response1.data.price[response1.data.price.length-1];
+        const ninjaLiq =
+          response1.data.liquidity[response1.data.liquidity.length - 1];
+        const ninjaPrice =
+          response1.data.price[response1.data.price.length - 1];
 
         // alien
         const response2 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=$ALIEN"
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=$ALIEN"
         );
         const apiUrl3 = await axios.get(
           "https://api.dexscreener.com/latest/dex/tokens/factory-inj1mly2ykhf6f9tdj58pvndjf4q8dzdl4myjqm9t6-ALIEN"
         );
         const liquidityData3 = apiUrl3.data;
-        const alienLiq = response2.data.liquidity[response2.data.liquidity.length-1]; 
-        const alienPrice = response2.data.price[response2.data.price.length-1];
+        const alienLiq =
+          response2.data.liquidity[response2.data.liquidity.length - 1];
+        const alienPrice =
+          response2.data.price[response2.data.price.length - 1];
 
         // kira
         const response3 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=KIRA"
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=KIRA"
         );
-       
-        const kiraLiq = response3.data.liquidity[response3.data.liquidity.length-1]; 
-        const kiraPrice = response3.data.price[response3.data.price.length-1];
+
+        const kiraLiq =
+          response3.data.liquidity[response3.data.liquidity.length - 1];
+        const kiraPrice = response3.data.price[response3.data.price.length - 1];
 
         // dojo
         const response4 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=DOJO"
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=DOJO"
         );
-         
-        const dojoLiq = response4.data.liquidity[response4.data.liquidity.length-1]; 
-        const dojoPrice = response4.data.price[response4.data.price.length-1];4
-        
+
+        const dojoLiq =
+          response4.data.liquidity[response4.data.liquidity.length - 1];
+        const dojoPrice = response4.data.price[response4.data.price.length - 1];
+        4;
+
         // roll
         const response5 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=ROLL"
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=ROLL"
         );
-         
-        const rollLiq = response5.data.liquidity[response5.data.liquidity.length-1]; 
-        const rollPrice = response5.data.price[response5.data.price.length-1];
+
+        const rollLiq =
+          response5.data.liquidity[response5.data.liquidity.length - 1];
+        const rollPrice = response5.data.price[response5.data.price.length - 1];
 
         // stinj
         const response6 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=stINJ"
-        ); 
-        const sushiLiq = response6.data.liquidity[response6.data.liquidity.length-1]; 
-        const sushiPrice = response6.data.price[response6.data.price.length-1];
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=stINJ"
+        );
+        const sushiLiq =
+          response6.data.liquidity[response6.data.liquidity.length - 1];
+        const sushiPrice =
+          response6.data.price[response6.data.price.length - 1];
 
         // zignaly
         const response7 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=ZIG"
-        ); 
-        const kageLiq = response7.data.liquidity[response7.data.liquidity.length-1]; 
-        const kagePrice = response7.data.price[response7.data.price.length-1];
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=ZIG"
+        );
+        const kageLiq =
+          response7.data.liquidity[response7.data.liquidity.length - 1];
+        const kagePrice = response7.data.price[response7.data.price.length - 1];
 
         // babyDojo
 
         const apiUrl9 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=babyDOJO"
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=babyDOJO"
         );
         const liquidityData9 = apiUrl9.data;
-        const babyLiq = liquidityData9.liquidity[apiUrl9.data.liquidity.length-1];
-        const babyPrice = liquidityData9.price[apiUrl9.data.price.length-1];
+        const babyLiq =
+          liquidityData9.liquidity[apiUrl9.data.liquidity.length - 1];
+        const babyPrice = liquidityData9.price[apiUrl9.data.price.length - 1];
 
         // white-whale dinj mib
         const response8 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=dINJ"
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=dINJ"
         );
-        const mibLiq = response8.data.liquidity[response8.data.liquidity.length-1]; 
-        const mibPrice = response8.data.price[response8.data.price.length-1];
+        const mibLiq =
+          response8.data.liquidity[response8.data.liquidity.length - 1];
+        const mibPrice = response8.data.price[response8.data.price.length - 1];
 
-
-        const response10 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=XNJ")
-        const response11 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=XNJ")
-        const response20 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=NONJA")
-        const response201 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=NONJA")
-        const response21 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=PING")
-        const response211 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=PING")
-        const response22 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=YKZ")
-        const response221 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=YKZ")
-        const response23 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=hINJ")
-        const response231 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=hINJ")
-        const response24 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=DIB")
-        const response241 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=DIB")
-        const response25 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=DUEL")
-        const response251 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=DUEL")
-        const response26 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=MONKS")
-        const response261 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=MONKS")
+        const response10 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getCurrentPrice?tokenName=XNJ"
+        );
+        const response11 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=XNJ"
+        );
+        const response20 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getCurrentPrice?tokenName=NONJA"
+        );
+        const response201 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=NONJA"
+        );
+        const response21 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getCurrentPrice?tokenName=PING"
+        );
+        const response211 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=PING"
+        );
+        const response22 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getCurrentPrice?tokenName=YKZ"
+        );
+        const response221 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=YKZ"
+        );
+        const response23 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getCurrentPrice?tokenName=hINJ"
+        );
+        const response231 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=hINJ"
+        );
+        const response24 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getCurrentPrice?tokenName=DIB"
+        );
+        const response241 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=DIB"
+        );
+        const response25 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getCurrentPrice?tokenName=DUEL"
+        );
+        const response251 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=DUEL"
+        );
+        const response26 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getCurrentPrice?tokenName=MONKS"
+        );
+        const response261 = await axios.get(
+          "https://intelytics-backend.vercel.app/api/getTokenData?tokenName=MONKS"
+        );
 
         const nonjaPrice = response20.data.price;
-        const nonjaLiq = response201.data.liquidity[response211.data.liquidity.length-1]
+        const nonjaLiq =
+          response201.data.liquidity[response211.data.liquidity.length - 1];
         const pingPrice = response21.data.price;
-        const pingLiq = response211.data.liquidity[response211.data.liquidity.length-1];
+        const pingLiq =
+          response211.data.liquidity[response211.data.liquidity.length - 1];
         const ykzPrice = response22.data.price;
-        const ykzLiq = response221.data.liquidity[response211.data.liquidity.length-1];
+        const ykzLiq =
+          response221.data.liquidity[response211.data.liquidity.length - 1];
         const hingPrice = response23.data.price;
-        const hingLiq = response231.data.liquidity[response211.data.liquidity.length-1];
+        const hingLiq =
+          response231.data.liquidity[response211.data.liquidity.length - 1];
         const dibPrice = response24.data.price;
-        const dibLiq = response241.data.liquidity[response211.data.liquidity.length-1];
+        const dibLiq =
+          response241.data.liquidity[response211.data.liquidity.length - 1];
         const duelPrice = response25.data.price;
-        const duelLiq = response251.data.liquidity[response211.data.liquidity.length-1];
+        const duelLiq =
+          response251.data.liquidity[response211.data.liquidity.length - 1];
         const monksPrice = response26.data.price;
-        const monksLiq = response261.data.liquidity[response211.data.liquidity.length-1];
-        const xnjPrice = response10.data.price
-        const xnjLiq = response11.data.liquidity[response211.data.liquidity.length-1];
+        const monksLiq =
+          response261.data.liquidity[response211.data.liquidity.length - 1];
+        const xnjPrice = response10.data.price;
+        const xnjLiq =
+          response11.data.liquidity[response211.data.liquidity.length - 1];
 
         const data: Token[] = [
           {

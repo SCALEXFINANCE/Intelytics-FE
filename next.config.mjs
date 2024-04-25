@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+import withTM from "next-transpile-modules";
 const nextConfig = {
   reactStrictMode: true,
   typescript: {
@@ -6,24 +7,19 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-},
+  },
 };
 
- 
-  //  headers() {
-  //   return [
-  //     {
-  //       // Adding favicon
-  //       source: '/public/favicon.svg',
-  //       headers: [
-  //         {
-  //           key: 'Link',
-  //           value: '/public/favicon.svg; rel="shortcut icon"',
-  //         },
-  //       ],
-  //     },
-  //   ];
-  // }
- 
-
-export default nextConfig;
+export default withTM([
+  "react-financial-charts",
+  "@react-financial-charts/annotations",
+  "@react-financial-charts/axes",
+  "@react-financial-charts/coordinates",
+  "@react-financial-charts/core",
+  "@react-financial-charts/indicators",
+  "@react-financial-charts/interactive",
+  "@react-financial-charts/scales",
+  "@react-financial-charts/series",
+  "@react-financial-charts/tooltip",
+  "@react-financial-charts/utils",
+])(nextConfig);
