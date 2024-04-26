@@ -35,8 +35,8 @@ function TradingChart({ token }: ITradingChart) {
   }, 1000);
 
   return (
-    <div className="flex flex-col w-full h-full">
-      <div className="p-1 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+    <div className="flex flex-col w-full h-full bg-gray-900">
+      {/* <div className="p-1 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
         <div className="flex items-center pr-2">
           <Switch
             label="Live"
@@ -44,7 +44,7 @@ function TradingChart({ token }: ITradingChart) {
             onChange={(e) => setUpdating(e.target.checked)}
           />
         </div>
-      </div>
+      </div> */}
       <div ref={chartRef} className="w-full h-full relative">
         {!isLoading ? (
           <StockChart

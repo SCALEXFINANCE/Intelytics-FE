@@ -47,19 +47,6 @@ export default function tokenName() {
   const [cs, setCs] = useState();
   const [ts, setTs] = useState();
 
-  const Data = () => {
-    if (price) {
-      const value = price * contents[slug].circulatingSupply;
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(value);
-      setMarketCap(formatted);
-    }
-  };
-
   const [pricesel, setPriceSelected] = useState<Boolean>(true);
   const [volsel, setVolSelected] = useState<Boolean>(false);
 
@@ -71,60 +58,6 @@ export default function tokenName() {
     setVolSelected(true);
     setPriceSelected(false);
   };
-
-  useEffect(() => {
-    if (contents[slug]) {
-      console.log("from effect", contents[slug].name);
-      const formatted3 = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }).format(contents[slug].circulatingSupply);
-      setCs(formatted3);
-      const formatted4 = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-
-        maximumFractionDigits: 0,
-      }).format(contents[slug].totalSupply);
-      setTs(formatted4);
-      const fetchData = async () => {
-        try {
-          const apiUrl = await axios.get(`${contents[slug].apiUrl}`);
-          const liquidityData = apiUrl.data;
-          const volume = liquidityData.pairs[0].volume.h24;
-          const price = liquidityData.pairs[0].priceUsd;
-          const txns = liquidityData.pairs[0].txns;
-
-          const formatted2 = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }).format(volume);
-
-          setv24(formatted2);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchData();
-
-      const interval = setInterval(() => {
-        fetchData();
-      }, 30000);
-
-      return () => {
-        clearInterval(interval);
-      };
-    }
-  }, [slug]);
-
-  // {
-  //   price && (
-  //     setMarketCap(price * contents[slug].circulatingSupply)
-  //   )
-  // }
 
   return (
     <>

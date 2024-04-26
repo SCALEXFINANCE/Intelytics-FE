@@ -36,18 +36,13 @@ function StockChart({
   width = 800,
   ratio = 3,
 }: StockChartProps) {
-  const { theme, systemTheme } = useTheme();
-  const currentTheme = useMemo(() => {
-    if (theme === "system") return systemTheme;
-    return theme;
-  }, [theme, systemTheme]);
   const {
     axisStyles,
     coordinateStyles,
     zoomButtonStyles,
     crossHairStyles,
     movingAverageStyle,
-  } = currentTheme === "dark" ? darkChartStyle : lightChartStyle;
+  } = darkChartStyle;
   const [resetCount, setResetCount] = useState(0);
 
   const timeDisplayFormat = timeFormat(dateTimeFormat);
