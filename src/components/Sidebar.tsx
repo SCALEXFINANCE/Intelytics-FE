@@ -57,104 +57,94 @@ const Sidebar = ({ visible, setVisible }: any) => {
           <div className=" flex  flex-row  gap-4">
             {/* defi dropdown */}
             <div className=" flex flex-col items-center">
-            
               <button
                 className={`px-2 p-2  text-left text-xl font-bold w-full ${
-                  isOpenDefi
-                    ? "bg-gray-800 rounded-md text-white  "
-                    : ""
+                  isOpenDefi ? "bg-gray-800 rounded-md text-white  " : ""
                 }`}
                 onClick={toggleDropdownDefi}
               >
                 Defi
               </button>
-            
 
-            {isOpenDefi && (
-              <div
-                className={`flex flex-col text-lg text-gray-400 
+              {isOpenDefi && (
+                <div
+                  className={`flex flex-col text-lg text-gray-400 
               `}
-              >
-                <ul className="search-results lg:-translate-x-7 bg-gray-800  text-lg border-2 border-gray-800 rounded z-20	absolute	">
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/"}
-                      className={`p-2  rounded-md   ${
-                        router.pathname === "/" ? "  text-white " : ""
-                      }`}
-                    >
-                      Overview
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/Chains"}
-                      className={`p-2  rounded-md ${
-                        router.pathname === "/Chains"
-                          ? "bg-gray-800 text-white  "
-                          : ""
-                      }`}
-                    >
-                      Chains
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/Tokens"}
-                      className={`p-2  rounded-md ${
-                        router.pathname === "/Tokens"
-                          ? "  text-white  "
-                          : ""
-                      }`}
-                    >
-                      Tokens
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/Airdrops"}
-                      className={`p-2  rounded-md ${
-                        router.pathname === "/Airdrops"
-                          ? " text-white  "
-                          : ""
-                      }`}
-                    >
-                      Airdrops
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/Topprotocol"}
-                      className={`p-2  rounded-md ${
-                        router.pathname === "/Topprotocol"
-                          ? "  text-white  "
-                          : ""
-                      }`}
-                    >
-                      Top Protocol
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-
+                >
+                  <ul className="search-results lg:-translate-x-7 bg-gray-800  text-lg border-2 border-gray-800 rounded z-20	absolute	">
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        href={"/"}
+                        className={`p-2  rounded-md   ${
+                          router.pathname === "/" ? "  text-white " : ""
+                        }`}
+                      >
+                        Overview
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        href={"/Chains"}
+                        className={`p-2  rounded-md ${
+                          router.pathname === "/Chains"
+                            ? "bg-gray-800 text-white  "
+                            : ""
+                        }`}
+                      >
+                        Chains
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        href={"/Tokens"}
+                        className={`p-2  rounded-md ${
+                          router.pathname === "/Tokens" ? "  text-white  " : ""
+                        }`}
+                      >
+                        Tokens
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        href={"/Airdrops"}
+                        className={`p-2  rounded-md ${
+                          router.pathname === "/Airdrops" ? " text-white  " : ""
+                        }`}
+                      >
+                        Airdrops
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        href={"/Topprotocol"}
+                        className={`p-2  rounded-md ${
+                          router.pathname === "/Topprotocol"
+                            ? "  text-white  "
+                            : ""
+                        }`}
+                      >
+                        Top Protocol
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
-            
 
             {/* nft */}
             <div className=" flex gap-2 items-center justify-start">
@@ -200,30 +190,27 @@ const Sidebar = ({ visible, setVisible }: any) => {
               </button>
 
               {isOpenVolume && (
-              <div className="flex  flex-col  pl-7 gap-4  text-lg text-gray-400 animate-fade-down animate-duration-400">
-                <ul className="search-results lg:-translate-x-10 bg-gray-800  text-lg border-2 border-gray-800 rounded z-20	absolute	">
-                  <li>
-                  <Link
-                  onClick={() => {
-                    setVisible(false);
-                  }}
-                  href={"/Topprotocolvolume"}
-                  className={`p-2 rounded-md ${
-                    router.pathname === "/Topprotocolvolume"
-                      ? "bg-gray-800 text-white  "
-                      : ""
-                  }`}
-                >
-                  Top Protocol
-                </Link>
-                  </li>
-                </ul>
-                
-              </div>
-            )}
+                <div className="flex  flex-col  pl-7 gap-4  text-lg text-gray-400 animate-fade-down animate-duration-400">
+                  <ul className="search-results lg:-translate-x-10 bg-gray-800  text-lg border-2 border-gray-800 rounded z-20	absolute	">
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        href={"/Topprotocolvolume"}
+                        className={`p-2 rounded-md ${
+                          router.pathname === "/Topprotocolvolume"
+                            ? "bg-gray-800 text-white  "
+                            : ""
+                        }`}
+                      >
+                        Top Protocol
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
-
-            
 
             {/* trading bot */}
             <div className=" flex gap-2">
@@ -292,13 +279,17 @@ const Sidebar = ({ visible, setVisible }: any) => {
           </div>
           <div className=" flex flex-row gap-2 items-center">
             <SearchBar />
-            <Image src="/emerald.png" alt="" height={40} width={40} />
-            <Link href="/Signin">
-            <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
-              Connect Wallet
+            <div
+              className="cursor-pointer"
+              onClick={() => router.push("/Rewards")}
+            >
+              <Image src="/emerald.png" alt="Emerald" height={40} width={40} />
             </div>
+            <Link href="/Signin">
+              <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
+                Connect Wallet
+              </div>
             </Link>
-            
           </div>
         </div>
       </div>

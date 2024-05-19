@@ -15,7 +15,7 @@ const Layout = ({ children }: any) => {
   if(router.pathname === "/Signin" || router.pathname === "/Signup"){
     return (
       <>
-      <div className="lg:w-full h-screen bg-slate-950">
+      <div className="lg:w-full h-screen lg:bg-slate-950 bg-black">
         {children}
 
       </div>

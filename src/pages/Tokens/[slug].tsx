@@ -239,7 +239,7 @@ export default function tokenName() {
     const chartValues = async () => {
       try {
         const response = await axios.get(
-          `http://50.117.104.207:3000/api/getTokenData?tokenName=${String(
+          `https://intelytics-be.vercel.app/api/getTokenData?tokenName=${String(
             contents[slug].symbol
           )}`
         );
