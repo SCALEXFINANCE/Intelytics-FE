@@ -15,13 +15,16 @@ const Signin = () => {
     };
 
     try {
-      const response = await fetch("https://intelytics-be.vercel.app/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await fetch(
+        "https://intelytics-be.vercel.app/api/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
       const data = await response.json();
       localStorage.setItem("accessToken", data.accessToken);
@@ -35,12 +38,21 @@ const Signin = () => {
   return (
     <div className="text-white w-full h-screen flex justify-center items-center">
       <div className="lg:w-7/12 lg:bg-gradient-to-b from-[#0e1734] to-black h-screen hidden lg:flex lg:flex-col items-center justify-center">
+        <div className=" w-full text-left pl-10">
+          <Link href="/">
+            <span className=" text-xl">&#8249;</span>Back
+          </Link>
+        </div>
         <Image src="/loginhero.png" alt="" height={80} width={200} />
-        <div className="border border-white rounded-full p-2 text-xs mb-3">Analyse</div>
+        <div className="border border-white rounded-full p-2 text-xs mb-3">
+          Analyse
+        </div>
         <div className="text-4xl font-bold">Trade With The Best</div>
         <div className="text-4xl font-bold">Platform in Market</div>
         <div className="text-xs text-gray-700 w-[60%] text-center p-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper velit sed purus sagittis, at semper dolor hendrerit. Vivamus pulvinar aliquet est ut consequa
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          ullamcorper velit sed purus sagittis, at semper dolor hendrerit.
+          Vivamus pulvinar aliquet est ut consequa
         </div>
         <Image src="/loginhero2.png" alt="" height={600} width={700} />
       </div>

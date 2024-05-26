@@ -213,69 +213,84 @@ const Sidebar = ({ visible, setVisible }: any) => {
             </div>
 
             {/* trading bot */}
-            <div className=" flex gap-2">
+            <div className=" flex flex-col gap-2">
               <button
-                className="px-2 p-2 text-left   text-xl font-bold"
+                className={`px-2 p-2  text-left text-xl font-bold w-full ${
+                  isOpenTradingBot ? "bg-gray-800 rounded-md text-white  " : ""
+                }`}
                 onClick={toggleDropdownTradingBot}
               >
                 Trading Bot
               </button>
+              {isOpenTradingBot && (
+              <div className={`flex flex-col text-lg text-gray-400 `}>
+                <ul className="search-results lg:-translate-x-7 bg-gray-800  text-lg border-2 border-gray-800 rounded z-20	absolute	">
+                  <li>
+                    <Link
+                      onClick={() => {
+                        setVisible(false);
+                      }}
+                      href={"/"}
+                      className={`p-2 rounded-md ${
+                        router.pathname === "/portfolio"
+                          ? "bg-gray-800 text-white  "
+                          : ""
+                      }`}
+                    >
+                      Portfolio
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      onClick={() => {
+                        setVisible(false);
+                      }}
+                      href={"/"}
+                      className={`p-2 rounded-md ${
+                        router.pathname === "/activetrades"
+                          ? "bg-gray-800 text-white  "
+                          : ""
+                      }`}
+                    >
+                      Active Trades
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      onClick={() => {
+                        setVisible(false);
+                      }}
+                      href={"/"}
+                      className={`p-2 rounded-md ${
+                        router.pathname === "/sleepertrades"
+                          ? "bg-gray-800 text-white  "
+                          : ""
+                      }`}
+                    >
+                      Sleeper Trades
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      onClick={() => {
+                        setVisible(false);
+                      }}
+                      href={"/"}
+                      className={`p-2 rounded-md ${
+                        router.pathname === "/dca"
+                          ? "bg-gray-800 text-white  "
+                          : ""
+                      }`}
+                    >
+                      DCA
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}  
             </div>
 
-            {isOpenTradingBot && (
-              <div className="flex  flex-col  pl-7 gap-4  text-lg text-gray-400 animate-fade-down animate-duration-400">
-                <Link
-                  onClick={() => {
-                    setVisible(false);
-                  }}
-                  href={"/"}
-                  className={`p-2 rounded-md ${
-                    router.pathname === "/portfolio"
-                      ? "bg-gray-800 text-white  "
-                      : ""
-                  }`}
-                >
-                  Portfolio
-                </Link>
-                <Link
-                  onClick={() => {
-                    setVisible(false);
-                  }}
-                  href={"/"}
-                  className={`p-2 rounded-md ${
-                    router.pathname === "/activetrades"
-                      ? "bg-gray-800 text-white  "
-                      : ""
-                  }`}
-                >
-                  Active Trades
-                </Link>
-                <Link
-                  onClick={() => {
-                    setVisible(false);
-                  }}
-                  href={"/"}
-                  className={`p-2 rounded-md ${
-                    router.pathname === "/sleepertrades"
-                      ? "bg-gray-800 text-white  "
-                      : ""
-                  }`}
-                >
-                  Sleeper Trades
-                </Link>
-                <Link
-                  onClick={() => {
-                    setVisible(false);
-                  }}
-                  href={"/"}
-                  className={`p-2 rounded-md ${
-                    router.pathname === "/dca" ? "bg-gray-800 text-white  " : ""
-                  }`}
-                >
-                  DCA
-                </Link>
-              </div>
-            )}
+            
           </div>
           <div className=" flex flex-row gap-2 items-center">
             <SearchBar />
@@ -287,7 +302,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
             </div>
             <Link href="/Signin">
               <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
-                Connect Wallet
+                Get Started
               </div>
             </Link>
           </div>

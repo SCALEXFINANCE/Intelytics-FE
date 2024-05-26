@@ -132,14 +132,15 @@ const Rewards = () => {
               My Dashboard
             </div>
             <div
-              className={`text-xl  rounded p-1 pl-3 pr-3  ${
+              className={`flex gap-1 text-xl  rounded p-1 pl-3 pr-3  ${
                 colsel
                   ? "text-white underline underline-offset-2  "
                   : "text-gray-500"
               }`}
-              onClick={CollectionsClicked}
+              // onClick={CollectionsClicked}
             >
               Collection Rewards
+              <Image src={"/lock.png"} height={20} width={25} alt=""/>
             </div>
           </div>
           <div className=" flex pt-2 pb-2">
@@ -308,7 +309,7 @@ const Rewards = () => {
                               <div className=" text-sm text-gray-400">Supply: <span className=" text-white">1/50</span></div>
                             </div>
                           </div>
-                          <div className="p-2 text-gray-400"><span className=" text-white">ZORA TOKEN GIVEAWAY:</span> THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE INDUSTRY OF CRYPTO</div>
+                          <div className="p-2 text-gray-400"><span className=" text-white">Upcoming Quest 1</span> THE TOP NODGE IN Quest IS ABOUT TO COME IN THE INDUSTRY OF CRYPTO</div>
                         </div>
                       </div>
                     </div>
@@ -341,7 +342,7 @@ const Rewards = () => {
                               <div className=" text-sm text-gray-400">Supply: <span className=" text-white">1/50</span></div>
                             </div>
                           </div>
-                          <div className="p-2 text-gray-400"><span className=" text-white">ZORA TOKEN GIVEAWAY:</span> THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE INDUSTRY OF CRYPTO</div>
+                          <div className="p-2 text-gray-400"><span className=" text-white">Upcoming Quest 2</span> THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE INDUSTRY OF CRYPTO</div>
                         </div>
                       </div>
                     </div>
@@ -374,7 +375,7 @@ const Rewards = () => {
                               <div className=" text-sm text-gray-400">Supply: <span className=" text-white">1/50</span></div>
                             </div>
                           </div>
-                          <div className="p-2 text-gray-400"><span className=" text-white">ZORA TOKEN GIVEAWAY:</span> THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE INDUSTRY OF CRYPTO</div>
+                          <div className="p-2 text-gray-400"><span className=" text-white">Upcoming Quest 3</span> THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE INDUSTRY OF CRYPTO</div>
                         </div>
                       </div>
                     </div>
