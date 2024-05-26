@@ -11,6 +11,18 @@ const Layout = ({ children }: any) => {
 
   console.log(router.pathname);
 
+
+  if(router.pathname === "/Signin" || router.pathname === "/Signup"){
+    return (
+      <>
+      <div className="lg:w-full h-screen lg:bg-slate-950 bg-black">
+        {children}
+
+      </div>
+      </>
+    )
+  }
+
   if (router.pathname === "/Tokens/[slug]") {
     return (
       <>
@@ -20,7 +32,7 @@ const Layout = ({ children }: any) => {
               <Image
                 className="w-[10rem] h-[1.5rem]"
                 src={Logo}
-                alt="Intelitics logo"
+                alt="Intelytics logo"
               />
             </Link>
             <button
@@ -37,9 +49,9 @@ const Layout = ({ children }: any) => {
   }
   return (
     <>
-      <div className=" h-screen flex flex-row justify-start">
+      <div className=" h-screen flex flex-col justify-start">
         <Sidebar visible={isVisibie} setVisible={setIsVisible} />
-        <div className="  bg-slate-950 flex-1 px-6 pt-8 pb-4 text-white border-1 border-dashed overflow-y-scroll">
+        <div className="  bg-[#091144] bg-gradient-to-r from-[#04041F] from-10% via-[#091144] via-30% to-[#04041F] to-90% flex-1 px-6 pt-24 pb-4 text-white border-1  border-dashed overflow-y-scroll">
           <div className="lg:hidden bg-slate-950 w-full pt-0 pb-5 flex items-center justify-between">
             <Link href={"/"}>
               <Image
