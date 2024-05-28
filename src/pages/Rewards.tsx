@@ -283,7 +283,7 @@ const Rewards = () => {
                     <div className="w-1/3">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
-                          src={"/card.png"}
+                          src={"/Intelytics-quest-1.jpg"}
                           height={400}
                           width={500}
                           alt=""
@@ -316,7 +316,7 @@ const Rewards = () => {
                     <div className="w-1/3">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
-                          src={"/card.png"}
+                          src={"/Intelytics-quest-2.jpg"}
                           height={400}
                           width={500}
                           alt=""
@@ -349,7 +349,7 @@ const Rewards = () => {
                     <div className="w-1/3">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
-                          src={"/card.png"}
+                          src={"/Intelytics-quest-3.jpg"}
                           height={400}
                           width={500}
                           alt=""
