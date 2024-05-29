@@ -104,7 +104,8 @@ const Rewards = () => {
 
   return (
     <>
-      <div className="flex flex-col w-[90%] items-center justify-center">
+    <div className=" w-full flex items-center justify-center">
+    <div className="flex flex-col w-[90%] items-center justify-center  ">
         <div className=" flex items-center justify-center gap-10">
           <div className=" w-[29%] bg-[#000722] p-2 rounded-lg shadow-sky-800 shadow-md flex pt-5 pb-5">
             <div className=" flex flex-col">
@@ -499,6 +500,9 @@ const Rewards = () => {
           )}
         </div>
       </div>
+
+    </div>
+      
     </>
   );
 };

@@ -16,12 +16,18 @@ const Sidebar = ({ visible, setVisible }: any) => {
 
   const toggleDropdownDefi = () => {
     setIsOpenDefi(!isOpenDefi);
+    setIsOpenVolume(false);
+    setIsOpenTradingBot(false);
   };
   const toggleDropdownVolume = () => {
     setIsOpenVolume(!isOpenVolume);
+    setIsOpenDefi(false);
+    setIsOpenTradingBot(false);
   };
   const toggleDropdownTradingBot = () => {
     setIsOpenTradingBot(!isOpenTradingBot);
+    setIsOpenDefi(false);
+    setIsOpenVolume(false);
   };
 
   return (
@@ -76,6 +82,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
                       <Link
                         onClick={() => {
                           setVisible(false);
+                          setIsOpenDefi(false);
                         }}
                         href={"/"}
                         className={`p-2  rounded-md   ${
@@ -89,6 +96,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
                       <Link
                         onClick={() => {
                           setVisible(false);
+                          setIsOpenDefi(false);
                         }}
                         href={"/Chains"}
                         className={`p-2  rounded-md ${
@@ -104,6 +112,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
                       <Link
                         onClick={() => {
                           setVisible(false);
+                          setIsOpenDefi(false);
                         }}
                         href={"/Tokens"}
                         className={`p-2  rounded-md ${
@@ -117,6 +126,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
                       <Link
                         onClick={() => {
                           setVisible(false);
+                          setIsOpenDefi(false);
                         }}
                         href={"/Airdrops"}
                         className={`p-2  rounded-md ${
@@ -130,6 +140,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
                       <Link
                         onClick={() => {
                           setVisible(false);
+                          setIsOpenDefi(false);
                         }}
                         href={"/Topprotocol"}
                         className={`p-2  rounded-md ${
@@ -151,6 +162,9 @@ const Sidebar = ({ visible, setVisible }: any) => {
               <Link
                 onClick={() => {
                   setVisible(false);
+                  setIsOpenDefi(false);
+                  setIsOpenVolume(false);
+                  setIsOpenTradingBot(false);
                 }}
                 href={"/Nft"}
                 className={`p-2 rounded-md text-xl   font-bold ${
@@ -168,6 +182,9 @@ const Sidebar = ({ visible, setVisible }: any) => {
               <Link
                 onClick={() => {
                   setVisible(false);
+                  setIsOpenDefi(false);
+                  setIsOpenVolume(false);
+                  setIsOpenTradingBot(false);
                 }}
                 href={"/Lending"}
                 className={`p-2 rounded-md text-xl  font-bold ${
@@ -196,6 +213,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
                       <Link
                         onClick={() => {
                           setVisible(false);
+                          setIsOpenVolume(false);
                         }}
                         href={"/Topprotocolvolume"}
                         className={`p-2 rounded-md ${
@@ -223,74 +241,76 @@ const Sidebar = ({ visible, setVisible }: any) => {
                 Trading Bot
               </button>
               {isOpenTradingBot && (
-              <div className={`flex flex-col text-lg text-gray-400 `}>
-                <ul className="search-results lg:-translate-x-7 bg-gray-800  text-lg border-2 border-gray-800 rounded z-20	absolute	">
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/"}
-                      className={`p-2 rounded-md ${
-                        router.pathname === "/portfolio"
-                          ? "bg-gray-800 text-white  "
-                          : ""
-                      }`}
-                    >
-                      Portfolio
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/"}
-                      className={`p-2 rounded-md ${
-                        router.pathname === "/activetrades"
-                          ? "bg-gray-800 text-white  "
-                          : ""
-                      }`}
-                    >
-                      Active Trades
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/"}
-                      className={`p-2 rounded-md ${
-                        router.pathname === "/sleepertrades"
-                          ? "bg-gray-800 text-white  "
-                          : ""
-                      }`}
-                    >
-                      Sleeper Trades
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => {
-                        setVisible(false);
-                      }}
-                      href={"/"}
-                      className={`p-2 rounded-md ${
-                        router.pathname === "/dca"
-                          ? "bg-gray-800 text-white  "
-                          : ""
-                      }`}
-                    >
-                      DCA
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            )}  
+                <div className={`flex flex-col text-lg text-gray-400 `}>
+                  <ul className="search-results lg:-translate-x-7 bg-gray-800  text-lg border-2 border-gray-800 rounded z-20	absolute	">
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setIsOpenTradingBot(false);
+                        }}
+                        href={"/"}
+                        className={`p-2 rounded-md ${
+                          router.pathname === "/portfolio"
+                            ? "bg-gray-800 text-white  "
+                            : ""
+                        }`}
+                      >
+                        Portfolio
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setIsOpenTradingBot(false);
+                        }}
+                        href={"/"}
+                        className={`p-2 rounded-md ${
+                          router.pathname === "/activetrades"
+                            ? "bg-gray-800 text-white  "
+                            : ""
+                        }`}
+                      >
+                        Active Trades
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setIsOpenTradingBot(false);
+                        }}
+                        href={"/"}
+                        className={`p-2 rounded-md ${
+                          router.pathname === "/sleepertrades"
+                            ? "bg-gray-800 text-white  "
+                            : ""
+                        }`}
+                      >
+                        Sleeper Trades
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setIsOpenTradingBot(false);
+                        }}
+                        href={"/"}
+                        className={`p-2 rounded-md ${
+                          router.pathname === "/dca"
+                            ? "bg-gray-800 text-white  "
+                            : ""
+                        }`}
+                      >
+                        DCA
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
-
-            
           </div>
           <div className=" flex flex-row gap-2 items-center">
             <SearchBar />

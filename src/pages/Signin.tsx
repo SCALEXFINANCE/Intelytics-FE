@@ -32,10 +32,12 @@ const Signin = () => {
       const data = await response.json();
       localStorage.setItem("accessToken", data.accessToken);
       toast.success('Logged in Successfully')
+      console.log(requestBody)
       console.log("Login successful:", data);
       router.push("/");
     } catch (error) {
       console.error("Login failed:", error);
+      console.log(requestBody)
     }
   };
 
