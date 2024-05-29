@@ -16,7 +16,7 @@ const Signup = () => {
     };
 
     try {
-      const response = await fetch("https://intelytics-be.vercel.app/api/signup", {
+      const response = await fetch("https://intelytics-be.vercel.app/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,9 +27,7 @@ const Signup = () => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
-      // const data = await response.json();
-      // console.log("Signup successful:", data);
+      
       toast.success('Account created Successfully')
       router.push("/Signin");
     } catch (error) {
