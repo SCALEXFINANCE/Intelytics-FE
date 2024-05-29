@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { request } from "http";
+import { NextApiRequest, NextApiResponse } from "next";
+import toast from "react-hot-toast";
 
 const Rewards = () => {
   const [dashsel, setDashSelected] = useState<Boolean>(true);
   const [colsel, setColSelected] = useState<Boolean>(false);
-  const [authkey, setAuthkey] = useState<String>("");
+  const [authkey, setAuthkey] = useState<string>("");
   const [diamonds, setDiamonds] = useState<any>(10);
 
   //   const handleClaim = async () => {
@@ -35,29 +38,52 @@ const Rewards = () => {
   //     }
   //   };
 
-  const handleClaim = async () => {
-    try {
-      const response = await fetch(
-        "https://intelytics-be.vercel.app/api/claim",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${authkey}`,
-          },
-          body: JSON.stringify({}),
-        }
-      );
+  const handleClaim = async   () => {
+    // try {
+    //   const response = await fetch(
+    //     "https://intelytics-be.vercel.app/api/claim",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         "Authorization": authkey,
+    //       },
+    //       body: JSON.stringify({}),
+    //     }
+    //   );
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
 
-      const data = await response.json();
-      console.log("Successful");
-    } catch (error) {
-      console.error("Request failed:", error);
-    }
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not ok");
+    //   }
+
+    //   const data = await response.json();
+    //   console.log("Successful");
+    //   console.log(response);
+      
+    // } catch (error) {
+    //   console.error("Request failed:", error);
+    // }
+
+    const myHeaders = new Headers();
+myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjU3NWVlNGVjYjg5ZTEyZjk1ZGRkM2EiLCJpYXQiOjE3MTcwMDYwMTYsImV4cCI6MTcxNzAwNjkxNn0.RXBdyNrSVCUTlNIeqq8IPfIGCokzg-tyVta6dFZX5v8");
+
+const raw = "";
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("https://intelytics-be.vercel.app/api/claim", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+
+
+  
   };
 
   useEffect(() => {
