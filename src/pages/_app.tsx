@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Analytics } from "@vercel/analytics/react";
 import { Share_Tech_Mono } from 'next/font/google'
+import { Toaster } from "react-hot-toast";
 
 const inter = Share_Tech_Mono({
   subsets: ['latin'],
@@ -14,12 +15,12 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
     <main className={inter.className}>
-
       <Layout>
         <Component {...pageProps} />
       </Layout>
     </main>
       <Analytics />
+     <Toaster/>
     </>
   );
 }

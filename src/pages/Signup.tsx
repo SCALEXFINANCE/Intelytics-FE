@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import toast from 'react-hot-toast';
 
 const Signup = () => {
   const router = useRouter();
@@ -27,8 +28,9 @@ const Signup = () => {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
-      console.log("Signup successful:", data);
+      // const data = await response.json();
+      // console.log("Signup successful:", data);
+      toast.success('Account created Successfully')
       router.push("/Signin");
     } catch (error) {
       console.error("Signup failed:", error);
@@ -38,6 +40,11 @@ const Signup = () => {
   return (
     <div className="text-white w-full h-screen flex justify-center items-center">
       <div className="lg:w-7/12 lg:bg-gradient-to-b from-[#0e1734] to-black h-screen hidden lg:flex lg:flex-col items-center justify-center">
+      <div className=" w-full text-left pl-10">
+          <Link href="/">
+            <span className=" text-xl">&#8249;</span>Back
+          </Link>
+        </div>
         <Image src="/loginhero.png" alt="" height={80} width={200} />
         <div className="border border-white rounded-full p-2 text-xs mb-3">Analyse</div>
         <div className="text-4xl font-bold">Join The Best</div>
