@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import toast from 'react-hot-toast';
 
 const Signup = () => {
   const router = useRouter();
@@ -27,8 +28,9 @@ const Signup = () => {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
-      console.log("Signup successful:", data);
+      // const data = await response.json();
+      // console.log("Signup successful:", data);
+      toast.success('Account created Successfully')
       router.push("/Signin");
     } catch (error) {
       console.error("Signup failed:", error);

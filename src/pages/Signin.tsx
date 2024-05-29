@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import toast from 'react-hot-toast';
 
 const Signin = () => {
   const router = useRouter();
   const [email, setEmail] = useState("user1@example.com");
   const [pwd, setPwd] = useState("maxy");
+
+  
 
   const handleLogin = async () => {
     const requestBody = {
@@ -28,6 +31,7 @@ const Signin = () => {
 
       const data = await response.json();
       localStorage.setItem("accessToken", data.accessToken);
+      toast.success('Logged in Successfully')
       console.log("Login successful:", data);
       router.push("/");
     } catch (error) {
@@ -89,7 +93,9 @@ const Signin = () => {
           <div
             className="bg-white rounded-md text-center m-3 p-2 text-black w-full font-bold cursor-pointer"
             onClick={handleLogin}
+            
           >
+            
             Login
           </div>
           <Image src="/break.png" alt="" height={10} width={300} />
