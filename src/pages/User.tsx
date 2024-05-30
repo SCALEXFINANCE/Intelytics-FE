@@ -10,9 +10,9 @@ const User = () => {
             <span className=" text-xl">&#8249;</span>Back
           </Link>
         </div>
-    <div className="max-w-sm mx-auto bg-[#000722] shadow-md rounded-2xl overflow-hidden border-2 border-gray-700 mt-10">
+    <div className="max-w-sm mx-auto bg-[#000722] shadow-sky-800 shadow-md rounded-2xl overflow-hidden   mt-10">
       <div className="flex justify-center mt-6">
-        <Image src={"/user3.png"} alt="Profile Image" width={100} height={120} className="rounded-full border-2 border-gray-700 " />
+        <Image src={"/user3.png"} alt="Profile Image" width={100} height={120} className="rounded-full border-2 border-gray-700 shadow-sky-800 shadow-sm" />
       </div>
       <div className="p-6 text-center">
         <h2 className="text-xl  text-white font-bold">Hello, User!</h2>

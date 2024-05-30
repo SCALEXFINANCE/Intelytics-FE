@@ -39,48 +39,50 @@ const Rewards = () => {
   //   };
 
   const handleClaim = async   () => {
-    // try {
-    //   const response = await fetch(
-    //     "https://intelytics-be.vercel.app/api/claim",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         "Authorization": authkey,
-    //       },
-    //       body: JSON.stringify({}),
-    //     }
-    //   );
+    
+    try {
+      const response = await fetch(
+        "https://intelytics-be.vercel.app/api/claim",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authkey,
+          },
+          body: JSON.stringify({}),
+        }
+      );
 
 
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not ok");
-    //   }
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
-    //   const data = await response.json();
-    //   console.log("Successful");
-    //   console.log(response);
+      const data = await response.json();
+      toast.success("Claimed Succesfully")
+      console.log("Successful");
+      console.log(response);
       
-    // } catch (error) {
-    //   console.error("Request failed:", error);
-    // }
+    } catch (error) {
+      console.error("Request failed:", error);
+    }
 
-    const myHeaders = new Headers();
-myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjU3NWVlNGVjYjg5ZTEyZjk1ZGRkM2EiLCJpYXQiOjE3MTcwMDYwMTYsImV4cCI6MTcxNzAwNjkxNn0.RXBdyNrSVCUTlNIeqq8IPfIGCokzg-tyVta6dFZX5v8");
+//     const myHeaders = new Headers();
+// myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjU3NWVlNGVjYjg5ZTEyZjk1ZGRkM2EiLCJpYXQiOjE3MTcwMDYwMTYsImV4cCI6MTcxNzAwNjkxNn0.RXBdyNrSVCUTlNIeqq8IPfIGCokzg-tyVta6dFZX5v8");
 
-const raw = "";
+// const raw = "";
 
-const requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body: raw,
-  redirect: "follow"
-};
+// const requestOptions = {
+//   method: "POST",
+//   headers: myHeaders,
+//   body: raw,
+//   redirect: "follow"
+// };
 
-fetch("https://intelytics-be.vercel.app/api/claim", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.error(error));
+// fetch("https://intelytics-be.vercel.app/api/claim", requestOptions)
+//   .then((response) => response.text())
+//   .then((result) => console.log(result))
+//   .catch((error) => console.error(error));
 
 
   
