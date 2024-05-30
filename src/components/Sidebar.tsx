@@ -347,11 +347,11 @@ const Sidebar = ({ visible, setVisible }: any) => {
                 </Link>
               </>
             )}
-            {/* <Link href="/Signin">
+            <Link href="/Signin">
               <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
                 Get Started
               </div>
-            </Link> */}
+            </Link>
           </div>
         </div>
       </div>
