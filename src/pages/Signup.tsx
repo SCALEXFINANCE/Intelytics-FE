@@ -28,6 +28,7 @@ const Signup = () => {
         throw new Error("Network response was not ok");
       }
       
+
       toast.success('Account created Successfully')
       router.push("/Signin");
     } catch (error) {

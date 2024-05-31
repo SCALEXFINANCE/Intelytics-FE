@@ -6,8 +6,8 @@ import toast from 'react-hot-toast';
 
 const Signin = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("user1@example.com");
-  const [pwd, setPwd] = useState("maxy");
+  const [email, setEmail] = useState<string>();
+  const [pwd, setPwd] = useState<string>();
 
   
 

@@ -202,7 +202,7 @@ const overview = () => {
       {/* graph card */}
       <div className=" p-5 px-5  flex flex-col-reverse lg:flex-row gap-5 justify-between">
         {/* left */}
-        <div className="bg-black rounded-xl lg:px-2  flex gap-2 flex-col lg:w-1/3 w-full border border-gray-500">
+        <div className="bg-black rounded-xl lg:px-2  flex gap-2 flex-col lg:w-3/4 w-full border border-gray-500">
           <div className=" flex flex-col gap-2 p-6">
           <div className=" flex gap-3">
               <Image
@@ -252,13 +252,16 @@ const overview = () => {
         </div>
 
         {/* right */}
-        <div className=" flex flex-col bg-black rounded-xl border border-gray-500">
+        <div className=" flex flex-col bg-black rounded-xl lg:w-1/2 border border-gray-500">
           <div className=" p-4 ">
             {/* <Charted height={200} width={600} /> */}
           <div className="lg:px-3 lg:text-xl lg:inline hidden">
             Injective Total Value Locked
           </div>
+          <div className=" flex w-full items-center justify-center lg:translate-x-12 lg:translate-y-5">
           <InjectiveChart />
+
+          </div>
 
           </div>
           
