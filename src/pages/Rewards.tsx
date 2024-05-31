@@ -9,63 +9,13 @@ const Rewards = () => {
   const [dashsel, setDashSelected] = useState<Boolean>(true);
   const [colsel, setColSelected] = useState<Boolean>(false);
   const [authkey, setAuthkey] = useState<string>("");
-  const [diamonds, setDiamonds] = useState<any>(10);
+  const [diamonds, setDiamonds] = useState<any>("");
 
-  //   const handleClaim = async () => {
-  //     const requestBody = {
-  //       Authorization: authkey
-  //     };
-
-  //     try {
-  //       const response = await fetch("https://intelytics-be.vercel.app/api/claim", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           "Authorization": `Bearer ${authkey}`,
-  //         },
-  //         body: JSON.stringify(requestBody),
-  //       });
-
-  //       // if (!response.ok) {
-  //       //   throw new Error("Network response was not ok");
-  //       // }
-
-  //       console.log(requestBody)
-
-  //       const data = await response.json();
-  //       console.log("Claim successful:", data);
-  //     } catch (error) {
-  //       console.error("Claim failed:", error);
-  //     }
-  //   };
+ 
 
   const handleClaim = async () => {
-    // try {
-    //   const response = await fetch(
-    //     "https://intelytics-be.vercel.app/api/claim",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: authkey,
-    //       },
-    //       body: JSON.stringify({}),
-    //     }
-    //   );
-
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not ok");
-    //   }
-
-    //   const data = await response.json();
-    //   toast.success("Claimed Succesfully")
-    //   console.log("Successful");
-    //   console.log(response);
-
-    // } catch (error) {
-    //   console.error("Request failed:", error);
-    // }
-    console.log(authkey);
+    
+   
 
     const token = localStorage.getItem("accessToken");
 
@@ -74,68 +24,50 @@ const Rewards = () => {
       myHeaders.append("Authorization", token);
       const raw = "";
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
 
-    fetch("https://intelytics-be.vercel.app/api/claim", requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-         
-         
-        console.log(result);
-        if(result == "You can only claim diamonds once every 24 hours"){
-          toast.error(result);
-        } else{
+      fetch("https://intelytics-be.vercel.app/api/claim", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+           
+          if (result == "You can only claim diamonds once every 24 hours") {
+            toast.error(result);
+          } else {
+            toast.success("Claimed Successfully");
+          }
+        })
+        .catch((error) => {
+           
 
-          toast.success("Claimed Successfully")
-        }
-        
-      })
-      .catch((error) => {
-        console.error(error);
-        
-        toast.error(error);
-      });
+          toast.error(error);
+        });
     }
-
-    
   };
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      setAuthkey(token);
-      console.log(token);
-      const getEmeralds = async () => {
-        try {
-          const response = await fetch(
-            "https://intelytics-be.vercel.app/api/diamonds",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `authkey`,
-              },
-              body: JSON.stringify({}),
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-
-          const data = await response.json();
-          setDiamonds(data.diamonds || []);
-        } catch (error) {
-          console.error("Request failed:", error);
-        }
-      };
-      getEmeralds();
-
+      const url = "https://intelytics-be.vercel.app/api/diamonds";
+      // Make the GET request
+      axios
+        .get(url, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+           
+          setDiamonds(response.data.diamonds)
+           
+        })
+        .catch((error) => {
+          console.error("Error making the request:", error);
+        });
        
     }
   }, []);
