@@ -31,7 +31,7 @@ const Rewards = () => {
         redirect: "follow",
       };
 
-      fetch("https://intelytics-be.vercel.app/api/claim", requestOptions)
+      fetch("https://api.intelytics.net/api/claim", requestOptions)
         .then((response) => response.text())
         .then((result) => {
            
@@ -52,7 +52,7 @@ const Rewards = () => {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      const url = "https://intelytics-be.vercel.app/api/diamonds";
+      const url = "https://api.intelytics.net/api/diamonds";
       // Make the GET request
       axios
         .get(url, {
