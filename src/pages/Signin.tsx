@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import toast from 'react-hot-toast';
+import { API_BASE_URL,apiRoutes } from "@/config";
 
 const Signin = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const Signin = () => {
 
     try {
       const response = await fetch(
-        "https://intelytics-be.vercel.app/api/login",
+        `${API_BASE_URL}${apiRoutes.login}`,
         {
           method: "POST",
           headers: {

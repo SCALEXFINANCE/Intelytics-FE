@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import toast from 'react-hot-toast';
+import { API_BASE_URL,apiRoutes } from "@/config";
 
 const Signup = () => {
   const router = useRouter();
@@ -16,7 +17,7 @@ const Signup = () => {
     };
 
     try {
-      const response = await fetch("https://intelytics-be.vercel.app/api/register", {
+      const response = await fetch(`${API_BASE_URL}${apiRoutes.register}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

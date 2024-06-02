@@ -4,6 +4,7 @@ import { request } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
 import toast from "react-hot-toast";
 import axios from "axios";
+import {API_BASE_URL,apiRoutes} from '@/config'
 
 const Rewards = () => {
   const [dashsel, setDashSelected] = useState<Boolean>(true);
@@ -31,7 +32,7 @@ const Rewards = () => {
         redirect: "follow",
       };
 
-      fetch("https://intelytics-be.vercel.app/api/claim", requestOptions)
+      fetch(`${API_BASE_URL}${apiRoutes.claimEmeralds}`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
            
@@ -52,7 +53,7 @@ const Rewards = () => {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      const url = "https://intelytics-be.vercel.app/api/diamonds";
+      const url = `${API_BASE_URL}${apiRoutes.getEmeralds}`;
       // Make the GET request
       axios
         .get(url, {
@@ -61,7 +62,7 @@ const Rewards = () => {
           },
         })
         .then((response) => {
-           
+           console.log('emeralds',response.data.diamonds)
           setDiamonds(response.data.diamonds)
            
         })
@@ -70,7 +71,7 @@ const Rewards = () => {
         });
        
     }
-  }, []);
+  }, [diamonds]);
 
   const DashboardClicked = () => {
     setDashSelected(true);
