@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import { join } from "path";
 
 const Signup = () => {
   const router = useRouter();
@@ -16,7 +17,7 @@ const Signup = () => {
     };
 
     try {
-      const response = await fetch("https://intelytics-be.vercel.app/api/register", {
+      const response = await fetch("http://localhost:3001/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,14 +25,14 @@ const Signup = () => {
         body: JSON.stringify(requestBody),
       });
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      if (response.status === 400) {
+        throw new Error((await response.json()).message);
       }
-      
 
-      toast.success('Account created Successfully')
-      router.push("/Signin");
-    } catch (error) {
+      toast.success("Account created Successfully");
+      // router.push("/Signin");
+    } catch (error: any) {
+      toast.error(error.message);
       console.error("Signup failed:", error);
     }
   };
@@ -39,17 +40,21 @@ const Signup = () => {
   return (
     <div className="text-white w-full h-screen flex justify-center items-center">
       <div className="lg:w-7/12 lg:bg-gradient-to-b from-[#0e1734] to-black h-screen hidden lg:flex lg:flex-col items-center justify-center">
-      <div className=" w-full text-left pl-10">
+        <div className=" w-full text-left pl-10">
           <Link href="/">
             <span className=" text-xl">&#8249;</span>Back
           </Link>
         </div>
         <Image src="/loginhero.png" alt="" height={80} width={200} />
-        <div className="border border-white rounded-full p-2 text-xs mb-3">Analyse</div>
+        <div className="border border-white rounded-full p-2 text-xs mb-3">
+          Analyse
+        </div>
         <div className="text-4xl font-bold">Join The Best</div>
         <div className="text-4xl font-bold">Platform in Market</div>
         <div className="text-xs text-gray-700 w-[60%] text-center p-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper velit sed purus sagittis, at semper dolor hendrerit. Vivamus pulvinar aliquet est ut consequa
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          ullamcorper velit sed purus sagittis, at semper dolor hendrerit.
+          Vivamus pulvinar aliquet est ut consequa
         </div>
         <Image src="/loginhero2.png" alt="" height={600} width={700} />
       </div>

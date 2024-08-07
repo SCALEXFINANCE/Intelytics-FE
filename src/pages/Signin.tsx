@@ -2,43 +2,21 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 const Signin = () => {
   const router = useRouter();
-  const [email, setEmail] = useState<string>();
-  const [pwd, setPwd] = useState<string>();
-
-  
+  const [email, setEmail] = useState<string>("");
+  const [pwd, setPwd] = useState<string>("");
+  const { login } = useAuth();
 
   const handleLogin = async () => {
-    const requestBody = {
-      email: email,
-      password: pwd,
-    };
-
-    try {
-      const response = await fetch(
-        "https://intelytics-be.vercel.app/api/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        }
-      );
-
-      const data = await response.json();
-      localStorage.setItem("accessToken", data.accessToken);
-      toast.success('Logged in Successfully')
-      console.log(requestBody)
-      console.log("Login successful:", data);
-      router.push("/");
-    } catch (error) {
-      console.error("Login failed:", error);
-      console.log(requestBody)
+    if (!email || !pwd) {
+      toast("Input Email or Password!");
+      return;
     }
+    await login(email, pwd);
   };
 
   return (
@@ -67,7 +45,7 @@ const Signin = () => {
           <Image src="/search.png" alt="" height={30} width={30} />
           <div className="text-2xl font-bold">Welcome Back</div>
           <div className="text-md text-gray-600">
-            Don't have an account yet?{" "}
+            Don&apos;t have an account yet?{" "}
             <span className="text-white">
               <Link href="/Signup">Sign Up</Link>
             </span>
@@ -95,9 +73,7 @@ const Signin = () => {
           <div
             className="bg-white rounded-md text-center m-3 p-2 text-black w-full font-bold cursor-pointer"
             onClick={handleLogin}
-            
           >
-            
             Login
           </div>
           <Image src="/break.png" alt="" height={10} width={300} />

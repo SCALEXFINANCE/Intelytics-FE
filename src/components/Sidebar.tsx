@@ -4,24 +4,18 @@ import { useState, useMemo, useEffect } from "react";
 import Logo from "./assets/logo.png";
 import Image from "next/image";
 import SearchBar from "./Searchbar";
+import { useAuth } from "@/hooks/useAuth";
 
 const Sidebar = ({ visible, setVisible }: any) => {
   const [currPage, setCurrpage] = useState<string>("");
-  const [authkey, setAuthkey] = useState<string>("");
   const router = useRouter();
+  const { isAuthenticated, isLoading } = useAuth();
+  // console.log(isAuthenticated, "isAuth");
 
   //dropdown states and toggle functions
   const [isOpenDefi, setIsOpenDefi] = useState(false);
   const [isOpenVolume, setIsOpenVolume] = useState(false);
   const [isOpenTradingBot, setIsOpenTradingBot] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      setAuthkey(token);
-      console.log(token);
-    }
-  }, []);
 
   const toggleDropdownDefi = () => {
     setIsOpenDefi(!isOpenDefi);
@@ -329,23 +323,25 @@ const Sidebar = ({ visible, setVisible }: any) => {
             >
               <Image src="/emerald.png" alt="Emerald" height={40} width={40} />
             </div>
-            {authkey && (
-              <>
-                <Link href="/User">
-                  <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
-                    User
-                  </div>
-                </Link>
-              </>
-            )}
-            {!authkey && (
-              <>
-                <Link href="/Signin">
-                  <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
-                    Get Started
-                  </div>
-                </Link>
-              </>
+
+            {isLoading ? (
+              <Link href="/Signin">
+                <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
+                  Get Started
+                </div>
+              </Link>
+            ) : isAuthenticated === true ? (
+              <Link href="/User">
+                <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
+                  User
+                </div>
+              </Link>
+            ) : (
+              <Link href="/Signin">
+                <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
+                  Get Started
+                </div>
+              </Link>
             )}
             {/* <Link href="/Signin">
               <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">

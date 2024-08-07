@@ -9,18 +9,14 @@ const Layout = ({ children }: any) => {
   const [isVisibie, setIsVisible] = React.useState<boolean>(false);
   const router = useRouter();
 
-  console.log(router.pathname);
-
-
-  if(router.pathname === "/Signin" || router.pathname === "/Signup"){
+  if (router.pathname === "/Signin" || router.pathname === "/Signup") {
     return (
       <>
-      <div className="lg:w-full h-screen lg:bg-slate-950 bg-black">
-        {children}
-
-      </div>
+        <div className="lg:w-full h-screen lg:bg-slate-950 bg-black">
+          {children}
+        </div>
       </>
-    )
+    );
   }
 
   if (router.pathname === "/Tokens/[slug]") {
