@@ -8,6 +8,8 @@ import App from "@/components/TestChart";
 import SearchBar from "@/components/Searchbar";
 import InjectiveChart from "@/components/InjectiveChart";
 import { TokensTable } from "@/components/TokensTable";
+import Token from "../../public/TOKEN.png";
+import Inj from "../../public/inj.png";
 
 const Overview = () => {
   const [selected, setSelected] = useState<string>("all");
@@ -207,7 +209,7 @@ const Overview = () => {
             <div className=" flex gap-3">
               <Image
                 alt=""
-                src="/TOKEN.png"
+                src={Token}
                 height={30}
                 width={30}
                 className=" rounded-full"
@@ -217,7 +219,7 @@ const Overview = () => {
             <div className=" flex gap-3">
               <Image
                 alt=""
-                src="/inj.png"
+                src={Inj}
                 height={30}
                 width={30}
                 className=" rounded-full"

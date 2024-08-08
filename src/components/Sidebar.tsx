@@ -5,6 +5,7 @@ import Logo from "./assets/logo.png";
 import Image from "next/image";
 import SearchBar from "./Searchbar";
 import { useAuth } from "@/hooks/useAuth";
+import Emeralds from "../../public/emerald.png";
 
 const Sidebar = ({ visible, setVisible }: any) => {
   const [currPage, setCurrpage] = useState<string>("");
@@ -321,7 +322,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
               className="cursor-pointer"
               onClick={() => router.push("/Rewards")}
             >
-              <Image src="/emerald.png" alt="Emerald" height={40} width={40} />
+              <Image src={Emeralds} alt="Emerald" height={40} width={40} />
             </div>
 
             {isLoading ? (

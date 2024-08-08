@@ -15,12 +15,12 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get(ACCESS_TOKEN_NAME)?.value;
   const { pathname } = request.nextUrl;
 
-  // If there is no token and not on Signin page, redirect to Signin page
+  // Allow access to signin and signup pages without a token
   if (!token) {
-    if (pathname !== "/Signin") {
-      return NextResponse.redirect(new URL("/Signin", request.url));
+    if (pathname === "/Signin" || pathname === "/Signup") {
+      return NextResponse.next();
     }
-    return NextResponse.next();
+    return NextResponse.redirect(new URL("/Signin", request.url));
   }
 
   try {
@@ -28,8 +28,7 @@ export async function middleware(request: NextRequest) {
       payload: DecodedToken;
     };
 
-    // Token is valid
-    // If already on Signin page, redirect to home page
+    // If authenticated and trying to access signin/signup, redirect to home page
     if (pathname === "/Signin" || pathname === "/Signup") {
       return NextResponse.redirect(new URL("/", request.url));
     }

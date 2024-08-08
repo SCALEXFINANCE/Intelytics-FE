@@ -43,6 +43,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Protocolranking from "../../public/protocolranking.svg";
 
 export type Coin = {
   name: string;
@@ -481,7 +482,7 @@ export function OverviewTable() {
       <div className="flex items-center py-4">
         <div className="bg-black p-3 px-5 rounded-xl flex gap-4 w-full justify-between">
           <div className="flex items-center gap-4">
-            <Image src="./protocolranking.svg" alt="" height={30} width={30} />
+            <Image src={Protocolranking} alt="" height={30} width={30} />
             <div className=" font-semibold ">Protocol Ranking </div>
           </div>
 
@@ -1040,7 +1041,7 @@ export function OverviewTableMobile() {
 
       <div>
         {data.map((coin, index) => (
-          <div className=" bg-gray-900 rounded p-4">
+          <div key={index} className=" bg-gray-900 rounded p-4">
             <div className=" flex items-center justify-between">
               <div className=" flex items-center">
                 <Image

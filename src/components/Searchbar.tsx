@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Search2 from "../../public/search2.png";
 
 interface SearchResultItem {
   title: string;
@@ -65,17 +66,15 @@ const SearchBar: React.FC = () => {
     <form>
       <div className=" w-full bg-black">
         <div className=" w-full bg-black lg:p-2 p-2 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
-          <Image src="/search2.png" alt="" height={20} width={20} />
-        <input
-          className=" w-full bg-black text-white focus:outline-none "
-          type="text"
-          value={searchQuery}
-          onChange={(event) => setSearchQuery(event.target.value)}
-          placeholder="Search"
-        />
-
+          <Image src={Search2} alt="" height={20} width={20} />
+          <input
+            className=" w-full bg-black text-white focus:outline-none "
+            type="text"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            placeholder="Search"
+          />
         </div>
-        
       </div>
       {showResults && (
         <ul className="search-results  bg-gray-800 w-[17%] text-lg border-2 border-gray-800 rounded z-20	absolute	">

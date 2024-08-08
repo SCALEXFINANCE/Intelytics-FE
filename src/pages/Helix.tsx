@@ -4,8 +4,12 @@ import axios from "axios";
 import React from "react";
 import Image from "next/image";
 import HelixChart from "@/components/HelixChart";
+import helix from "../../public/Helix.jpg";
+import Twitter from "../../public/twitter.png";
+import Telegram from "../../public/telegram.png";
+import Discord from "../../public/discord.jpg";
 
-const helix = () => {
+const Helix = () => {
   const [tvl, settvl] = useState<string>();
   const [oned, setoned] = useState<number>();
   const [oneh, setoneh] = useState<number>();
@@ -63,13 +67,7 @@ const helix = () => {
   return (
     <div className="pt-4 lg:pt-0">
       <div className="lg:flex lg:gap-2   flex items-center  bg-gray-900 rounded-xl p-2">
-        <Image
-          alt=""
-          src={"/Helix.jpg"}
-          height={50}
-          width={50}
-          className=" rounded"
-        />
+        <Image alt="" src={helix} height={50} width={50} className=" rounded" />
         <a href="https://www.helix.com/" className="lg:p-2">
           <div className=" font-bold lg:text-4xl text-base px-2 "> Helix</div>
           <div className=" text-teal-400 text-sm  px-2">Derivative</div>
@@ -119,7 +117,7 @@ const helix = () => {
               <div className=" flex flex-row gap-5 items-center">
                 <a href="https://twitter.com/helixapp_">
                   <Image
-                    src={"/twitter.png"}
+                    src={Twitter}
                     alt=""
                     height={20}
                     width={20}
@@ -128,7 +126,7 @@ const helix = () => {
                 </a>
                 <a href="https://t.me/helixapp">
                   <Image
-                    src={"/telegram.png"}
+                    src={Telegram}
                     alt=""
                     height={30}
                     width={30}
@@ -138,7 +136,7 @@ const helix = () => {
 
                 <a href="https://discord.com/invite/injective">
                   <Image
-                    src={"/discord.jpg"}
+                    src={Discord}
                     alt=""
                     height={25}
                     width={25}
@@ -174,4 +172,4 @@ const helix = () => {
   );
 };
 
-export default helix;
+export default Helix;

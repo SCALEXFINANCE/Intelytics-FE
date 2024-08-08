@@ -4,8 +4,13 @@ import axios from "axios";
 import React from "react";
 import Image from "next/image";
 import AstroChart from "@/components/AstroChart";
+import Astroport from "../../public/Astroport.jpg";
+import Twitter from "../../public/twitter.png";
+import Telegram from "../../public/telegram.png";
+import Medium from "../../public/medium.png";
+import Docs from "../../public/docs.png";
 
-const dojoswap = () => {
+const Dojoswap = () => {
   const [tvl, settvl] = useState<string>();
   const [oned, setoned] = useState<number>();
   const [oneh, setoneh] = useState<number>();
@@ -65,7 +70,7 @@ const dojoswap = () => {
       <div className="lg:flex lg:gap-2   flex items-center  bg-gray-900 rounded-xl p-2">
         <Image
           alt=""
-          src={"/Astroport.jpg"}
+          src={Astroport}
           height={50}
           width={50}
           className=" rounded"
@@ -121,7 +126,7 @@ const dojoswap = () => {
               <div className=" flex flex-row gap-5 items-center">
                 <a href="https://twitter.com/astroport_fi">
                   <Image
-                    src={"/twitter.png"}
+                    src={Twitter}
                     alt=""
                     height={20}
                     width={20}
@@ -130,7 +135,7 @@ const dojoswap = () => {
                 </a>
                 <a href="https://t.me/astroport_fi">
                   <Image
-                    src={"/telegram.png"}
+                    src={Telegram}
                     alt=""
                     height={30}
                     width={30}
@@ -139,7 +144,7 @@ const dojoswap = () => {
                 </a>
                 <a href="https://astroport.medium.com/">
                   <Image
-                    src={"/medium.png"}
+                    src={Medium}
                     alt=""
                     height={30}
                     width={30}
@@ -148,7 +153,7 @@ const dojoswap = () => {
                 </a>
                 <a href="https://docs.astroport.fi/">
                   <Image
-                    src={"/docs.png"}
+                    src={Docs}
                     alt=""
                     height={25}
                     width={25}
@@ -186,4 +191,4 @@ const dojoswap = () => {
   );
 };
 
-export default dojoswap;
+export default Dojoswap;

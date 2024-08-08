@@ -4,6 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { join } from "path";
+import LoginHero from "../../public/loginhero.png";
+import LoginHero2 from "../../public/loginhero2.png";
+import Search from "../../public/search.png";
+import EnvelopeSimple from "../../public/EnvelopeSimple.png";
+import Password from "../../public/Password.png";
+import Break from "../../public/break.png";
+import Google2 from "../../public/google2.png";
 
 const Signup = () => {
   const router = useRouter();
@@ -45,7 +52,7 @@ const Signup = () => {
             <span className=" text-xl">&#8249;</span>Back
           </Link>
         </div>
-        <Image src="/loginhero.png" alt="" height={80} width={200} />
+        <Image src={LoginHero} alt="" height={80} width={200} />
         <div className="border border-white rounded-full p-2 text-xs mb-3">
           Analyse
         </div>
@@ -56,11 +63,11 @@ const Signup = () => {
           ullamcorper velit sed purus sagittis, at semper dolor hendrerit.
           Vivamus pulvinar aliquet est ut consequa
         </div>
-        <Image src="/loginhero2.png" alt="" height={600} width={700} />
+        <Image src={LoginHero2} alt="" height={600} width={700} />
       </div>
       <div className="lg:w-5/12 bg-black h-screen flex items-center justify-center flex-col">
         <div className="bg-[#0e1734] rounded-md p-8 flex flex-col items-center justify-center gap-2">
-          <Image src="/search.png" alt="" height={30} width={30} />
+          <Image src={Search} alt="" height={30} width={30} />
           <div className="text-2xl font-bold">Create Account</div>
           <div className="text-md text-gray-600">
             Already have an account?{" "}
@@ -69,7 +76,7 @@ const Signup = () => {
             </span>
           </div>
           <div className="w-full bg-black rounded border border-gray-800 p-2 flex gap-3">
-            <Image src="/EnvelopeSimple.png" alt="" height={20} width={20} />
+            <Image src={EnvelopeSimple} alt="" height={20} width={20} />
             <input
               className="w-full bg-black text-gray-600 focus:outline-none"
               type="text"
@@ -79,7 +86,7 @@ const Signup = () => {
             />
           </div>
           <div className="w-full bg-black rounded border border-gray-800 p-2 flex gap-3">
-            <Image src="/Password.png" alt="" height={20} width={20} />
+            <Image src={Password} alt="" height={20} width={20} />
             <input
               className="w-full bg-black text-gray-600 focus:outline-none"
               type="password"
@@ -94,9 +101,9 @@ const Signup = () => {
           >
             Sign Up
           </div>
-          <Image src="/break.png" alt="" height={10} width={300} />
+          <Image src={Break} alt="" height={10} width={300} />
           <div className="bg-white rounded-md text-center m-3 p-2 text-black w-full flex items-center gap-2 justify-center cursor-pointer">
-            <Image src="/google2.png" alt="" height={20} width={20} />
+            <Image src={Google2} alt="" height={20} width={20} />
             <div className="font-bold">Sign Up with Google</div>
           </div>
         </div>

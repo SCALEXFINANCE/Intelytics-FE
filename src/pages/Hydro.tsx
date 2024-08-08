@@ -4,9 +4,14 @@ import axios from "axios";
 import React from "react";
 import Image from "next/image";
 import HydroChart from "@/components/HydroChart";
+import hydro from "../../public/Hydro.jpg";
 import Charted from "@/components/ChartComponent";
+import Twitter from "../../public/twitter.png";
+import Telegram from "../../public/telegram.png";
+import Medium from "../../public/medium.png";
+import Docs from "../../public/docs.png";
 
-const hydro = () => {
+const Hydro = () => {
   const [tvl, settvl] = useState<string>();
   const [oned, setoned] = useState<number>();
   const [oneh, setoneh] = useState<number>();
@@ -64,13 +69,7 @@ const hydro = () => {
   return (
     <div className="pt-4 lg:pt-0">
       <div className="lg:flex lg:gap-2   flex items-center  bg-gray-900 rounded-xl p-2">
-        <Image
-          alt=""
-          src={"/Hydro.jpg"}
-          height={40}
-          width={40}
-          className=" rounded"
-        />
+        <Image alt="" src={hydro} height={40} width={40} className=" rounded" />
         <a href="https://hydroprotocol.finance/" className="lg:p-2">
           <div className=" font-bold lg:text-4xl text-base px-2 "> Hydro</div>
           <div className=" text-teal-400  px-2">Liquid Staking</div>
@@ -120,7 +119,7 @@ const hydro = () => {
               <div className=" flex flex-row gap-5 items-center">
                 <a href="https://twitter.com/hydro_fi">
                   <Image
-                    src={"/twitter.png"}
+                    src={Twitter}
                     alt=""
                     height={20}
                     width={20}
@@ -129,7 +128,7 @@ const hydro = () => {
                 </a>
                 <a href="https://t.me/Hydro_LSDfi">
                   <Image
-                    src={"/telegram.png"}
+                    src={Telegram}
                     alt=""
                     height={30}
                     width={30}
@@ -138,7 +137,7 @@ const hydro = () => {
                 </a>
                 <a href="https://hydro-finance.medium.com/">
                   <Image
-                    src={"/medium.png"}
+                    src={Medium}
                     alt=""
                     height={30}
                     width={30}
@@ -147,7 +146,7 @@ const hydro = () => {
                 </a>
                 <a href="https://docs.hydroprotocol.finance/">
                   <Image
-                    src={"/docs.png"}
+                    src={Docs}
                     alt=""
                     height={25}
                     width={25}
@@ -190,4 +189,4 @@ const hydro = () => {
   );
 };
 
-export default hydro;
+export default Hydro;

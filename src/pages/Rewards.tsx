@@ -8,6 +8,17 @@ import { useAuth } from "@/hooks/useAuth";
 import useStreak from "@/hooks/useStreak";
 import { customFetch } from "@/lib/utils";
 import Countdown from "@/components/Countdown";
+import Emeralds from "../../public/emerald.png";
+import rewards from "../../public/rewards.png";
+import bg from "../../public/bg.png";
+import Lock from "../../public/lock.png";
+import Line from "../../public/line.png";
+import Intelytics_quest_1 from "../../public/Intelytics-quest-1.jpg";
+import Intelytics_quest_2 from "../../public/Intelytics-quest-1.jpg";
+import Intelytics_quest_3 from "../../public/Intelytics-quest-1.jpg";
+import Sets_2 from "../../public/set2.png";
+import Card from "../../public/card.png";
+import { EventEmitterAsyncResource } from "events";
 
 const rewardArr = [
   {
@@ -112,14 +123,14 @@ const Rewards = () => {
               <div className=" flex flex-col">
                 <h1 className=" text-xl pt-4 pl-2">My Emeralds</h1>
                 <div className=" flex items-center justify-center pt-3 pb-2">
-                  <Image src={"/emerald.png"} height={40} width={40} alt="" />
+                  <Image src={Emeralds} height={40} width={40} alt="" />
                   <div className=" text-3xl">{diamonds}</div>
                 </div>
                 <div className="bg-gray-600 p-1 rounded">Redeem Emeralds</div>
               </div>
-              <Image src={"/rewards.png"} height={200} width={150} alt="" />
+              <Image src={rewards} height={200} width={150} alt="" />
             </div>
-            <Image src={"/bg.png"} height={500} width={800} alt="" />
+            <Image src={bg} height={500} width={800} alt="" />
           </div>
           <div className=" flex flex-col w-[85%]">
             <div className=" flex gap-3  pt-10">
@@ -142,18 +153,18 @@ const Rewards = () => {
                 // onClick={CollectionsClicked}
               >
                 Collection Rewards
-                <Image src={"/lock.png"} height={20} width={25} alt="" />
+                <Image src={Lock} height={20} width={25} alt="" />
               </div>
             </div>
             <div className=" flex pt-2 pb-2">
-              <Image src={"/Line.png"} height={100} width={700} alt="" />
-              <Image src={"/Line.png"} height={100} width={400} alt="" />
+              <Image src={Line} height={100} width={700} alt="" />
+              <Image src={Line} height={100} width={400} alt="" />
             </div>
             {dashsel && (
               <>
                 <div className="">
                   <div className=" bg-gray-800 rounded-md mt-3 flex gap-2 w-[12%] p-1 items-center justify-center">
-                    <Image src={"/emerald.png"} height={30} width={30} alt="" />
+                    <Image src={Emeralds} height={30} width={30} alt="" />
                     <div className=" text-sm">Emeralds</div>
                   </div>
                   <div className="pt-5 text-xl">COLLECT YOUR DAILY REWARDS</div>
@@ -167,7 +178,7 @@ const Rewards = () => {
                           <div className="relative bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
                             <div>Day {reward.day}</div>
                             <Image
-                              src={"/emerald.png"}
+                              src={Emeralds}
                               height={50}
                               width={50}
                               alt=""
@@ -205,7 +216,7 @@ const Rewards = () => {
                     <div className="w-1/3">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
-                          src={"/Intelytics-quest-1.jpg"}
+                          src={Intelytics_quest_1}
                           height={400}
                           width={500}
                           alt=""
@@ -214,7 +225,7 @@ const Rewards = () => {
                           <div className=" flex justify-between">
                             <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                               <Image
-                                src={"/emerald.png"}
+                                src={Emeralds}
                                 height={30}
                                 width={30}
                                 alt=""
@@ -223,7 +234,7 @@ const Rewards = () => {
                             </div>
                             <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                               <Image
-                                src={"/set2.png"}
+                                src={Sets_2}
                                 height={20}
                                 width={20}
                                 alt=""
@@ -247,7 +258,7 @@ const Rewards = () => {
                     <div className="w-1/3">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
-                          src={"/Intelytics-quest-2.jpg"}
+                          src={Intelytics_quest_2}
                           height={400}
                           width={500}
                           alt=""
@@ -256,7 +267,7 @@ const Rewards = () => {
                           <div className=" flex justify-between">
                             <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                               <Image
-                                src={"/emerald.png"}
+                                src={Emeralds}
                                 height={30}
                                 width={30}
                                 alt=""
@@ -265,7 +276,7 @@ const Rewards = () => {
                             </div>
                             <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                               <Image
-                                src={"/set2.png"}
+                                src={Sets_2}
                                 height={20}
                                 width={20}
                                 alt=""
@@ -289,7 +300,7 @@ const Rewards = () => {
                     <div className="w-1/3">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
-                          src={"/Intelytics-quest-3.jpg"}
+                          src={Intelytics_quest_3}
                           height={400}
                           width={500}
                           alt=""
@@ -298,7 +309,7 @@ const Rewards = () => {
                           <div className=" flex justify-between">
                             <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                               <Image
-                                src={"/emerald.png"}
+                                src={Emeralds}
                                 height={30}
                                 width={30}
                                 alt=""
@@ -307,7 +318,7 @@ const Rewards = () => {
                             </div>
                             <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                               <Image
-                                src={"/set2.png"}
+                                src={Sets_2}
                                 height={20}
                                 width={20}
                                 alt=""
@@ -344,17 +355,12 @@ const Rewards = () => {
                     <div className=" flex gap-4 pt-5">
                       <div className="w-1/3">
                         <div className="border-2 border-gray-600 rounded-md">
-                          <Image
-                            src={"/card.png"}
-                            height={400}
-                            width={500}
-                            alt=""
-                          />
+                          <Image src={Card} height={400} width={500} alt="" />
                           <div className=" flex flex-col  p-2">
                             <div className=" flex justify-between">
                               <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                                 <Image
-                                  src={"/emerald.png"}
+                                  src={Emeralds}
                                   height={30}
                                   width={30}
                                   alt=""
@@ -363,7 +369,7 @@ const Rewards = () => {
                               </div>
                               <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                                 <Image
-                                  src={"/set2.png"}
+                                  src={Sets_2}
                                   height={20}
                                   width={20}
                                   alt=""
@@ -386,17 +392,12 @@ const Rewards = () => {
                       </div>
                       <div className="w-1/3">
                         <div className="border-2 border-gray-600 rounded-md">
-                          <Image
-                            src={"/card.png"}
-                            height={400}
-                            width={500}
-                            alt=""
-                          />
+                          <Image src={Card} height={400} width={500} alt="" />
                           <div className=" flex flex-col  p-2">
                             <div className=" flex justify-between">
                               <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                                 <Image
-                                  src={"/emerald.png"}
+                                  src={Emeralds}
                                   height={30}
                                   width={30}
                                   alt=""
@@ -405,7 +406,7 @@ const Rewards = () => {
                               </div>
                               <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                                 <Image
-                                  src={"/set2.png"}
+                                  src={Sets_2}
                                   height={20}
                                   width={20}
                                   alt=""
@@ -428,17 +429,12 @@ const Rewards = () => {
                       </div>
                       <div className="w-1/3">
                         <div className="border-2 border-gray-600 rounded-md">
-                          <Image
-                            src={"/card.png"}
-                            height={400}
-                            width={500}
-                            alt=""
-                          />
+                          <Image src={Card} height={400} width={500} alt="" />
                           <div className=" flex flex-col  p-2">
                             <div className=" flex justify-between">
                               <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                                 <Image
-                                  src={"/emerald.png"}
+                                  src={Emeralds}
                                   height={30}
                                   width={30}
                                   alt=""
@@ -447,7 +443,7 @@ const Rewards = () => {
                               </div>
                               <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
                                 <Image
-                                  src={"/set2.png"}
+                                  src={Sets_2}
                                   height={20}
                                   width={20}
                                   alt=""

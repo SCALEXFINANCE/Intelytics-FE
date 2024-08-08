@@ -4,6 +4,11 @@ import axios from "axios";
 import React from "react";
 import Image from "next/image";
 import DojoChart from "@/components/DojoChart";
+import Dojoswap from "../../public/Dojo-Swap.jpg";
+import Twitter from "../../public/twitter.png";
+import Telegram from "../../public/telegram.png";
+import Medium from "../../public/medium.png";
+import Docs from "../../public/docs.png";
 // import DojoSwapChart from "@/components/DojoChart";
 
 export default function DojoSwap() {
@@ -59,7 +64,7 @@ export default function DojoSwap() {
       <div className="lg:flex lg:gap-2   flex items-center  bg-gray-900 rounded-xl p-2">
         <Image
           alt=""
-          src={"/Dojo-Swap.jpg"}
+          src={Dojoswap}
           height={50}
           width={50}
           className=" rounded"
@@ -117,7 +122,7 @@ export default function DojoSwap() {
                 <div className=" flex flex-row gap-5 items-center">
                   <a href="https://twitter.com/dojo_trading">
                     <Image
-                      src={"/twitter.png"}
+                      src={Twitter}
                       alt=""
                       height={20}
                       width={20}
@@ -126,7 +131,7 @@ export default function DojoSwap() {
                   </a>
                   <a href="https://t.me/dojo_swap">
                     <Image
-                      src={"/telegram.png"}
+                      src={Telegram}
                       alt=""
                       height={30}
                       width={30}
@@ -135,7 +140,7 @@ export default function DojoSwap() {
                   </a>
                   <a href="https://medium.com/@dojoswap">
                     <Image
-                      src={"/medium.png"}
+                      src={Medium}
                       alt=""
                       height={30}
                       width={30}
@@ -144,7 +149,7 @@ export default function DojoSwap() {
                   </a>
                   <a href="https://docs.dojo.trading/introduction/about">
                     <Image
-                      src={"/docs.png"}
+                      src={Docs}
                       alt=""
                       height={25}
                       width={25}
