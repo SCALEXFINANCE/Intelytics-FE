@@ -12,7 +12,7 @@ import Emeralds from "../../public/emerald.png";
 import rewards from "../../public/rewards.png";
 import bg from "../../public/bg.png";
 import Lock from "../../public/lock.png";
-import Line from "../../public/line.png";
+import Line from "../../public/Line.png";
 import Intelytics_quest_1 from "../../public/Intelytics-quest-1.jpg";
 import Intelytics_quest_2 from "../../public/Intelytics-quest-1.jpg";
 import Intelytics_quest_3 from "../../public/Intelytics-quest-1.jpg";
