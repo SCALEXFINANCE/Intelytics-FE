@@ -41,7 +41,7 @@ const useStreak = () => {
       try {
         const response = await customFetch("claim/streak", {
           method: "GET",
-          signal: signal,
+          signal,
         });
 
         if (!response.ok) {
