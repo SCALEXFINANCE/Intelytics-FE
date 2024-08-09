@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const BASE_URL = "http://localhost:3001/api/"; // Adjust this to your API base URL
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL; // Adjust this to your API base URL
 const ACCESS_TOKEN_NAME = "ACCESS_TOKEN";
 const REFRESH_TOKEN_NAME = "REFRESH_TOKEN";
 
