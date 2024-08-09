@@ -40,7 +40,7 @@ const Signup = () => {
       }
 
       toast.success("Account created Successfully");
-      // router.push("/Signin");
+      router.push("/Signin");
     } catch (error: any) {
       toast.error(error.message);
       console.error("Signup failed:", error);
