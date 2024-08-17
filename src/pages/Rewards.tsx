@@ -126,33 +126,53 @@ const Rewards = () => {
       <div className=" w-full flex items-center justify-center font-mono">
         <div className="flex flex-col w-[90%] items-center justify-center  ">
           <div className="w-full flex gap-6 pt-12">
-            <div className=" w-[29%] bg-[#000722] p-2 rounded-lg shadow-sky-800 shadow-md flex pt-5 pb-5">
+            <div className="w-full lg:w-[29%] bg-[#000722] p-2 rounded-lg shadow-sky-800 shadow-md flex pt-5 pb-5">
               <div className=" flex flex-col px-4">
-                <h1 className=" text-xl pt-4 pl-2 uppercase">My Emeralds</h1>
+                <h1 className="text-xl pt-4 pl-2 text-nowrap uppercase">
+                  My Emeralds
+                </h1>
                 <div className=" flex items-center pt-3 pb-2">
-                  <Image src={Emeralds} height={40} width={40} alt="" />
-                  <div className=" text-3xl">{emeralds || 0}</div>
+                  <Image
+                    src={Emeralds}
+                    height={40}
+                    width={40}
+                    className="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px]"
+                    alt=""
+                  />
+                  <div className="text-xl lg:text-3xl">{emeralds || 0}</div>
                 </div>
-                <div className="bg-gray-600 p-2 text-sm uppercase rounded-tr-xl rounded-bl-xl">
+                <div className="bg-gray-600 p-2 text-sm text-nowrap uppercase rounded-tr-xl rounded-bl-xl">
                   Redeem Emerald
                 </div>
               </div>
-              <Image src={rewards} height={200} width={150} alt="" />
+              <Image
+                className=""
+                src={rewards}
+                height={200}
+                width={150}
+                alt=""
+              />
             </div>
-            <Image src={bg} height={500} width={800} alt="" />
+            <Image
+              className="hidden lg:flex"
+              src={bg}
+              height={500}
+              width={800}
+              alt=""
+            />
           </div>
           <div className=" flex flex-col w-full">
             <div className=" flex gap-3  pt-10">
-              <div
-                className={`text-xl rounded p-1 pr-3 drop-shadow-[0_0px_12px_#3861FB] uppercase ${
-                  dashsel ? " text-white underline-offset-2 " : " text-gray-500"
+              <p
+                className={`text-base text-nowrap lg:text-xl rounded p-1 pr-3 drop-shadow-[0_0px_12px_#3861FB] uppercase ${
+                  dashsel ? " text-white " : " text-gray-500"
                 }`}
                 onClick={DashboardClicked}
               >
                 My Dashboard
-              </div>
+              </p>
               <div
-                className={`flex gap-1 text-xl uppercase rounded p-1 pl-3 pr-3  ${
+                className={`hidden lg:flex text-base flex gap-1 lg:text-xl uppercase text-nowrap rounded p-1 pl-3 pr-3  ${
                   colsel
                     ? "text-white underline underline-offset-2  "
                     : "text-gray-500"
@@ -165,7 +185,13 @@ const Rewards = () => {
             </div>
             <div className=" flex pt-2 pb-2">
               <Image src={Line} height={100} width={700} alt="" />
-              <Image src={Line} height={100} width={400} alt="" />
+              <Image
+                src={Line}
+                height={100}
+                width={400}
+                alt=""
+                className="hidden lg:flex"
+              />
             </div>
             {dashsel && (
               <>
@@ -174,12 +200,14 @@ const Rewards = () => {
                     <Image src={Emeralds} height={30} width={30} alt="" />
                     <div className="uppercase text-sm">Emeralds</div>
                   </div>
-                  <div className="pt-5 text-xl">COLLECT YOUR DAILY REWARDS</div>
+                  <div className="pt-5 text-lg lg:text-xl">
+                    COLLECT YOUR DAILY REWARDS
+                  </div>
                   <div className=" text-gray-500">
                     Login for 7 days, to get your emeralds grow
                   </div>
-                  <div className="flex flex-col gap-4 items-center justify-center">
-                    <div className=" w-full flex gap-4 pt-5 npb-5">
+                  <div className="flex pt-8 lg:pt-0 flex-col-reverse lg:flex-col lg:gap-4 items-center justify-center">
+                    <div className="w-full flex flex-col lg:flex-row gap-4 pt-5 npb-5">
                       {rewardArr.map((reward, i) => (
                         <div key={i} className="w-[100%]">
                           <div
@@ -238,8 +266,8 @@ const Rewards = () => {
                       Go to Collection
                     </div> */}
                   </div>
-                  <div className=" flex gap-4 pt-5">
-                    <div className="w-1/3">
+                  <div className="w-full flex flex-col lg:flex-row gap-4 pt-5">
+                    <div className="w-full">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
                           src={Intelytics_quest_1}
@@ -281,7 +309,7 @@ const Rewards = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="w-1/3">
+                    <div className="w-full">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
                           src={Intelytics_quest_2}
@@ -323,7 +351,7 @@ const Rewards = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="w-1/3">
+                    <div className="w-full">
                       <div className="border-2 border-gray-600 rounded-md">
                         <Image
                           src={Intelytics_quest_3}
