@@ -81,9 +81,9 @@ const useStreak = () => {
     };
   }, [fetchStreak]);
 
-  const refetchStreak = useCallback(() => {
+  const refetchStreak = useCallback(async () => {
     const abortController = new AbortController();
-    fetchStreak(abortController.signal);
+    await fetchStreak(abortController.signal);
     return () => abortController.abort();
   }, [fetchStreak]);
 

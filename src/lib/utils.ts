@@ -30,6 +30,7 @@ async function customFetch(url: string, options: any = {}) {
 
   // Make the request
   let response = await fetch(BASE_URL + url, { ...options, headers });
+
   // If the response is 401 (Unauthorized), try to refresh the token
   if (response.status === 401 && refreshToken) {
     const newTokens = await refreshAccessToken();

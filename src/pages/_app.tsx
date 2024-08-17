@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Share_Tech_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import ErrorBoundary from "./ErrorBoundary";
+import { UserProvider } from "@/hooks/useUser";
 
 const inter = Share_Tech_Mono({
   subsets: ["latin"],
@@ -16,11 +17,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <main className={inter.className}>
-        <ErrorBoundary>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ErrorBoundary>
+        <UserProvider>
+          <ErrorBoundary>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ErrorBoundary>
+        </UserProvider>
       </main>
       <Analytics />
       <Toaster />

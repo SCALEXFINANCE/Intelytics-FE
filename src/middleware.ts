@@ -17,10 +17,10 @@ export async function middleware(request: NextRequest) {
 
   // Allow access to signin and signup pages without a token
   if (!token) {
-    if (pathname === "/Signin" || pathname === "/Signup") {
+    if (pathname === "/auth/signin" || pathname === "/auth/signup") {
       return NextResponse.next();
     }
-    return NextResponse.redirect(new URL("/Signin", request.url));
+    return NextResponse.redirect(new URL("/auth/signin", request.url));
   }
 
   try {
@@ -29,7 +29,7 @@ export async function middleware(request: NextRequest) {
     };
 
     // If authenticated and trying to access signin/signup, redirect to home page
-    if (pathname === "/Signin" || pathname === "/Signup") {
+    if (pathname === "/auth/signin" || pathname === "/auth/signup") {
       return NextResponse.redirect(new URL("/", request.url));
     }
 
@@ -39,7 +39,9 @@ export async function middleware(request: NextRequest) {
     console.error("JWT verification failed:", err);
 
     // Token is invalid, redirect to signin and clear the token
-    const response = NextResponse.redirect(new URL("/Signin", request.url));
+    const response = NextResponse.redirect(
+      new URL("/auth/signin", request.url)
+    );
     response.cookies.delete(ACCESS_TOKEN_NAME);
     response.cookies.delete("REFRESH_TOKEN");
     response.cookies.delete("refresh_token_id");

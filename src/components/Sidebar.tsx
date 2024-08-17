@@ -7,8 +7,8 @@ import SearchBar from "./Searchbar";
 import { useAuth } from "@/hooks/useAuth";
 import Emeralds from "../../public/emerald.png";
 
-const Sidebar = ({ visible, setVisible }: any) => {
-  const [currPage, setCurrpage] = useState<string>("");
+const Sidebar = () => {
+  // const [currPage, setCurrpage] = useState<string>("");
   const router = useRouter();
   const { isAuthenticated, isLoading } = useAuth();
   // console.log(isAuthenticated, "isAuth");
@@ -40,35 +40,23 @@ const Sidebar = ({ visible, setVisible }: any) => {
         <Image src={"./burger.svg"} alt="" height={20} width={20} />
       </div> */}
       <div
-        className={`h-[10%] lg:px-8 lg:w-full  absolute ${
-          visible ? "w-full z-10 px-10" : "w-0"
-        } pt-8 pb-4  flex gap-4 flex-row bg-[#04041E] `}
+        className={`hidden lg:flex h-[10%] lg:px-8 lg:w-full fixed ${"w-full z-10 px-10"} pt-8 pb-4 gap-4 flex-row bg-[#04041E]`}
       >
         <div className="flex items-center justify-between">
-          <Link
-            onClick={() => {
-              setVisible(false);
-            }}
-            href={"/"}
-          >
+          <Link href={"/"}>
             <Image src={Logo} alt="" height={23} />
           </Link>
-          <button
-            onClick={() => {
-              setVisible(false);
-            }}
-            className=" -translate-y-[10%] text-6xl font-light hover:text-gray-400 select-none rotate-45 block lg:hidden  text-white "
-          >
+          <button className=" transform-translate-y-[10%] text-6xl font-light hover:text-gray-400 select-none rotate-45 block lg:hidden  text-white ">
             +
           </button>
         </div>
 
-        <div className=" flex flex-row text-gray-400 items-center w-full justify-between p-4">
+        <div className=" flex flex-row text-gray-400 items-center w-full font-mono justify-between p-4">
           <div className=" flex  flex-row  gap-4">
             {/* defi dropdown */}
             <div className=" flex flex-col items-center">
               <button
-                className={`px-2 p-2  text-left text-xl font-bold w-full ${
+                className={`px-2 uppercase p-2 text-left text-lg font-bold w-full ${
                   isOpenDefi ? "bg-gray-800 rounded-md text-white  " : ""
                 }`}
                 onClick={toggleDropdownDefi}
@@ -85,11 +73,10 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/"}
-                        className={`p-2  rounded-md   ${
+                        className={`p-2   rounded-md   ${
                           router.pathname === "/" ? "  text-white " : ""
                         }`}
                       >
@@ -99,7 +86,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Chains"}
@@ -115,7 +101,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Tokens"}
@@ -129,7 +114,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Airdrops"}
@@ -143,7 +127,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Topprotocol"}
@@ -165,13 +148,12 @@ const Sidebar = ({ visible, setVisible }: any) => {
             <div className=" flex gap-2 items-center justify-start">
               <Link
                 onClick={() => {
-                  setVisible(false);
                   setIsOpenDefi(false);
                   setIsOpenVolume(false);
                   setIsOpenTradingBot(false);
                 }}
                 href={"/Nft"}
-                className={`p-2 rounded-md text-xl   font-bold ${
+                className={`p-2 rounded-md text-lg uppercase font-bold ${
                   router.pathname === "/Nft"
                     ? "bg-gray-800 w-full text-white  "
                     : ""
@@ -185,13 +167,12 @@ const Sidebar = ({ visible, setVisible }: any) => {
             <div className="flex gap-2 ">
               <Link
                 onClick={() => {
-                  setVisible(false);
                   setIsOpenDefi(false);
                   setIsOpenVolume(false);
                   setIsOpenTradingBot(false);
                 }}
                 href={"/Lending"}
-                className={`p-2 rounded-md text-xl  font-bold ${
+                className={`p-2 rounded-md text-lg uppercase font-bold ${
                   router.pathname === "/Lending"
                     ? "bg-gray-800 w-full text-white  "
                     : ""
@@ -204,7 +185,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
             {/* volume */}
             <div className=" flex flex-col items-center">
               <button
-                className="px-2 p-2 text-left text-xl   font-bold "
+                className="px-2 p-2 text-left text-lg uppercase font-bold "
                 onClick={toggleDropdownVolume}
               >
                 Volume
@@ -216,7 +197,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenVolume(false);
                         }}
                         href={"/Topprotocolvolume"}
@@ -237,7 +217,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
             {/* trading bot */}
             <div className=" flex flex-col gap-2">
               <button
-                className={`px-2 p-2  text-left text-xl font-bold w-full ${
+                className={`px-2 p-2 uppercase text-left text-lg font-bold w-full ${
                   isOpenTradingBot ? "bg-gray-800 rounded-md text-white  " : ""
                 }`}
                 onClick={toggleDropdownTradingBot}
@@ -250,7 +230,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -266,7 +245,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -282,7 +260,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -298,7 +275,6 @@ const Sidebar = ({ visible, setVisible }: any) => {
                     <li>
                       <Link
                         onClick={() => {
-                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -327,19 +303,19 @@ const Sidebar = ({ visible, setVisible }: any) => {
 
             {isLoading ? (
               <Link href="/Signin">
-                <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
+                <div className=" bg-black text-mono p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
                   Get Started
                 </div>
               </Link>
             ) : isAuthenticated === true ? (
               <Link href="/User">
-                <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
+                <div className=" bg-black text-mono p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
                   User
                 </div>
               </Link>
             ) : (
               <Link href="/Signin">
-                <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
+                <div className=" bg-black text-mono p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
                   Get Started
                 </div>
               </Link>

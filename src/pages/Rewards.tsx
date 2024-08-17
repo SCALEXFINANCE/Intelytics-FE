@@ -19,6 +19,7 @@ import Intelytics_quest_3 from "../../public/Intelytics-quest-1.jpg";
 import Sets_2 from "../../public/set2.png";
 import Card from "../../public/card.png";
 import { EventEmitterAsyncResource } from "events";
+import { useUserContext } from "@/hooks/useUser";
 
 const rewardArr = [
   {
@@ -51,6 +52,14 @@ const rewardArr = [
   },
 ];
 
+interface User {
+  id: string;
+  email: string;
+  emeralds: string;
+  currentStreak: string;
+  lastClaimedAt: string;
+}
+
 const Rewards = () => {
   const [dashsel, setDashSelected] = useState<Boolean>(true);
   const [colsel, setColSelected] = useState<Boolean>(false);
@@ -64,8 +73,7 @@ const Rewards = () => {
     refetchStreak,
     streak,
   } = useStreak();
-
-  const [diamonds, setDiamonds] = useState<any>("");
+  const { emeralds, refetchUser } = useUserContext();
 
   const handleClaim = useCallback(async () => {
     if (!isAuthenticated) {
@@ -89,7 +97,8 @@ const Rewards = () => {
 
       if (response.ok) {
         const data = await response.json();
-        refetchStreak();
+        await refetchStreak();
+        await refetchUser();
         toast.success(`Claimed reward for day ${dayToClaim}!`);
       } else {
         const errorData = await response.json();
@@ -101,9 +110,7 @@ const Rewards = () => {
     } finally {
       setIsClaiming(false);
     }
-  }, [isAuthenticated, streak, refetchStreak]);
-
-  console.log(lastClaimed, "last claimed");
+  }, [isAuthenticated, streak, refetchStreak, refetchUser]);
 
   const DashboardClicked = () => {
     setDashSelected(true);
@@ -116,36 +123,36 @@ const Rewards = () => {
 
   return (
     <>
-      <div className=" w-full flex items-center justify-center">
+      <div className=" w-full flex items-center justify-center font-mono">
         <div className="flex flex-col w-[90%] items-center justify-center  ">
-          <div className=" flex items-center justify-center gap-10">
+          <div className="w-full flex gap-6 pt-12">
             <div className=" w-[29%] bg-[#000722] p-2 rounded-lg shadow-sky-800 shadow-md flex pt-5 pb-5">
-              <div className=" flex flex-col">
-                <h1 className=" text-xl pt-4 pl-2">My Emeralds</h1>
-                <div className=" flex items-center justify-center pt-3 pb-2">
+              <div className=" flex flex-col px-4">
+                <h1 className=" text-xl pt-4 pl-2 uppercase">My Emeralds</h1>
+                <div className=" flex items-center pt-3 pb-2">
                   <Image src={Emeralds} height={40} width={40} alt="" />
-                  <div className=" text-3xl">{diamonds}</div>
+                  <div className=" text-3xl">{emeralds || 0}</div>
                 </div>
-                <div className="bg-gray-600 p-1 rounded">Redeem Emeralds</div>
+                <div className="bg-gray-600 p-2 text-sm uppercase rounded-tr-xl rounded-bl-xl">
+                  Redeem Emerald
+                </div>
               </div>
               <Image src={rewards} height={200} width={150} alt="" />
             </div>
             <Image src={bg} height={500} width={800} alt="" />
           </div>
-          <div className=" flex flex-col w-[85%]">
+          <div className=" flex flex-col w-full">
             <div className=" flex gap-3  pt-10">
               <div
-                className={`text-xl rounded p-1 pr-3 ${
-                  dashsel
-                    ? " text-white underline underline-offset-2 "
-                    : " text-gray-500"
+                className={`text-xl rounded p-1 pr-3 drop-shadow-[0_0px_12px_#3861FB] uppercase ${
+                  dashsel ? " text-white underline-offset-2 " : " text-gray-500"
                 }`}
                 onClick={DashboardClicked}
               >
                 My Dashboard
               </div>
               <div
-                className={`flex gap-1 text-xl  rounded p-1 pl-3 pr-3  ${
+                className={`flex gap-1 text-xl uppercase rounded p-1 pl-3 pr-3  ${
                   colsel
                     ? "text-white underline underline-offset-2  "
                     : "text-gray-500"
@@ -165,7 +172,7 @@ const Rewards = () => {
                 <div className="">
                   <div className=" bg-gray-800 rounded-md mt-3 flex gap-2 w-[12%] p-1 items-center justify-center">
                     <Image src={Emeralds} height={30} width={30} alt="" />
-                    <div className=" text-sm">Emeralds</div>
+                    <div className="uppercase text-sm">Emeralds</div>
                   </div>
                   <div className="pt-5 text-xl">COLLECT YOUR DAILY REWARDS</div>
                   <div className=" text-gray-500">
@@ -175,7 +182,16 @@ const Rewards = () => {
                     <div className=" w-full flex gap-4 pt-5 npb-5">
                       {rewardArr.map((reward, i) => (
                         <div key={i} className="w-[100%]">
-                          <div className="relative bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
+                          <div
+                            className={`relative p-2 rounded-lg flex flex-col items-center justify-center  bg-[#000722]
+                            ${
+                              streak + 1 === reward.day && isClaimable
+                                ? "drop-shadow-[0_0px_12px_#3861FB]"
+                                : ""
+                            }
+                            ${streak >= reward.day ? "bg-gray-800" : ""}
+                            `}
+                          >
                             <div>Day {reward.day}</div>
                             <Image
                               src={Emeralds}
@@ -208,9 +224,19 @@ const Rewards = () => {
                   </div>
                 </div>
                 <div className=" pt-8">
-                  <div className=" text-2xl">Want more Emeralds</div>
-                  <div className=" text-gray-500">
-                    To collect more emeralds, we need to do the collections taks{" "}
+                  <div className="flex flex-wrap justify-between gap-4">
+                    <div className="flex flex-col">
+                      <div className=" text-2xl uppercase">
+                        Want more Emeralds
+                      </div>
+                      <div className=" text-gray-500">
+                        To collect more emeralds, we need to do the collections
+                        taks{" "}
+                      </div>
+                    </div>
+                    {/* <div className="uppercase border drop-shadow-[0_0px_12px_#3861FB]">
+                      Go to Collection
+                    </div> */}
                   </div>
                   <div className=" flex gap-4 pt-5">
                     <div className="w-1/3">
@@ -223,7 +249,7 @@ const Rewards = () => {
                         />
                         <div className=" flex flex-col  p-2">
                           <div className=" flex justify-between">
-                            <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
+                            <div className=" bg-gray-800 rounded-md mt-3 flex gap-2 pl-2 pr-2 items-center justify-center">
                               <Image
                                 src={Emeralds}
                                 height={30}

@@ -1,10 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import CustomDatafeed from "@/lib/customDataField";
-
-interface TradingViewWidgetProps {
-  symbol: string;
-  apiBaseUrl: string;
-}
+import React, { useEffect, useRef } from "react";
+import { CustomDatafeed } from "@/lib/trading-view/datafeed";
 
 declare global {
   interface Window {
@@ -12,76 +7,135 @@ declare global {
   }
 }
 
-const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({
-  symbol,
-  apiBaseUrl,
+interface TradingViewChartProps {
+  pairAddress: string;
+  chain: string;
+}
+
+// Function to generate static test data
+async function getStaticTestData(
+  symbolInfo: any,
+  resolution: string,
+  from: number,
+  to: number,
+  first: boolean
+) {
+  const bars = [];
+  let time = from;
+  while (time <= to) {
+    bars.push({
+      time: time * 1000, // Convert to milliseconds
+      open: Math.random() * 100 + 100,
+      high: Math.random() * 100 + 150,
+      low: Math.random() * 100 + 50,
+      close: Math.random() * 100 + 100,
+    });
+
+    // Increment time based on resolution
+    switch (resolution) {
+      case "1":
+        time += 60; // 1 minute
+        break;
+      case "5":
+        time += 300; // 5 minutes
+        break;
+      case "15":
+        time += 900; // 15 minutes
+        break;
+      case "30":
+        time += 1800; // 30 minutes
+        break;
+      case "60":
+        time += 3600; // 1 hour
+        break;
+      case "240":
+        time += 14400; // 4 hours
+        break;
+      case "D":
+        time += 86400; // 1 day
+        break;
+      default:
+        time += 3600; // Default to 1 hour
+    }
+  }
+  return bars;
+}
+
+const TradingViewChart: React.FC<TradingViewChartProps> = ({
+  pairAddress,
+  chain,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [widget, setWidget] = useState<any>(null);
 
   useEffect(() => {
+    const symbol = `${chain}:XION/SCLX`;
+
+    const customDatafeed = new CustomDatafeed(
+      "ethereum",
+      "0x1234567890123456789012345678901234567890",
+      "ETH/USDT"
+    );
+
     const script = document.createElement("script");
-    script.src = "https://s3.tradingview.com/tv.js";
-    script.async = true;
+    script.type = "text/jsx";
+    script.src =
+      "https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js";
+    // script.async = true;
+    // script.onload = initChart;
+    // document.head.appendChild(script);
+    document.head.appendChild(script);
 
-    const initializeWidget = () => {
-      if (typeof window.TradingView === "undefined") return;
-
-      const widgetOptions = {
+    function initChart() {
+      const widget = (window as any).TradingView.widget({
         symbol: symbol,
-        interval: "1" as const,
+        interval: "60",
         container_id: containerRef.current?.id,
-        datafeed: new CustomDatafeed(apiBaseUrl),
         library_path: "/charting_library/",
         locale: "en",
-        enabled_features: [
-          "move_logo_to_main_pane",
-          "use_localstorage_for_settings",
-          "study_templates",
-          "keep_left_toolbar_visible_on_small_screens",
-        ],
-        disabled_features: [
-          "header_symbol_search",
-          "header_compare",
-          "header_undo_redo",
-        ],
-        charts_storage_url: "https://saveload.tradingview.com",
-        charts_storage_api_version: "1.1",
-        client_id: "tradingview.com",
-        user_id: "public_user_id",
-        fullscreen: false,
-        autosize: true,
-        studies_overrides: {},
-        drawings_access: {
-          type: "black" as const,
-          tools: [{ name: "Trend Line" }, { name: "Fibonacci Retracement" }],
+        datafeed: {
+          ...customDatafeed,
+          getBars: (
+            symbolInfo: any,
+            resolution: string,
+            periodParams: {
+              from: number;
+              to: number;
+              firstDataRequest: boolean;
+            },
+            onHistoryCallback: (bars: any[], option: any) => void,
+            onErrorCallback: (error: any) => void
+          ) => {
+            customDatafeed.getBars(
+              symbolInfo,
+              resolution,
+              periodParams,
+              onHistoryCallback,
+              onErrorCallback,
+              getStaticTestData
+            );
+          },
+          fullscreen: false,
+          autosize: true,
+          theme: "Dark",
         },
+      });
+
+      return () => {
+        if (widget && widget.remove) {
+          widget.remove();
+        }
+        document.head.removeChild(script);
       };
-
-      const tvWidget = new window.TradingView.widget(widgetOptions);
-      setWidget(tvWidget);
-    };
-
-    script.onload = initializeWidget;
-    script.onerror = () => console.error("Failed to load TradingView script");
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-      if (widget) {
-        widget.remove();
-      }
-    };
-  }, [symbol, apiBaseUrl]);
+    }
+  }, [pairAddress, chain]);
 
   return (
     <div
-      id="tradingview-chart"
+      id="tradingview_chart"
       ref={containerRef}
-      style={{ height: "600px" }}
+      style={{ height: "600px", width: "100%" }}
     />
   );
 };
 
-export default TradingViewWidget;
+export default TradingViewChart;

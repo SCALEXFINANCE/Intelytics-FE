@@ -46,14 +46,15 @@ import {
 
 export type Token = {
   name: string;
-  category: string;
+  chain: string;
   Price: number;
-  Liquidity: number | string;
   "Market Cap": number | string;
-  "Circulating Supply": number | string;
-  "Total Supply": number | string;
   FDV: number | string;
 };
+
+// interface IProp {
+//   data: Token[]
+// }
 
 export function TokensTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -85,14 +86,23 @@ export function TokensTable() {
       ),
     },
     {
-      accessorKey: "category",
-      header: "Category",
+      accessorKey: "chain",
+      header: "Chain",
       cell: ({ row }) => (
         <div className="capitalize text-teal-300 text-right lg:text-justify">
-          {row.getValue("category")}
+          {row.getValue("chain")}
         </div>
       ),
     },
+    // {
+    //   accessorKey: "category",
+    //   header: "Category",
+    //   cell: ({ row }) => (
+    //     <div className="capitalize text-teal-300 text-right lg:text-justify">
+    //       {row.getValue("category")}
+    //     </div>
+    //   ),
+    // },
     {
       accessorKey: "Price",
       header: ({ column }) => {
@@ -121,34 +131,34 @@ export function TokensTable() {
         return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
-    {
-      accessorKey: "Liquidity",
-      header: ({ column }) => {
-        return (
-          <Button
-            className="bg-transparent"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Liquidity
-            <CaretSortIcon className="ml-2 h-4 w-4" />
-          </Button>
-        );
-      },
+    // {
+    //   accessorKey: "Liquidity",
+    //   header: ({ column }) => {
+    //     return (
+    //       <Button
+    //         className="bg-transparent"
+    //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+    //       >
+    //         Liquidity
+    //         <CaretSortIcon className="ml-2 h-4 w-4" />
+    //       </Button>
+    //     );
+    //   },
 
-      cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("Liquidity"));
+    //   cell: ({ row }) => {
+    //     const amount = parseFloat(row.getValue("Liquidity"));
 
-        // Format the amount as a dollar amount
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }).format(amount);
+    //     // Format the amount as a dollar amount
+    //     const formatted = new Intl.NumberFormat("en-US", {
+    //       style: "currency",
+    //       currency: "USD",
+    //       minimumFractionDigits: 2,
+    //       maximumFractionDigits: 2,
+    //     }).format(amount);
 
-        return <div className=" text-center font-medium">{formatted}</div>;
-      },
-    },
+    //     return <div className=" text-center font-medium">{formatted}</div>;
+    //   },
+    // },
     {
       accessorKey: "Market Cap",
       header: ({ column }) => {
@@ -180,61 +190,61 @@ export function TokensTable() {
         return <div className=" text-center font-medium">{formatted}</div>;
       },
     },
-    {
-      accessorKey: "Circulating Supply",
-      header: ({ column }) => {
-        return (
-          <Button
-            className="bg-transparent"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Circulating Supply
-            <CaretSortIcon className="ml-2 h-4 w-4" />
-          </Button>
-        );
-      },
+    // {
+    //   accessorKey: "Circulating Supply",
+    //   header: ({ column }) => {
+    //     return (
+    //       <Button
+    //         className="bg-transparent"
+    //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+    //       >
+    //         Circulating Supply
+    //         <CaretSortIcon className="ml-2 h-4 w-4" />
+    //       </Button>
+    //     );
+    //   },
 
-      cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("Circulating Supply"));
+    //   cell: ({ row }) => {
+    //     const amount = parseFloat(row.getValue("Circulating Supply"));
 
-        // Format the amount as a dollar amount
-        const formatted = new Intl.NumberFormat("en-US", {
-          currency: "USD",
-        }).format(amount);
+    //     // Format the amount as a dollar amount
+    //     const formatted = new Intl.NumberFormat("en-US", {
+    //       currency: "USD",
+    //     }).format(amount);
 
-        if (row.getValue("Circulating Supply") == "-")
-          return <div className=" text-center font-medium">-</div>;
+    //     if (row.getValue("Circulating Supply") == "-")
+    //       return <div className=" text-center font-medium">-</div>;
 
-        return <div className=" text-center font-medium">{formatted}</div>;
-      },
-    },
-    {
-      accessorKey: "Total Supply",
-      header: ({ column }) => {
-        return (
-          <Button
-            className="bg-transparent"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Total Supply
-            <CaretSortIcon className="ml-2 h-4 w-4" />
-          </Button>
-        );
-      },
-      cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("Total Supply"));
+    //     return <div className=" text-center font-medium">{formatted}</div>;
+    //   },
+    // },
+    // {
+    //   accessorKey: "Total Supply",
+    //   header: ({ column }) => {
+    //     return (
+    //       <Button
+    //         className="bg-transparent"
+    //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+    //       >
+    //         Total Supply
+    //         <CaretSortIcon className="ml-2 h-4 w-4" />
+    //       </Button>
+    //     );
+    //   },
+    //   cell: ({ row }) => {
+    //     const amount = parseFloat(row.getValue("Total Supply"));
 
-        // Format the amount as a dollar amount
-        const formatted = new Intl.NumberFormat("en-US", {
-          currency: "USD",
-        }).format(amount);
+    //     // Format the amount as a dollar amount
+    //     const formatted = new Intl.NumberFormat("en-US", {
+    //       currency: "USD",
+    //     }).format(amount);
 
-        if (row.getValue("Total Supply") == "-")
-          return <div className=" text-center font-medium">-</div>;
+    //     if (row.getValue("Total Supply") == "-")
+    //       return <div className=" text-center font-medium">-</div>;
 
-        return <div className=" text-center font-medium">{formatted}</div>;
-      },
-    },
+    //     return <div className=" text-center font-medium">{formatted}</div>;
+    //   },
+    // },
     {
       accessorKey: "FDV",
       header: ({ column }) => {
@@ -269,327 +279,379 @@ export function TokensTable() {
 
   // const [refetch, setRefetch] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // ninja
-        const response1 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=NINJA"
-        );
-        const apiUrl2 = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/factory-inj1xtel2knkt8hmc9dnzpjz6kdmacgcfmlv5f308w-ninja"
-        );
-        const ninjaLiq = response1.data.liquidity[response1.data.liquidity.length-1]; 
-        const ninjaPrice = response1.data.price[response1.data.price.length-1];
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       // ninja
+  //       const response1 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=NINJA"
+  //       );
+  //       const apiUrl2 = await axios.get(
+  //         "https://api.dexscreener.com/latest/dex/tokens/factory-inj1xtel2knkt8hmc9dnzpjz6kdmacgcfmlv5f308w-ninja"
+  //       );
+  //       const ninjaLiq =
+  //         response1.data.liquidity[response1.data.liquidity.length - 1];
+  //       const ninjaPrice =
+  //         response1.data.price[response1.data.price.length - 1];
 
-        // alien
-        const response2 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=$ALIEN"
-        );
-        const apiUrl3 = await axios.get(
-          "https://api.dexscreener.com/latest/dex/tokens/factory-inj1mly2ykhf6f9tdj58pvndjf4q8dzdl4myjqm9t6-ALIEN"
-        );
-        const liquidityData3 = apiUrl3.data;
-        const alienLiq = response2.data.liquidity[response2.data.liquidity.length-1]; 
-        const alienPrice = response2.data.price[response2.data.price.length-1];
+  //       // alien
+  //       const response2 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=$ALIEN"
+  //       );
+  //       const apiUrl3 = await axios.get(
+  //         "https://api.dexscreener.com/latest/dex/tokens/factory-inj1mly2ykhf6f9tdj58pvndjf4q8dzdl4myjqm9t6-ALIEN"
+  //       );
+  //       const liquidityData3 = apiUrl3.data;
+  //       const alienLiq =
+  //         response2.data.liquidity[response2.data.liquidity.length - 1];
+  //       const alienPrice =
+  //         response2.data.price[response2.data.price.length - 1];
 
-        // kira
-        const response3 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=KIRA"
-        );
-       
-        const kiraLiq = response3.data.liquidity[response3.data.liquidity.length-1]; 
-        const kiraPrice = response3.data.price[response3.data.price.length-1];
+  //       // kira
+  //       const response3 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=KIRA"
+  //       );
 
-        // dojo
-        const response4 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=DOJO"
-        );
-         
-        const dojoLiq = response4.data.liquidity[response4.data.liquidity.length-1]; 
-        const dojoPrice = response4.data.price[response4.data.price.length-1];4
-        
-        // roll
-        const response5 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=ROLL"
-        );
-         
-        const rollLiq = response5.data.liquidity[response5.data.liquidity.length-1]; 
-        const rollPrice = response5.data.price[response5.data.price.length-1];
+  //       const kiraLiq =
+  //         response3.data.liquidity[response3.data.liquidity.length - 1];
+  //       const kiraPrice = response3.data.price[response3.data.price.length - 1];
 
-        // stinj
-        const response6 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=stINJ"
-        ); 
-        const sushiLiq = response6.data.liquidity[response6.data.liquidity.length-1]; 
-        const sushiPrice = response6.data.price[response6.data.price.length-1];
+  //       // dojo
+  //       const response4 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=DOJO"
+  //       );
 
-        // zignaly
-        const response7 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=ZIG"
-        ); 
-        const kageLiq = response7.data.liquidity[response7.data.liquidity.length-1]; 
-        const kagePrice = response7.data.price[response7.data.price.length-1];
+  //       const dojoLiq =
+  //         response4.data.liquidity[response4.data.liquidity.length - 1];
+  //       const dojoPrice = response4.data.price[response4.data.price.length - 1];
+  //       4;
 
-        // babyDojo
+  //       // roll
+  //       const response5 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=ROLL"
+  //       );
 
-        const apiUrl9 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=babyDOJO"
-        );
-        const liquidityData9 = apiUrl9.data;
-        const babyLiq = liquidityData9.liquidity[apiUrl9.data.liquidity.length-1];
-        const babyPrice = liquidityData9.price[apiUrl9.data.price.length-1];
+  //       const rollLiq =
+  //         response5.data.liquidity[response5.data.liquidity.length - 1];
+  //       const rollPrice = response5.data.price[response5.data.price.length - 1];
 
-        // white-whale dinj mib
-        const response8 = await axios.get(
-          "http://50.117.104.207:3000/api/getTokenData?tokenName=dINJ"
-        );
-        const mibLiq = response8.data.liquidity[response8.data.liquidity.length-1]; 
-        const mibPrice = response8.data.price[response8.data.price.length-1];
+  //       // stinj
+  //       const response6 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=stINJ"
+  //       );
+  //       const sushiLiq =
+  //         response6.data.liquidity[response6.data.liquidity.length - 1];
+  //       const sushiPrice =
+  //         response6.data.price[response6.data.price.length - 1];
 
+  //       // zignaly
+  //       const response7 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=ZIG"
+  //       );
+  //       const kageLiq =
+  //         response7.data.liquidity[response7.data.liquidity.length - 1];
+  //       const kagePrice = response7.data.price[response7.data.price.length - 1];
 
-        const response10 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=XNJ")
-        const response11 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=XNJ")
-        const response20 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=NONJA")
-        const response201 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=NONJA")
-        const response21 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=PING")
-        const response211 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=PING")
-        const response22 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=YKZ")
-        const response221 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=YKZ")
-        const response23 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=hINJ")
-        const response231 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=hINJ")
-        const response24 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=DIB")
-        const response241 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=DIB")
-        const response25 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=DUEL")
-        const response251 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=DUEL")
-        const response26 = await axios.get("http://50.117.104.207:3000/api/getCurrentPrice?tokenName=MONKS")
-        const response261 = await axios.get("http://50.117.104.207:3000/api/getTokenData?tokenName=MONKS")
+  //       // babyDojo
 
-        const nonjaPrice = response20.data.price;
-        const nonjaLiq = response201.data.liquidity[response211.data.liquidity.length-1]
-        const pingPrice = response21.data.price;
-        const pingLiq = response211.data.liquidity[response211.data.liquidity.length-1];
-        const ykzPrice = response22.data.price;
-        const ykzLiq = response221.data.liquidity[response211.data.liquidity.length-1];
-        const hingPrice = response23.data.price;
-        const hingLiq = response231.data.liquidity[response211.data.liquidity.length-1];
-        const dibPrice = response24.data.price;
-        const dibLiq = response241.data.liquidity[response211.data.liquidity.length-1];
-        const duelPrice = response25.data.price;
-        const duelLiq = response251.data.liquidity[response211.data.liquidity.length-1];
-        const monksPrice = response26.data.price;
-        const monksLiq = response261.data.liquidity[response211.data.liquidity.length-1];
-        const xnjPrice = response10.data.price
-        const xnjLiq = response11.data.liquidity[response211.data.liquidity.length-1];
+  //       const apiUrl9 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=babyDOJO"
+  //       );
+  //       const liquidityData9 = apiUrl9.data;
+  //       const babyLiq =
+  //         liquidityData9.liquidity[apiUrl9.data.liquidity.length - 1];
+  //       const babyPrice = liquidityData9.price[apiUrl9.data.price.length - 1];
 
-        const data: Token[] = [
-          {
-            name: "Ninja",
-            category: "Meme",
-            Price: ninjaPrice,
-            Liquidity: ninjaLiq,
-            "Market Cap": 1000000000 * ninjaPrice,
-            "Circulating Supply": 1000000000,
-            "Total Supply": 1000000000,
-            FDV: 1000000000 * ninjaPrice,
-          },
-          {
-            name: "Kira",
-            category: "Meme",
-            Price: kiraPrice,
-            Liquidity: kiraLiq,
-            "Market Cap": 69000000000 * kiraPrice,
-            "Circulating Supply": 69000000000,
-            "Total Supply": 69000000000,
-            FDV: 69000000000 * kiraPrice,
-          },
-          {
-            name: "Alien",
-            category: "Utility",
-            Price: alienPrice,
-            Liquidity: alienLiq,
-            "Market Cap": 22000000 * alienPrice,
-            "Circulating Supply": 22000000,
-            "Total Supply": 30000000,
-            FDV: 30000000 * alienPrice,
-          },
-          {
-            name: "Stinj",
-            category: "Utility",
-            Price: sushiPrice,
-            Liquidity: sushiLiq,
-            "Market Cap": 24552.75 * sushiPrice,
-            "Circulating Supply": 24552.75,
-            "Total Supply": "-",
-            FDV: "-",
-          },
-          {
-            name: "Dojo",
-            category: "Utility ",
-            Price: dojoPrice,
-            Liquidity: dojoLiq,
-            "Market Cap": 200000000 * dojoPrice,
-            "Circulating Supply": 200000000,
-            "Total Supply": 80000000,
-            FDV: 80000000 * dojoPrice,
-          },
-          {
-            name: "Dinj",
-            category: "Utility ",
-            Price: mibPrice,
-            Liquidity: mibLiq,
-            "Market Cap": 51600000 * mibPrice,
-            "Circulating Supply": 51600000,
-            "Total Supply": 100000000,
-            FDV: 100000000 * mibPrice,
-          },
-          {
-            name: "Zignaly",
-            category: "Utility",
-            Price: kagePrice,
-            Liquidity: kageLiq,
-            "Market Cap": 51600000 * kagePrice,
-            "Circulating Supply": 51600000,
-            "Total Supply": 100000000,
-            FDV: 100000000 * kagePrice,
-          },
-          {
-            name: "Roll",
-            category: "Gaming ",
-            Price: rollPrice,
-            Liquidity: rollLiq,
-            "Market Cap": 51600000 * rollPrice,
-            "Circulating Supply": 51600000,
-            "Total Supply": 100000000,
-            FDV: 100000000 * rollPrice,
-          },
-          {
-            name: "BabyDOJO",
-            category: "CW-20 ",
-            Price: babyPrice,
-            Liquidity: babyLiq,
-            "Market Cap": 4198646072.1 * babyPrice,
-            "Circulating Supply": 4198646072.1,
-            "Total Supply": 4198646072.1,
-            FDV: 4198646072.1 * babyPrice,
-          },
-          {
-            name: "XNJ",
-            category: "Gaming",
-            "Total Supply": "-",
-            "Circulating Supply": "-",
-            Price: xnjPrice,
-            "Market Cap": "-",
-            Liquidity: xnjLiq,
-            FDV: "-",
-          },
-          {
-            name: "Sushi",
-            category: "CW404",
-            "Total Supply": 15000,
-            "Circulating Supply": 15000,
-            Price: sushiPrice,
-            "Market Cap": 15000 * sushiPrice,
-            Liquidity: sushiLiq,
-            FDV: 15000 * sushiPrice,
-          },
-          {
-            name: "Nonja",
-            category: "Meme",
-            "Total Supply": 1000000000,
-            "Circulating Supply": 1000000000,
-            Price: nonjaPrice,
-            "Market Cap": 1000000000 * nonjaPrice,
-            Liquidity: nonjaLiq,
-            FDV: 1000000000 * nonjaPrice,
-          },
-          {
-            name: "Kage",
-            category: "Utility",
-            "Total Supply": 100000000,
-            "Circulating Supply": 26875564,
-            Price: kagePrice,
-            "Market Cap": 26875564 * kagePrice,
-            Liquidity: kageLiq,
-            FDV: 100000000 * kagePrice,
-          },
-          {
-            name: "Ping",
-            category: "Meme",
-            "Total Supply": 1000000000,
-            "Circulating Supply": 800000000,
-            Price: pingPrice,
-            "Market Cap": pingPrice,
-            Liquidity: pingLiq * 800000000,
-            FDV: pingPrice * 1000000000,
-          },
-          {
-            name: "Ykz",
-            category: "CW404",
-            "Total Supply": 10000,
-            "Circulating Supply": 9000,
-            Price: ykzPrice,
-            "Market Cap": ykzPrice * 9000,
-            Liquidity: ykzLiq,
-            FDV: ykzPrice * 10000,
-          },
-          {
-            name: "hINJ",
-            category: "CW20",
-            "Total Supply": 1820230.18,
-            "Circulating Supply": "-",
-            Price: hingPrice,
-            "Market Cap": "-",
-            Liquidity: hingLiq,
-            FDV: hingPrice * 1820230.18,
-          },
-          {
-            name: "Dib",
-            category: "Meme",
-            "Total Supply": 69000000000,
-            "Circulating Supply": 69000000000,
-            Price: dibPrice,
-            "Market Cap": dibPrice * 69000000000,
-            Liquidity: dibLiq,
-            FDV: dibPrice * 69000000000,
-          },
-          {
-            name: "Duel",
-            category: "Utility",
-            "Total Supply": 10000000000,
-            "Circulating Supply": 1454408582,
-            Price: duelPrice,
-            "Market Cap": duelPrice * 1454408582,
-            Liquidity: duelLiq,
-            FDV: duelPrice * 10000000000,
-          },
-          {
-            name: "Monks",
-            category: "Meme",
-            "Total Supply": 1000000000,
-            "Circulating Supply": "-",
-            Price: monksPrice,
-            "Market Cap": "-",
-            Liquidity: monksLiq,
-            FDV: monksPrice * 1000000000,
-          },
-        ];
-        setdata(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
+  //       // white-whale dinj mib
+  //       const response8 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=dINJ"
+  //       );
+  //       const mibLiq =
+  //         response8.data.liquidity[response8.data.liquidity.length - 1];
+  //       const mibPrice = response8.data.price[response8.data.price.length - 1];
 
-    const interval = setInterval(() => {
-      fetchData();
-      // setRefetch(!refetch);
-    }, 30000);
+  //       const response10 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getCurrentPrice?tokenName=XNJ"
+  //       );
+  //       const response11 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=XNJ"
+  //       );
+  //       const response20 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getCurrentPrice?tokenName=NONJA"
+  //       );
+  //       const response201 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=NONJA"
+  //       );
+  //       const response21 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getCurrentPrice?tokenName=PING"
+  //       );
+  //       const response211 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=PING"
+  //       );
+  //       const response22 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getCurrentPrice?tokenName=YKZ"
+  //       );
+  //       const response221 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=YKZ"
+  //       );
+  //       const response23 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getCurrentPrice?tokenName=hINJ"
+  //       );
+  //       const response231 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=hINJ"
+  //       );
+  //       const response24 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getCurrentPrice?tokenName=DIB"
+  //       );
+  //       const response241 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=DIB"
+  //       );
+  //       const response25 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getCurrentPrice?tokenName=DUEL"
+  //       );
+  //       const response251 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=DUEL"
+  //       );
+  //       const response26 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getCurrentPrice?tokenName=MONKS"
+  //       );
+  //       const response261 = await axios.get(
+  //         "http://50.117.104.207:3000/api/getTokenData?tokenName=MONKS"
+  //       );
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  //       const nonjaPrice = response20.data.price;
+  //       const nonjaLiq =
+  //         response201.data.liquidity[response211.data.liquidity.length - 1];
+  //       const pingPrice = response21.data.price;
+  //       const pingLiq =
+  //         response211.data.liquidity[response211.data.liquidity.length - 1];
+  //       const ykzPrice = response22.data.price;
+  //       const ykzLiq =
+  //         response221.data.liquidity[response211.data.liquidity.length - 1];
+  //       const hingPrice = response23.data.price;
+  //       const hingLiq =
+  //         response231.data.liquidity[response211.data.liquidity.length - 1];
+  //       const dibPrice = response24.data.price;
+  //       const dibLiq =
+  //         response241.data.liquidity[response211.data.liquidity.length - 1];
+  //       const duelPrice = response25.data.price;
+  //       const duelLiq =
+  //         response251.data.liquidity[response211.data.liquidity.length - 1];
+  //       const monksPrice = response26.data.price;
+  //       const monksLiq =
+  //         response261.data.liquidity[response211.data.liquidity.length - 1];
+  //       const xnjPrice = response10.data.price;
+  //       const xnjLiq =
+  //         response11.data.liquidity[response211.data.liquidity.length - 1];
+
+  //       const data: Token[] = [
+  //         {
+  //           name: "Ninja",
+  //           category: "Meme",
+  //           Price: ninjaPrice,
+  //           Liquidity: ninjaLiq,
+  //           "Market Cap": 1000000000 * ninjaPrice,
+  //           "Circulating Supply": 1000000000,
+  //           "Total Supply": 1000000000,
+  //           FDV: 1000000000 * ninjaPrice,
+  //         },
+  //         {
+  //           name: "Kira",
+  //           category: "Meme",
+  //           Price: kiraPrice,
+  //           Liquidity: kiraLiq,
+  //           "Market Cap": 69000000000 * kiraPrice,
+  //           "Circulating Supply": 69000000000,
+  //           "Total Supply": 69000000000,
+  //           FDV: 69000000000 * kiraPrice,
+  //         },
+  //         {
+  //           name: "Alien",
+  //           category: "Utility",
+  //           Price: alienPrice,
+  //           Liquidity: alienLiq,
+  //           "Market Cap": 22000000 * alienPrice,
+  //           "Circulating Supply": 22000000,
+  //           "Total Supply": 30000000,
+  //           FDV: 30000000 * alienPrice,
+  //         },
+  //         {
+  //           name: "Stinj",
+  //           category: "Utility",
+  //           Price: sushiPrice,
+  //           Liquidity: sushiLiq,
+  //           "Market Cap": 24552.75 * sushiPrice,
+  //           "Circulating Supply": 24552.75,
+  //           "Total Supply": "-",
+  //           FDV: "-",
+  //         },
+  //         {
+  //           name: "Dojo",
+  //           category: "Utility ",
+  //           Price: dojoPrice,
+  //           Liquidity: dojoLiq,
+  //           "Market Cap": 200000000 * dojoPrice,
+  //           "Circulating Supply": 200000000,
+  //           "Total Supply": 80000000,
+  //           FDV: 80000000 * dojoPrice,
+  //         },
+  //         {
+  //           name: "Dinj",
+  //           category: "Utility ",
+  //           Price: mibPrice,
+  //           Liquidity: mibLiq,
+  //           "Market Cap": 51600000 * mibPrice,
+  //           "Circulating Supply": 51600000,
+  //           "Total Supply": 100000000,
+  //           FDV: 100000000 * mibPrice,
+  //         },
+  //         {
+  //           name: "Zignaly",
+  //           category: "Utility",
+  //           Price: kagePrice,
+  //           Liquidity: kageLiq,
+  //           "Market Cap": 51600000 * kagePrice,
+  //           "Circulating Supply": 51600000,
+  //           "Total Supply": 100000000,
+  //           FDV: 100000000 * kagePrice,
+  //         },
+  //         {
+  //           name: "Roll",
+  //           category: "Gaming ",
+  //           Price: rollPrice,
+  //           Liquidity: rollLiq,
+  //           "Market Cap": 51600000 * rollPrice,
+  //           "Circulating Supply": 51600000,
+  //           "Total Supply": 100000000,
+  //           FDV: 100000000 * rollPrice,
+  //         },
+  //         {
+  //           name: "BabyDOJO",
+  //           category: "CW-20 ",
+  //           Price: babyPrice,
+  //           Liquidity: babyLiq,
+  //           "Market Cap": 4198646072.1 * babyPrice,
+  //           "Circulating Supply": 4198646072.1,
+  //           "Total Supply": 4198646072.1,
+  //           FDV: 4198646072.1 * babyPrice,
+  //         },
+  //         {
+  //           name: "XNJ",
+  //           category: "Gaming",
+  //           "Total Supply": "-",
+  //           "Circulating Supply": "-",
+  //           Price: xnjPrice,
+  //           "Market Cap": "-",
+  //           Liquidity: xnjLiq,
+  //           FDV: "-",
+  //         },
+  //         {
+  //           name: "Sushi",
+  //           category: "CW404",
+  //           "Total Supply": 15000,
+  //           "Circulating Supply": 15000,
+  //           Price: sushiPrice,
+  //           "Market Cap": 15000 * sushiPrice,
+  //           Liquidity: sushiLiq,
+  //           FDV: 15000 * sushiPrice,
+  //         },
+  //         {
+  //           name: "Nonja",
+  //           category: "Meme",
+  //           "Total Supply": 1000000000,
+  //           "Circulating Supply": 1000000000,
+  //           Price: nonjaPrice,
+  //           "Market Cap": 1000000000 * nonjaPrice,
+  //           Liquidity: nonjaLiq,
+  //           FDV: 1000000000 * nonjaPrice,
+  //         },
+  //         {
+  //           name: "Kage",
+  //           category: "Utility",
+  //           "Total Supply": 100000000,
+  //           "Circulating Supply": 26875564,
+  //           Price: kagePrice,
+  //           "Market Cap": 26875564 * kagePrice,
+  //           Liquidity: kageLiq,
+  //           FDV: 100000000 * kagePrice,
+  //         },
+  //         {
+  //           name: "Ping",
+  //           category: "Meme",
+  //           "Total Supply": 1000000000,
+  //           "Circulating Supply": 800000000,
+  //           Price: pingPrice,
+  //           "Market Cap": pingPrice,
+  //           Liquidity: pingLiq * 800000000,
+  //           FDV: pingPrice * 1000000000,
+  //         },
+  //         {
+  //           name: "Ykz",
+  //           category: "CW404",
+  //           "Total Supply": 10000,
+  //           "Circulating Supply": 9000,
+  //           Price: ykzPrice,
+  //           "Market Cap": ykzPrice * 9000,
+  //           Liquidity: ykzLiq,
+  //           FDV: ykzPrice * 10000,
+  //         },
+  //         {
+  //           name: "hINJ",
+  //           category: "CW20",
+  //           "Total Supply": 1820230.18,
+  //           "Circulating Supply": "-",
+  //           Price: hingPrice,
+  //           "Market Cap": "-",
+  //           Liquidity: hingLiq,
+  //           FDV: hingPrice * 1820230.18,
+  //         },
+  //         {
+  //           name: "Dib",
+  //           category: "Meme",
+  //           "Total Supply": 69000000000,
+  //           "Circulating Supply": 69000000000,
+  //           Price: dibPrice,
+  //           "Market Cap": dibPrice * 69000000000,
+  //           Liquidity: dibLiq,
+  //           FDV: dibPrice * 69000000000,
+  //         },
+  //         {
+  //           name: "Duel",
+  //           category: "Utility",
+  //           "Total Supply": 10000000000,
+  //           "Circulating Supply": 1454408582,
+  //           Price: duelPrice,
+  //           "Market Cap": duelPrice * 1454408582,
+  //           Liquidity: duelLiq,
+  //           FDV: duelPrice * 10000000000,
+  //         },
+  //         {
+  //           name: "Monks",
+  //           category: "Meme",
+  //           "Total Supply": 1000000000,
+  //           "Circulating Supply": "-",
+  //           Price: monksPrice,
+  //           "Market Cap": "-",
+  //           Liquidity: monksLiq,
+  //           FDV: monksPrice * 1000000000,
+  //         },
+  //       ];
+  //       setdata(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+
+  //   const interval = setInterval(() => {
+  //     fetchData();
+  //     // setRefetch(!refetch);
+  //   }, 30000);
+
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   const table = useReactTable({
     data,
@@ -610,12 +672,36 @@ export function TokensTable() {
   });
 
   return (
-    <div className="w-full pb-8">
+    <div className="w-full pb-8 font-mono">
       <div className="flex items-center py-4">
-        <div className="bg-black lg:p-3  px-5 rounded-xl flex gap-4 w-full justify-between">
-          <div className="flex items-center gap-4">
-            {/* <Image src="./protocolranking.svg" alt="" height={30} width={30} /> */}
-            <div className=" font-semibold ">Tokens </div>
+        <div className="bg-[#000722] lg:py-2 px-6 border border-[#646D80] rounded-xl flex gap-4 w-full justify-between">
+          <div className="flex items-center gap-2">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.60039 0.98685C1.59319 0.661733 1.32739 0.400391 1.00054 0.400391C0.66917 0.400391 0.40054 0.66902 0.40054 1.00039V9.38735C0.400341 9.39625 0.40034 9.40516 0.40054 9.41409V19.0004C0.40054 19.3318 0.66917 19.6004 1.00054 19.6004H19.0005C19.3319 19.6004 19.6005 19.3318 19.6005 19.0004C19.6005 18.669 19.3319 18.4004 19.0005 18.4004H1.60039V0.98685ZM17.2005 17.2004V4.60039C17.2005 4.36975 17.0683 4.15952 16.8605 4.05961C16.6526 3.9597 16.4058 3.98779 16.2257 4.13187L10.5442 8.67712L6.69822 6.47944C6.5324 6.38469 6.33138 6.37454 6.15686 6.4521L2.80039 7.94387V17.2004H17.2005Z"
+                fill="url(#paint0_linear_3021_584)"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_3021_584"
+                  x1="19.6005"
+                  y1="17.8238"
+                  x2="0.400391"
+                  y2="2.17696"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#FF6767" />
+                  <stop offset="1" stop-color="#16C784" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div className=" font-semibold uppercase">Tokens</div>
           </div>
 
           <div className=" flex gap-4 p-2">
@@ -623,7 +709,7 @@ export function TokensTable() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="default" className="ml-auto">
-                  Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
+                  Columns <ChevronDownIcon className="ml-2" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">

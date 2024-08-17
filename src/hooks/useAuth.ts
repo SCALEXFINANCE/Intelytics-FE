@@ -65,7 +65,7 @@ export function useAuth() {
           }
         } else {
           const errorData = await response.json();
-          toast.error(errorData.message || "Login failed");
+          toast.error(errorData.message.message || "Login failed");
         }
       } catch (error: any) {
         console.error("Login failed:", error);

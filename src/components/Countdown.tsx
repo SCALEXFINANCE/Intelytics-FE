@@ -21,7 +21,9 @@ const Countdown: React.FC<CountdownProps> = React.memo(
         {!lastClaimed
           ? ""
           : !isClaimable && (
-              <p className="text-base">Next claim in: {timeLeft}</p>
+              <p className="text-base">
+                Next claim in: {timeLeft || "00:00:00"}
+              </p>
             )}
       </div>
     );
