@@ -7,7 +7,7 @@ import SearchBar from "./Searchbar";
 import { useAuth } from "@/hooks/useAuth";
 import Emeralds from "../../public/emerald.png";
 
-const Sidebar = () => {
+const Sidebar = ({ visible, setVisible }: any) => {
   // const [currPage, setCurrpage] = useState<string>("");
   const router = useRouter();
   const { isAuthenticated, isLoading } = useAuth();
@@ -43,10 +43,20 @@ const Sidebar = () => {
         className={`hidden lg:flex h-[10%] lg:px-8 lg:w-full fixed ${"w-full z-10 px-10"} pt-8 pb-4 gap-4 flex-row bg-[#04041E]`}
       >
         <div className="flex items-center justify-between">
-          <Link href={"/"}>
+          <Link
+            onClick={() => {
+              setVisible(false);
+            }}
+            href={"/"}
+          >
             <Image src={Logo} alt="" height={23} />
           </Link>
-          <button className=" transform-translate-y-[10%] text-6xl font-light hover:text-gray-400 select-none rotate-45 block lg:hidden  text-white ">
+          <button
+            onClick={() => {
+              setVisible(false);
+            }}
+            className=" transform-translate-y-[10%] text-6xl font-light hover:text-gray-400 select-none rotate-45 block lg:hidden  text-white "
+          >
             +
           </button>
         </div>
@@ -73,6 +83,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/"}
@@ -86,6 +97,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Chains"}
@@ -101,6 +113,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Tokens"}
@@ -114,6 +127,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Airdrops"}
@@ -127,6 +141,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Topprotocol"}
@@ -148,6 +163,7 @@ const Sidebar = () => {
             <div className=" flex gap-2 items-center justify-start">
               <Link
                 onClick={() => {
+                  setVisible(false);
                   setIsOpenDefi(false);
                   setIsOpenVolume(false);
                   setIsOpenTradingBot(false);
@@ -167,6 +183,7 @@ const Sidebar = () => {
             <div className="flex gap-2 ">
               <Link
                 onClick={() => {
+                  setVisible(false);
                   setIsOpenDefi(false);
                   setIsOpenVolume(false);
                   setIsOpenTradingBot(false);
@@ -197,6 +214,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenVolume(false);
                         }}
                         href={"/Topprotocolvolume"}
@@ -230,6 +248,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -245,6 +264,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -260,6 +280,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -275,6 +296,7 @@ const Sidebar = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}

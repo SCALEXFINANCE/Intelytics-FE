@@ -126,7 +126,7 @@ const Rewards = () => {
 
   return (
     <>
-      <div className=" w-full flex items-center justify-center font-mono">
+      <div className="lg:pt-12 w-full flex items-center justify-center font-mono">
         <div className="flex flex-col w-[90%] items-center justify-center  ">
           <div className="w-full flex gap-6 pt-12">
             <div className="w-full lg:w-[29%] bg-[#000722] p-2 rounded-lg shadow-sky-800 shadow-md flex pt-5 pb-5">

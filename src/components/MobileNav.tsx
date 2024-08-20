@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useUserContext } from "@/hooks/useUser";
 import { useAuth } from "@/hooks/useAuth";
 
-const MobileNav = () => {
+const MobileNav = ({ setVisible }: any) => {
   const { emeralds, refetchUser, email, id } = useUserContext();
   const { logout } = useAuth();
   const router = useRouter();
@@ -133,6 +133,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/"}
@@ -146,6 +147,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Chains"}
@@ -161,6 +163,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Tokens"}
@@ -174,6 +177,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Airdrops"}
@@ -187,6 +191,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenDefi(false);
                         }}
                         href={"/Topprotocol"}
@@ -208,6 +213,7 @@ const MobileNav = () => {
             <div className="w-full flex gap-2 items-center justify-start border-b">
               <Link
                 onClick={() => {
+                  setVisible(false);
                   setIsOpenDefi(false);
                   setIsOpenVolume(false);
                   setIsOpenTradingBot(false);
@@ -241,6 +247,7 @@ const MobileNav = () => {
             <div className="w-full flex gap-2 border-b">
               <Link
                 onClick={() => {
+                  setVisible(false);
                   setIsOpenDefi(false);
                   setIsOpenVolume(false);
                   setIsOpenTradingBot(false);
@@ -300,6 +307,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenVolume(false);
                         }}
                         href={"/Topprotocolvolume"}
@@ -347,6 +355,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -362,6 +371,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -377,6 +387,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
@@ -392,6 +403,7 @@ const MobileNav = () => {
                     <li>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setIsOpenTradingBot(false);
                         }}
                         href={"/"}
