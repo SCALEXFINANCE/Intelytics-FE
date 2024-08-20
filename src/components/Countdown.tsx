@@ -8,7 +8,6 @@ interface CountdownProps {
 
 const Countdown: React.FC<CountdownProps> = React.memo(
   ({ lastClaimed, isClaimable }) => {
-    console.log(lastClaimed, isClaimable);
     const { timeLeft } = useCountdown({
       lastClaimed,
       isClaimable,

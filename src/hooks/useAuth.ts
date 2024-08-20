@@ -90,13 +90,13 @@ export function useAuth() {
     destroyCookie(null, ACCESS_TOKEN_NAME, { path: "/" });
     destroyCookie(null, REFRESH_TOKEN_NAME, { path: "/" });
     setIsAuthenticated(false);
-    router.push("/login");
+    router.push("/auth/login");
   }, [router]);
 
   return {
     isAuthenticated,
     isLoading,
     login,
-    // logout,
+    logout,
   };
 }

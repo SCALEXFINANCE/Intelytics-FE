@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Emeralds from "../../public/emerald.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useUserContext } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
 
 const MobileNav = () => {
-  const { emeralds, email, id } = useUserContext();
+  const { emeralds, refetchUser, email, id } = useUserContext();
+  const { logout } = useAuth();
   const router = useRouter();
   const [isOpenDefi, setIsOpenDefi] = useState(false);
   const [isOpenVolume, setIsOpenVolume] = useState(false);
   const [isOpenTradingBot, setIsOpenTradingBot] = useState(false);
+
+  useEffect(() => {
+    refetchUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const toggleDropdownDefi = () => {
     setIsOpenDefi(!isOpenDefi);
@@ -91,7 +98,7 @@ const MobileNav = () => {
             </Link>
           )}
 
-          <div className="w-full flex py-2 rounded-xl flex-col items-start  gap-4 border">
+          <div className="w-full max-w-[260px] flex py-2 rounded-xl flex-col items-start  gap-4 border">
             {/* defi dropdown */}
             <div className="w-full flex flex-col items-center border-b">
               <div
@@ -458,7 +465,10 @@ const MobileNav = () => {
               />
             </svg>
           </div>
-          <button className="px-16 py-3 border rounded-bl-xl rounded-br-xl uppercase text-[#ff6767]">
+          <button
+            onClick={logout}
+            className="px-16 py-3 border rounded-bl-xl rounded-br-xl uppercase text-[#ff6767]"
+          >
             Sign Out
           </button>
         </div>

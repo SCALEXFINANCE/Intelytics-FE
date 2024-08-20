@@ -15,9 +15,18 @@ import Google2 from "../../../../public/google2.png";
 const Signup = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [pwd, setPwd] = useState("");
 
-  const handleSignup = async () => {
+  const handleSignup = async (e: any) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    if (!email || pwd) {
+      toast("Email or passowrd missing!");
+      return;
+    }
+
     const requestBody = {
       email: email,
       password: pwd,
@@ -44,6 +53,8 @@ const Signup = () => {
     } catch (error: any) {
       toast.error(error.message);
       console.error("Signup failed:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -68,7 +79,10 @@ const Signup = () => {
         </div>
         <Image src={LoginHero2} alt="" height={600} width={700} />
       </div>
-      <div className="lg:w-5/12 bg-black h-screen flex items-center justify-center flex-col">
+      <form
+        onSubmit={handleSignup}
+        className="lg:w-5/12 bg-black h-screen flex items-center justify-center flex-col"
+      >
         <div className="bg-[#0e1734] rounded-md p-8 flex flex-col items-center justify-center gap-2">
           <Image src={Search} alt="" height={30} width={30} />
           <div className="text-2xl font-bold">Create Account</div>
@@ -98,19 +112,19 @@ const Signup = () => {
               placeholder="password"
             />
           </div>
-          <div
+          <button
+            type="submit"
             className="bg-white rounded-md text-center m-3 p-2 text-black w-full font-bold cursor-pointer"
-            onClick={handleSignup}
           >
             Sign Up
-          </div>
+          </button>
           <Image src={Break} alt="" height={10} width={300} />
           <div className="bg-white rounded-md text-center m-3 p-2 text-black w-full flex items-center gap-2 justify-center cursor-pointer">
             <Image src={Google2} alt="" height={20} width={20} />
             <div className="font-bold">Sign Up with Google</div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

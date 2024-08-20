@@ -61,5 +61,5 @@ export const config = {
   // "/((?!api|_next/static|_next/image|favicon.ico).*)",
 
   // ],
-  matcher: "/Rewards", // Protect only the /Rewards page
+  matcher: ["/Rewards", "/auth/signup", "/auth/signin"], // Protect only the /Rewards page
 };

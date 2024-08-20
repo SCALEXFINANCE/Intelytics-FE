@@ -7,6 +7,7 @@ import {
   ReactNode,
 } from "react";
 import { customFetch } from "@/lib/utils";
+import { useAuth } from "./useAuth";
 
 interface User {
   id: string;
@@ -19,6 +20,7 @@ interface User {
 
 interface UserContextType extends User {
   refetchUser: () => Promise<() => void>;
+  checkIsClaimable: (lastClaimedAt: string | null) => boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -96,14 +98,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     };
   }, [fetchUser]);
 
-  const refetchUser = useCallback(async () => {
+  const refetchUser = async () => {
     const abortController = new AbortController();
     await fetchUser(abortController.signal);
     return () => abortController.abort();
-  }, [fetchUser]);
+  };
 
   return (
-    <UserContext.Provider value={{ ...user, refetchUser }}>
+    <UserContext.Provider value={{ ...user, refetchUser, checkIsClaimable }}>
       {children}
     </UserContext.Provider>
   );

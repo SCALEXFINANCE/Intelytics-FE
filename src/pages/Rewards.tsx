@@ -120,6 +120,9 @@ const Rewards = () => {
     setColSelected(true);
     setDashSelected(false);
   };
+  useEffect(() => {
+    refetchUser();
+  }, [isAuthenticated]);
 
   return (
     <>

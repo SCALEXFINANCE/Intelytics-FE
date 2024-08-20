@@ -16,15 +16,15 @@ const inter = Share_Tech_Mono({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <main className={inter.className}>
-        <UserProvider>
+      <UserProvider>
+        <main className={inter.className}>
           <ErrorBoundary>
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </ErrorBoundary>
-        </UserProvider>
-      </main>
+        </main>
+      </UserProvider>
       <Analytics />
       <Toaster />
     </>

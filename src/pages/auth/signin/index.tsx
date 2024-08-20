@@ -15,17 +15,25 @@ import { useAuth } from "@/hooks/useAuth";
 const Signin = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
   const [pwd, setPwd] = useState<string>("");
   const { login } = useAuth();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+    setIsLoading(true);
     if (!email || !pwd) {
-      toast("Input Email or Password!");
+      toast("Email or Password is missing!");
       return;
     }
     try {
       await login(email, pwd);
-    } catch (err) {}
+    } catch (err: any) {
+      console.log(err);
+      toast.error(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -49,7 +57,10 @@ const Signin = () => {
         </div>
         <Image src={Loginhero2} alt="" height={600} width={700} />
       </div>
-      <div className="lg:w-5/12 bg-black h-screen flex items-center justify-center flex-col">
+      <form
+        onSubmit={handleLogin}
+        className="lg:w-5/12 bg-black h-screen flex items-center justify-center flex-col"
+      >
         <div className="bg-[#0e1734] rounded-md p-8 flex flex-col items-center justify-center gap-2">
           <Image src={Search} alt="" height={30} width={30} />
           <div className="text-2xl font-bold">Welcome Back</div>
@@ -79,19 +90,20 @@ const Signin = () => {
               placeholder="password"
             />
           </div>
-          <div
+          <button
+            type="submit"
+            disabled={isLoading}
             className="bg-white rounded-md text-center m-3 p-2 text-black w-full font-bold cursor-pointer"
-            onClick={handleLogin}
           >
             Login
-          </div>
+          </button>
           <Image src={Break} alt="" height={10} width={300} />
           <div className="bg-white rounded-md text-center m-3 p-2 text-black w-full flex items-center gap-2 justify-center cursor-pointer">
             <Image src={Google2} alt="" height={20} width={20} />
             <div className="font-bold">Login with Google</div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
