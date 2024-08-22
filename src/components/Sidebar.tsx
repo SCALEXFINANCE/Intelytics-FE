@@ -324,7 +324,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
             </div>
 
             {isLoading ? (
-              <Link href="/Signin">
+              <Link href="/auth/signin">
                 <div className=" bg-black text-mono p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
                   Get Started
                 </div>
@@ -336,17 +336,12 @@ const Sidebar = ({ visible, setVisible }: any) => {
                 </div>
               </Link>
             ) : (
-              <Link href="/Signin">
+              <Link href="/auth/signin">
                 <div className=" bg-black text-mono p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
                   Get Started
                 </div>
               </Link>
             )}
-            {/* <Link href="/Signin">
-              <div className=" bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl  text-white flex items-center gap-2">
-                Get Started
-              </div>
-            </Link> */}
           </div>
         </div>
       </div>
