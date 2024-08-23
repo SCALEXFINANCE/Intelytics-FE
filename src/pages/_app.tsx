@@ -7,6 +7,7 @@ import { Share_Tech_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import ErrorBoundary from "./ErrorBoundary";
 import { UserProvider } from "@/hooks/useUser";
+import Footer from '@/components/footer'
 
 const inter = Share_Tech_Mono({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </UserProvider>
       <Analytics />
       <Toaster />
+      <Footer/>
     </>
   );
 }
