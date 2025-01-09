@@ -43,6 +43,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { AreaChart, BarChart } from "lucide-react";
 
 export type Token = {
   name: string;
@@ -612,11 +613,10 @@ export function TokensTable() {
   return (
     <div className="w-full pb-8">
       <div className="flex items-center py-4">
-        <div className="bg-black lg:p-3  px-5 rounded-xl flex gap-4 w-full justify-between">
-          <div className="flex items-center gap-4">
-            {/* <Image src="./protocolranking.svg" alt="" height={30} width={30} /> */}
-            <div className=" font-semibold ">Tokens </div>
-          </div>
+        <div className="border items-center border-bordercolor bg-bluebackground lg:px-2 px-4 rounded-xl flex gap-4 w-full justify-between">
+          <div className="flex p-2">
+            <div className="flex space-x-2 items-center font-bold text-white"><AreaChart className="h-6 w-6"/><div className="font-bold">TOKENS</div></div>
+            </div>
 
           <div className=" flex gap-4 p-2">
             {/* column dropdown */}

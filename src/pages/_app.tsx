@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { Analytics } from "@vercel/analytics/react";
 import { Share_Tech_Mono } from 'next/font/google'
 import { Toaster } from "react-hot-toast";
+import { Youtube } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const inter = Share_Tech_Mono({
   subsets: ['latin'],
@@ -24,3 +26,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+

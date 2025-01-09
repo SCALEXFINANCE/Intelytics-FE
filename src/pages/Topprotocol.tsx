@@ -5,7 +5,7 @@ import SearchBar from "@/components/Searchbar";
 
 const Topprotocol = () => {
   return (
-    <div className=" flex gap-4 flex-col">
+    <div className=" flex gap-4 flex-col p-6">
       {/* <div>DEFI-topprotocol</div> */}
 
       <SearchBar />

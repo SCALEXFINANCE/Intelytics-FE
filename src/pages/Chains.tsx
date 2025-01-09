@@ -136,7 +136,7 @@ const Chains = () => {
   }, []);
 
   return (
-    <div className=" flex gap-4 flex-col">
+    <div className=" flex gap-4 flex-col p-6">
       {/* <div>DEFI-overview</div> */}
 
       <SearchBar />

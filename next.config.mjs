@@ -6,25 +6,17 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-},
- 
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "github.com",
+        port: "",
+        pathname: "/code-bajju/Project-Image/**",
+      },
+    ],
+  },
 };
-
- 
-  //  headers() {
-  //   return [
-  //     {
-  //       // Adding favicon
-  //       source: '/public/favicon.svg',
-  //       headers: [
-  //         {
-  //           key: 'Link',
-  //           value: '/public/favicon.svg; rel="shortcut icon"',
-  //         },
-  //       ],
-  //     },
-  //   ];
-  // }
- 
 
 export default nextConfig;
