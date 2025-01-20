@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { BarChart, BarChart2, Search } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
@@ -12,19 +12,20 @@ import HomePage from "./HomePage";
 import Footer from "@/components/Footer";
 
 const overview = () => {
-  const [selected, setSelected] = useState<string>("all");
 
-  const allClicked = () => {
-    setSelected("all");
-  };
+  // const [selected, setSelected] = useState<string>("all");
 
-  const ethClicked = () => {
-    setSelected("eth");
-  };
+  // const allClicked = () => {
+  //   setSelected("all");
+  // };
 
-  const injClicked = () => {
-    setSelected("inj");
-  };
+  // const ethClicked = () => {
+  //   setSelected("eth");
+  // };
+
+  // const injClicked = () => {
+  //   setSelected("inj");
+  // };
 
   const [totalTVL, setTotalTVL] = useState<string>();
   const [stable, setStable] = useState<string>();
@@ -185,7 +186,7 @@ const overview = () => {
   }, []);
 
   return (
-    <div className="flex gap-4 flex-col px-6 pt-6">
+    <div className="flex flex-col space-y-4 p-4">
       <HomePage/>
       {/* <div>DEFI-overview</div> */}
 
@@ -201,31 +202,23 @@ const overview = () => {
           INJ
         </button>
       </div> */}
-
+      <div className="lg:hidden">MARKET CHART ANALYSIS</div>
       {/* graph card */}
-      <div className="flex flex-col-reverse lg:flex-row space-x-4 justify-between">
+      <div className="flex flex-col space-y-4 md:space-y-0 lg:flex-row lg:space-x-4 justify-between">
         {/* left */}
-        <div className="bg-bluebackground rounded-xl lg:px-2  flex gap-2 flex-col lg:w-[30%] w-full border border-gray-500">
-          <div className=" flex flex-col gap-2 p-6">
+        <div className="bg-bluebackground rounded-xl lg:px-2 flex gap-2 flex-col lg:w-[30%] w-full lg:my-0 border border-gray-500">
+          <div className=" flex flex-col p-2">
           <div className=" flex gap-3">
-              <Image
-                alt=""
-                src="/TOKEN.png"
-                height={30}
-                width={30}
-                className=" rounded-full"
-              />
-              <div className=" font-bold text-gray-500">Token Info</div>
             </div>
-            <div className=" flex gap-3">
+            <div className="flex items-center space-x-2">
               <Image
                 alt=""
                 src="/inj.png"
                 height={30}
                 width={30}
-                className=" rounded-full"
+                className="h-6 w-6 rounded-full"
               />
-              <div className=" font-bold text-2xl ">INJECTIVE</div>
+              <div className=" font-bold text-sm ">INJECTIVE</div>
             </div>
             <div className=" lg:text-gray-400 hidden lg:inline">
               Injective Total Value Locked
@@ -256,25 +249,26 @@ const overview = () => {
 
         {/* right */}
         <div className=" flex flex-col bg-bluebackground rounded-xl lg:w-[70%] border border-gray-500">
-          <div className=" p-4 ">
-            {/* <Charted height={200} width={600} /> */}
+          <div className="">
+          {/* <Charted height={200} width={600} /> */}
           <div className="lg:px-3 lg:text-xl lg:inline hidden">
             Injective Total Value Locked
           </div>
-          <div className=" flex w-/ items-center justify-center lg:translate-x-12 lg:translate-y-5">
+          <div className="flex flex-col items-center justify-center lg:translate-x-12 lg:translate-y-5">
+            <div className="lg:hidden w-full flex justify-between items-center text-sm p-2 ">
+              <div className="w-full text-start text-xs flex items-center"><BarChart2/>Token Chart</div>
+              <div className="flex justify-end w-full items-center text-xxs text-nowrap space-x-4">
+                <div><div>On Average Price</div><div className="text-bordercolor text-center">0.056</div></div>
+                <div><div>Highest Price</div><div className="text-bordercolor text-center">0.056</div></div>
+                <div><div>Lowest Price</div><div className="text-bordercolor text-center">0.056</div></div>
+              </div>
+            </div>
           <InjectiveChart />
 
           </div>
 
           </div>
           
-        </div>
-
-        <div className="lg:hidden flex flex-col ">
-          <div className=" text-gray-400 text-sm inline lg:hidden ">
-            Injective Total Value Locked
-          </div>
-          <div className=" text-3xl inline lg:hidden ">{totalTVL}</div>
         </div>
       </div>
 

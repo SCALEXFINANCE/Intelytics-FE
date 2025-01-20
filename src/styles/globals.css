@@ -13,3 +13,26 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+/* Swiper navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: white;
+  font-size: 20px; /* Adjust size as needed */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #f0f0f0; /* Slightly lighter shade on hover */
+}
+
+/* Optional: Pagination bullet styles */
+.swiper-pagination-bullet {
+  background: white;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ffffff;
+  opacity: 1;
+}

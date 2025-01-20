@@ -2,12 +2,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import SearchBar from "./Searchbar";
-import Logo from "../components/assets/logo.png"
+import Logo from "../components/assets/logo.png";
 
 const Sidebar = ({ visible, setVisible }: any) => {
   const [authkey, setAuthkey] = useState<string>("");
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -17,58 +16,15 @@ const Sidebar = ({ visible, setVisible }: any) => {
     }
   }, []);
 
-  const toggleDropdown = (dropdown: string) => {
-    setOpenDropdown((prev) => (prev === dropdown ? null : dropdown));
-  };
-
   const sidebarConfig = {
     menu: [
-      {
-        title: "Defi",
-        type: "dropdown",
-        items: [
-          { name: "Overview", path: "/" },
-          { name: "Chains", path: "/Chains" },
-          { name: "Tokens", path: "/Tokens" },
-          { name: "Airdrops", path: "/Airdrops" },
-          { name: "Top Protocol", path: "/Topprotocol" },
-        ],
-      },
-      {
-        title: "NFT",
-        type: "link",
-        path: "/Nft",
-      },
-      {
-        title: "Lending",
-        type: "link",
-        path: "/Lending",
-      },
-      {
-        title: "Rewards",
-        type: "link",
-        path: "/Rewards",
-      },
-      {
-        title: "Volume",
-        type: "dropdown",
-        items: [
-          { name: "Top Protocol", path: "/Topprotocolvolume" },
-        ],
-      },
-      {
-        title: "Trading Bot",
-        type: "dropdown",
-        items: [
-          { name: "Portfolio", path: "/portfolio" },
-          { name: "Active Trades", path: "/activetrades" },
-          { name: "Sleeper Trades", path: "/sleepertrades" },
-          { name: "DCA", path: "/dca" },
-        ],
-      },
+      { title: "Defi", path: "/" },
+      { title: "NFT", path: "/Nft" },
+      { title: "Lending", path: "/Lending" },
+      { title: "Rewards", path: "/Rewards" },
+      { title: "Trading Bot", path: "/TradingBot" },
     ],
     extras: {
-      searchBar: true,
       rewards: {
         icon: "/emerald.png",
         path: "/Rewards",
@@ -87,122 +43,98 @@ const Sidebar = ({ visible, setVisible }: any) => {
   };
 
   return (
-    <div
-      className={`lg:px-8 lg:w-full text-sm ${
-        visible ? "w-full z-10 px-10" : "w-0"
-      } flex flex-row bg-[#04041E]`}
-    >
-      <div className="flex items-center justify-between">
-        <Link
-        className="h-full flex justify-center items-center"
-          onClick={() => setVisible(false)}
-          href="/"
-        >
-          <Image src={Logo} alt="Logo" height={0} className="h-6 w-auto"  />
+    <div className="bg-[#04041E] text-white lg:flex lg:flex-row lg:items-center lg:justify-between lg:px-4 lg:py-4">
+      {/* Logo */}
+      <div className="flex items-center justify-between px-4 py-4 lg:py-0">
+        <Link href="/">
+          <Image src={Logo} alt="Logo" height={30} width={100} className="lg:h-6 md:h-6 h-4 w-auto" />
         </Link>
         <button
-          onClick={() => setVisible(false)}
-          className="text-6xl font-light hover:text-gray-400 select-none rotate-45 block lg:hidden text-white"
+          className="relative flex flex-col justify-center items-center w-8 h-8 lg:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
         >
-          +
+          <span
+            className={`block w-6 h-[2px] bg-white transform transition-transform duration-300 ${
+              menuOpen ? "rotate-45 translate-y-[8px]" : ""
+            }`}
+          ></span>
+          <span
+            className={`block w-6 h-[2px] bg-white my-1 transform transition-opacity duration-300 ${
+              menuOpen ? "opacity-0" : "opacity-100"
+            }`}
+          ></span>
+          <span
+            className={`block w-6 h-[2px] bg-white transform transition-transform duration-300 ${
+              menuOpen ? "-rotate-45 -translate-y-[8px]" : ""
+            }`}
+          ></span>
         </button>
-      </div>
-
-      <div className="flex flex-row text-gray-400 items-center w-full justify-between p-4">
-        <div className="flex flex-row gap-4">
-          {sidebarConfig.menu.map((menuItem, index) => (
-            <div key={index} className="flex flex-col items-center">
-              {menuItem.type === "link" && (
-               <Link
-               onClick={() => setVisible(false)}
-               href={menuItem.path || "/"} // Default to "/" if path is undefined
-               className={`p-2 rounded-md text-sm font-bold ${
-                 router.pathname === menuItem.path ? "bg-gray-800 text-white" : ""
-               }`}
-             >
-               {menuItem.title}
-             </Link>
-             
-              )}
-
-              {menuItem.type === "dropdown" && (
-                <>
-                  <button
-                    className={`px-2 p-2 text-left text-sm font-bold ${
-                      openDropdown === menuItem.title
-                        ? "bg-gray-800 rounded-md text-white"
-                        : ""
-                    }`}
-                    onClick={() => toggleDropdown(menuItem.title)}
-                  >
-                    {menuItem.title}
-                  </button>
-                  {openDropdown === menuItem.title && (
-                    <div className="flex flex-col text-sm text-gray-400">
-                      <ul className="bg-gray-800 text-sm border-2 border-gray-800 rounded z-20 absolute">
-                      {menuItem.type === "dropdown" && (
-  <>
-    {openDropdown === menuItem.title && menuItem.items && (
-      <div className="flex flex-col text-sm  text-gray-400">
-        <ul className="bg-gray-800 text-sm border-2 border-gray-800 rounded z-20 w-40 absolute">
-          {menuItem.items.map((item, i) => (
-            <li key={i}>
-              <Link
-                onClick={() => {
-                  setVisible(false);
-                  setOpenDropdown(null);
-                }}
-                href={item.path || "/"} 
-                className={`p-2 rounded-md ${
-                  router.pathname === item.path ? "bg-gray-800 text-white" : ""
-                }`}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
-  </>
-)}
-
-                      </ul>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="flex flex-row gap-2 items-center">
-          {/* {sidebarConfig.extras.searchBar && <SearchBar/>} */}
-          <div
-            className="cursor-pointer"
-            onClick={() => router.push(sidebarConfig.extras.rewards.path)}
+          {/* Desktop Menu */}
+      <div className="hidden px-2 lg:flex lg:flex-row lg:gap-6">
+        {sidebarConfig.menu.map((menuItem, index) => (
+          <Link
+            key={index}
+            href={menuItem.path}
+            className={`text-sm font-bold hover:text-gray-300 ${
+              router.pathname === menuItem.path ? "text-gray-300" : ""
+            }`}
           >
-            <Image
-              src={sidebarConfig.extras.rewards.icon}
-              alt="Emerald"
-              height={40}
-              width={40}
-            />
-          </div>
-          {authkey ? (
-            <Link href={sidebarConfig.extras.auth.loggedIn.path}>
-              <div className="bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl text-white flex items-center gap-2">
-                {sidebarConfig.extras.auth.loggedIn.label}
-              </div>
+            {menuItem.title}
+          </Link>
+        ))}
+      </div>
+      </div>
+
+    
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div
+          className={`lg:hidden flex flex-col gap-4 p-4 bg-[#04041E] transform transition-transform duration-300 ease-in-out ${
+            menuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+          }`}
+        >
+          {sidebarConfig.menu.map((menuItem, index) => (
+            <Link
+              key={index}
+              href={menuItem.path}
+              className={`text-sm font-bold hover:text-gray-300 ${
+                router.pathname === menuItem.path ? "text-gray-300" : ""
+              }`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {menuItem.title}
             </Link>
-          ) : (
-            <Link href={sidebarConfig.extras.auth.loggedOut.path}>
-              <div className="bg-black p-2 pl-4 pr-4 border-2 border-gray-800 rounded-xl text-white flex items-center gap-2">
-                {sidebarConfig.extras.auth.loggedOut.label}
-              </div>
-            </Link>
-          )}
+          ))}
         </div>
+      )}
+
+      {/* Extras */}
+      <div className="hidden lg:flex lg:items-center lg:gap-4">
+        <div
+          className="cursor-pointer"
+          onClick={() => router.push(sidebarConfig.extras.rewards.path)}
+        >
+          <Image
+            src={sidebarConfig.extras.rewards.icon}
+            alt="Emerald"
+            height={30}
+            width={30}
+          />
+        </div>
+        {authkey ? (
+          <Link href={sidebarConfig.extras.auth.loggedIn.path}>
+            <div className="bg-black px-4 py-2 border-2 border-gray-800 rounded-xl text-white">
+              {sidebarConfig.extras.auth.loggedIn.label}
+            </div>
+          </Link>
+        ) : (
+          <Link href={sidebarConfig.extras.auth.loggedOut.path}>
+            <div className="bg-black px-4 py-2 border-2 border-gray-800 rounded-xl text-white">
+              {sidebarConfig.extras.auth.loggedOut.label}
+            </div>
+          </Link>
+        )}
       </div>
     </div>
   );

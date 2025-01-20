@@ -2,21 +2,25 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination , Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import RewardCollection from "@/components/RewardCollection";
 import RewardDashboard from "@/components/RewardDashboard";
 
 const Rewards = () => {
   const [dashsel, setDashSelected] = useState<Boolean>(true);
   const [colsel, setColSelected] = useState<Boolean>(false);
-  const [authkey, setAuthkey] = useState<string>("");
   const [diamonds, setDiamonds] = useState<any>("");
-
- 
+  const images = [
+    { id: 1, src: "/rewardimage.jpeg", alt: "Reward Banner 1" },
+    { id: 2, src: "/rewardimage.jpeg", alt: "Reward Banner 2" },
+    { id: 3, src: "/rewardimage.jpeg", alt: "Reward Banner 3" },
+    { id: 4, src: "/rewardimage.jpeg", alt: "Reward Banner 4" },
+  ];
 
   const handleClaim = async () => {
-    
-   
-
     const token = localStorage.getItem("accessToken");
 
     if (token) {
@@ -34,16 +38,13 @@ const Rewards = () => {
       fetch("https://intelytics-be.vercel.app/api/claim")
         .then((response) => response.text())
         .then((result) => {
-           
-          if (result == "You can only claim diamonds once every 24 hours") {
+          if (result === "You can only claim diamonds once every 24 hours") {
             toast.error(result);
           } else {
             toast.success("Claimed Successfully");
           }
         })
         .catch((error) => {
-           
-
           toast.error(error);
         });
     }
@@ -53,7 +54,6 @@ const Rewards = () => {
     const token = localStorage.getItem("accessToken");
     if (token) {
       const url = "https://intelytics-be.vercel.app/api/diamonds";
-      // Make the GET request
       axios
         .get(url, {
           headers: {
@@ -61,14 +61,11 @@ const Rewards = () => {
           },
         })
         .then((response) => {
-           
-          setDiamonds(response.data.diamonds)
-           
+          setDiamonds(response.data.diamonds);
         })
         .catch((error) => {
           console.error("Error making the request:", error);
         });
-       
     }
   }, []);
 
@@ -84,474 +81,152 @@ const Rewards = () => {
   return (
     <>
       <div className="w-full flex items-center justify-center p-6">
-        <div className="flex flex-col items-center justify-center ">
-        <div className="flex w-full h-40 space-x-2">
-  <div className="lg:w-1/3 flex rounded-md shadow-md shadow-lightblue border border-lightblue">
-    <div className="flex flex-col justify-center items-center w-full py-2">
-      <div className="text-nowrap text-center">MY EMERALDS</div>
-      <div className="flex items-center justify-center space-x-1">
-        <Image
-          className="h-6 w-6"
-          alt="helo"
-          width={24} 
-          height={24}
-          src="/emerald.png"
-        />
-        <span className="text-2xl">1769</span>
-      </div>
-      <div className="shadow-md text-nowrap rounded-md text-center">
-        Redeem Emerald
-      </div>
-    </div>
-    {/* <Image className="h-full w-full" alt="helo" width={0} height={0} src="/emeraldanim.png"></Image> */}
-  </div>
-  <div className="w-full rounded-md">
-    <Image
-      className="w-full h-full object-cover rounded-md"
-      alt="helo"
-      width={2000}
-      height={2000}
-      src="/rewardimage.jpeg"
-    />
-  </div>
-</div>
+        <div className="flex flex-col items-center justify-center w-full space-y-6 ">
+          <div className="flex w-full h-40 space-y-4 lg:space-y-0 lg:space-x-2 flex-wrap lg:flex-nowrap">
+            <div className="lg:w-1/3 w-full flex rounded-md shadow-md shadow-lightblue border border-lightblue">
+              <div className="flex lg:flex-col flex-row justify-around items-center w-full py-2">
+                <div className="text-nowrap text-center text-xs lg:text-lg">
+                  MY EMERALDS
+                  <div className="flex justify-center lg:hidden items-center text-xs lg:text-lg">
+                    <Image
+                      className="h-6 w-6"
+                      alt="emerald-icon"
+                      width={24}
+                      height={24}
+                      src="/emerald.png"
+                    />
+                    <span className="text-2xl">1769</span>
+                  </div>
+                </div>
 
+                <Image
+                  className="lg:h-full lg:hidden lg:w-full h-20 w-20"
+                  alt="emerald-animation"
+                  width={0}
+                  height={0}
+                  src="/emeraldanim.gif"
+                />
+                <div className="lg:flex hidden items-center justify-center space-x-1 text-xs lg:text-lg">
+                  <Image
+                    className="h-6 w-6"
+                    alt="emerald-icon"
+                    width={24}
+                    height={24}
+                    src="/emerald.png"
+                  />
+                  <span className="text-xs lg:text-lg">1769</span>
+                </div>
+                <div className="shadow-md text-nowrap rounded-md text-center p-2 bg-bordercolor text-xs lg:text-lg">
+                  Redeem Emerald
+                </div>
+              </div>
+              <Image
+                className="lg:h-full hidden lg:block lg:w-full h-20 w-20"
+                alt="emerald-animation"
+                width={0}
+                height={0}
+                src="/emeraldanim.gif"
+              />
+            </div>
 
-          <div className=" flex flex-col">
-      
-            <div className=" flex gap-3  pt-10">
+            {/* desktop Slider */}
+            <div className="w-full hidden overflow-hidden lg:block rounded-md">
+
+<Swiper
+  modules={[Autoplay, Pagination, Navigation]}
+  autoplay={{
+    delay: 3000,
+    disableOnInteraction: false,
+  }}
+  pagination={{
+    clickable: true,
+  }}
+  navigation
+  loop={true}
+  className="rounded-md w-full"
+>
+  {images.map((image) => (
+    <SwiperSlide key={image.id} className="flex justify-center">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={2000}
+        height={1000}
+        className="rounded-md object-cover"
+      />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+            </div>
+
+            {/* mobile slider */}
+            <div className=" h-40 lg:hidden overflow-hidden rounded-md">
+
+<Swiper
+  modules={[Autoplay, Pagination, Navigation]}
+  autoplay={{
+    delay: 3000,
+    disableOnInteraction: false,
+  }}
+  pagination={{
+    clickable: true,
+  }}
+  navigation
+  loop={true}
+  className="rounded-md w-full"
+>
+  {images.map((image) => (
+    <SwiperSlide key={image.id} className="flex justify-center">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={2000}
+        height={1000}
+        className="rounded-md object-cover"
+      />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+            </div>
+          </div>
+
+          <div className="flex flex-col w-full">
+            <div className="flex gap-3 pt-28 lg:pt-0">
               <div
                 className={`text-xl rounded cursor-pointer p-1 pr-3 ${
                   dashsel
-                    ? " text-white underline underline-offset-2 "
-                    : " text-gray-500"
+                    ? "text-white underline underline-offset-2"
+                    : "text-gray-500"
                 }`}
                 onClick={DashboardClicked}
               >
                 My Dashboard
               </div>
               <div
-                className={`flex gap-1 text-xl cursor-pointer rounded p-1 pl-3 pr-3  ${
+                className={`flex gap-1 text-xl cursor-pointer rounded p-1 pl-3 pr-3 ${
                   colsel
-                    ? "text-white underline underline-offset-2  "
+                    ? "text-white underline underline-offset-2"
                     : "text-gray-500"
                 }`}
                 onClick={CollectionsClicked}
               >
                 Collection Rewards
-                <Image src={"/lock.png"} height={20} width={25} alt="" />
+                <Image
+                  src={"/lock.png"}
+                  height={20}
+                  width={25}
+                  alt="lock-icon"
+                />
               </div>
             </div>
             <div className="border-b-4 border-bordercolor border-dashed w-full"></div>
-          
-            {dashsel && (
-              <RewardDashboard/>
-              // <>
-              //   <div className="">
-              //     <div className=" bg-gray-800 rounded-md mt-3 flex gap-2 w-[12%] p-1 items-center justify-center">
-              //       <Image src={"/emerald.png"} height={30} width={30} alt="" />
-              //       <div className=" text-sm">Emeralds</div>
-              //     </div>
-              //     <div className="pt-5 text-xl">COLLECT YOUR DAILY REWARDS</div>
-              //     <div className=" text-gray-500">
-              //       Login for 7 days, to get your emeralds grow
-              //     </div>
-              //     <div className=" w-full flex gap-4 pt-5 pb-5">
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 1</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //         <div
-              //           onClick={handleClaim}
-              //           className=" border-2 border-blue-900 flex items-center justify-center rounded-md mt-3 shadow-md shadow-blue-900"
-              //         >
-              //           Claim
-              //         </div>
-              //       </div>
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 2</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //       </div>
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 3</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //       </div>
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 4</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //       </div>
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 5</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //       </div>
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 6</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //       </div>
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 7</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //       </div>
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 8</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //       </div>
-              //       <div className=" w-[10%]">
-              //         <div className=" bg-gray-800 p-2 rounded-lg flex flex-col items-center justify-center">
-              //           <div>Day 9</div>
-              //           <Image
-              //             src={"/emerald.png"}
-              //             height={50}
-              //             width={50}
-              //             alt=""
-              //           />
-              //           <div>+10</div>
-              //         </div>
-              //       </div>
-              //     </div>
-              //     <div className=" pt-8">
-              //       <div className=" text-2xl">Want more Emeralds</div>
-              //       <div className=" text-gray-500">
-              //         To collect more emeralds, we need to do the collections
-              //         taks{" "}
-              //       </div>
-              //       <div className=" flex gap-4 pt-5">
-              //         <div className="w-1/3">
-              //           <div className="border-2 border-gray-600 rounded-md">
-              //             <Image
-              //               src={"/Intelytics-quest-1.jpg"}
-              //               height={400}
-              //               width={500}
-              //               alt=""
-              //             />
-              //             <div className=" flex flex-col  p-2">
-              //               <div className=" flex justify-between">
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/emerald.png"}
-              //                     height={30}
-              //                     width={30}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm">2000</div>
-              //                 </div>
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/set2.png"}
-              //                     height={20}
-              //                     width={20}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm text-gray-400">
-              //                     Supply:{" "}
-              //                     <span className=" text-white">1/50</span>
-              //                   </div>
-              //                 </div>
-              //               </div>
-              //               <div className="p-2 text-gray-400">
-              //                 <span className=" text-white">
-              //                   Upcoming Quest 1
-              //                 </span>{" "}
-              //                 THE TOP NODGE IN Quest IS ABOUT TO COME IN THE
-              //                 INDUSTRY OF CRYPTO
-              //               </div>
-              //             </div>
-              //           </div>
-              //         </div>
-              //         <div className="w-1/3">
-              //           <div className="border-2 border-gray-600 rounded-md">
-              //             <Image
-              //               src={"/Intelytics-quest-2.jpg"}
-              //               height={400}
-              //               width={500}
-              //               alt=""
-              //             />
-              //             <div className=" flex flex-col  p-2">
-              //               <div className=" flex justify-between">
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/emerald.png"}
-              //                     height={30}
-              //                     width={30}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm">2000</div>
-              //                 </div>
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/set2.png"}
-              //                     height={20}
-              //                     width={20}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm text-gray-400">
-              //                     Supply:{" "}
-              //                     <span className=" text-white">1/50</span>
-              //                   </div>
-              //                 </div>
-              //               </div>
-              //               <div className="p-2 text-gray-400">
-              //                 <span className=" text-white">
-              //                   Upcoming Quest 2
-              //                 </span>{" "}
-              //                 THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE
-              //                 INDUSTRY OF CRYPTO
-              //               </div>
-              //             </div>
-              //           </div>
-              //         </div>
-              //         <div className="w-1/3">
-              //           <div className="border-2 border-gray-600 rounded-md">
-              //             <Image
-              //               src={"/Intelytics-quest-3.jpg"}
-              //               height={400}
-              //               width={500}
-              //               alt=""
-              //             />
-              //             <div className=" flex flex-col  p-2">
-              //               <div className=" flex justify-between">
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/emerald.png"}
-              //                     height={30}
-              //                     width={30}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm">2000</div>
-              //                 </div>
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/set2.png"}
-              //                     height={20}
-              //                     width={20}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm text-gray-400">
-              //                     Supply:{" "}
-              //                     <span className=" text-white">1/50</span>
-              //                   </div>
-              //                 </div>
-              //               </div>
-              //               <div className="p-2 text-gray-400">
-              //                 <span className=" text-white">
-              //                   Upcoming Quest 3
-              //                 </span>{" "}
-              //                 THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE
-              //                 INDUSTRY OF CRYPTO
-              //               </div>
-              //             </div>
-              //           </div>
-              //         </div>
-              //       </div>
-              //     </div>
-              //   </div>
-              // </>
-            )}
-            {colsel && (
-              <RewardCollection/>
-              // <>
-              //   <div>
-              //     <div className=" pt-8">
-              //       <div className=" text-2xl">Want more Emeralds</div>
-              //       <div className=" text-gray-500">
-              //         To collect more emeralds, we need to do the collections
-              //         taks{" "}
-              //       </div>
-              //       <div className=" flex gap-4 pt-5">
-              //         <div className="w-1/3">
-              //           <div className="border-2 border-gray-600 rounded-md">
-              //             <Image
-              //               src={"/card.png"}
-              //               height={400}
-              //               width={500}
-              //               alt=""
-              //             />
-              //             <div className=" flex flex-col  p-2">
-              //               <div className=" flex justify-between">
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/emerald.png"}
-              //                     height={30}
-              //                     width={30}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm">2000</div>
-              //                 </div>
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/set2.png"}
-              //                     height={20}
-              //                     width={20}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm text-gray-400">
-              //                     Supply:{" "}
-              //                     <span className=" text-white">1/50</span>
-              //                   </div>
-              //                 </div>
-              //               </div>
-              //               <div className="p-2 text-gray-400">
-              //                 <span className=" text-white">
-              //                   ZORA TOKEN GIVEAWAY:
-              //                 </span>{" "}
-              //                 THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE
-              //                 INDUSTRY OF CRYPTO
-              //               </div>
-              //             </div>
-              //           </div>
-              //         </div>
-              //         <div className="w-1/3">
-              //           <div className="border-2 border-gray-600 rounded-md">
-              //             <Image
-              //               src={"/card.png"}
-              //               height={400}
-              //               width={500}
-              //               alt=""
-              //             />
-              //             <div className=" flex flex-col  p-2">
-              //               <div className=" flex justify-between">
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/emerald.png"}
-              //                     height={30}
-              //                     width={30}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm">2000</div>
-              //                 </div>
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/set2.png"}
-              //                     height={20}
-              //                     width={20}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm text-gray-400">
-              //                     Supply:{" "}
-              //                     <span className=" text-white">1/50</span>
-              //                   </div>
-              //                 </div>
-              //               </div>
-              //               <div className="p-2 text-gray-400">
-              //                 <span className=" text-white">
-              //                   ZORA TOKEN GIVEAWAY:
-              //                 </span>{" "}
-              //                 THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE
-              //                 INDUSTRY OF CRYPTO
-              //               </div>
-              //             </div>
-              //           </div>
-              //         </div>
-              //         <div className="w-1/3">
-              //           <div className="border-2 border-gray-600 rounded-md">
-              //             <Image
-              //               src={"/card.png"}
-              //               height={400}
-              //               width={500}
-              //               alt=""
-              //             />
-              //             <div className=" flex flex-col  p-2">
-              //               <div className=" flex justify-between">
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/emerald.png"}
-              //                     height={30}
-              //                     width={30}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm">2000</div>
-              //                 </div>
-              //                 <div className=" bg-gray-800 rounded-md mt-3 flex gap-2   pl-2 pr-2 items-center justify-center">
-              //                   <Image
-              //                     src={"/set2.png"}
-              //                     height={20}
-              //                     width={20}
-              //                     alt=""
-              //                   />
-              //                   <div className=" text-sm text-gray-400">
-              //                     Supply:{" "}
-              //                     <span className=" text-white">1/50</span>
-              //                   </div>
-              //                 </div>
-              //               </div>
-              //               <div className="p-2 text-gray-400">
-              //                 <span className=" text-white">
-              //                   ZORA TOKEN GIVEAWAY:
-              //                 </span>{" "}
-              //                 THE TOP NODGE IN ZORA IS ABOUT TO COME IN THE
-              //                 INDUSTRY OF CRYPTO
-              //               </div>
-              //             </div>
-              //           </div>
-              //         </div>
-              //       </div>
-              //     </div>
-              //   </div>
-              // </>
-            )}
+
+            <div className="w-full">
+              {dashsel && <RewardDashboard />}
+              {colsel && <RewardCollection />}
+            </div>
           </div>
         </div>
       </div>

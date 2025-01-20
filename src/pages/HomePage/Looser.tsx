@@ -15,14 +15,14 @@ const data = [
     pair: "HELIX/DOJO",
     price: 1021.09,
     change: -2.12,
-    image: "https://github.com/code-bajju/Project-Image/blob/main/DOJO.png?raw=true",
+    image: "https://github.com/code-bajju/Project-Image/blob/main/hydro.png?raw=true",
   },
   {
     id: 3,
     pair: "ASTROPORT/HYDRO",
     price: 821.09,
     change: 1.03,
-    image: "https://github.com/code-bajju/Project-Image/blob/main/Hydro.png?raw=true", }
+    image: "https://github.com/code-bajju/Project-Image/blob/main/inj.png?raw=true", }
 ];
 
 const Looser = () => {
