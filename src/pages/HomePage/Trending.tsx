@@ -8,21 +8,21 @@ const data = [
     pair: "DOJO/INJ",
     price: 8221.09,
     change: 3.04,
-    image: "https://github.com/code-bajju/Project-Image/blob/main/INJ.png?raw=true",
+    image: "https://github.com/code-bajju/Project-Image/blob/main/btc.png?raw=true",
   },
   {
     id: 2,
     pair: "HELIX/DOJO",
     price: 1021.09,
     change: -2.12,
-    image: "https://github.com/code-bajju/Project-Image/blob/main/DOJO.png?raw=true",
+    image: "https://github.com/code-bajju/Project-Image/blob/main/eth.png?raw=true",
   },
   {
     id: 3,
     pair: "ASTROPORT/HYDRO",
     price: 821.09,
     change: 1.03,
-    image: "https://github.com/code-bajju/Project-Image/blob/main/Hydro.png?raw=true", }
+    image: "https://github.com/code-bajju/Project-Image/blob/main/helix.png?raw=true", }
 ];
 
 const Trending = () => {
