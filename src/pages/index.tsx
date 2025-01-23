@@ -220,7 +220,7 @@ const overview = () => {
               />
               <div className=" font-bold text-sm ">INJECTIVE</div>
             </div>
-            <div className=" lg:text-gray-400 hidden lg:inline">
+            <div className=" lg:text-gray-400 hidden lg:inline font-plain">
               Injective Total Value Locked
             </div>
             <div className=" text-4xl hidden lg:inline">{totalTVL}</div>
@@ -251,7 +251,7 @@ const overview = () => {
         <div className=" flex flex-col bg-bluebackground rounded-xl lg:w-[70%] border border-gray-500">
           <div className="">
           {/* <Charted height={200} width={600} /> */}
-          <div className="lg:px-3 lg:text-xl lg:inline hidden">
+          <div className="lg:px-3 lg:text-xl lg:inline hidden font-plain">
             Injective Total Value Locked
           </div>
           <div className="flex flex-col items-center justify-center lg:translate-x-12 lg:translate-y-5">

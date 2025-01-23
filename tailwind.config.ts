@@ -78,6 +78,16 @@ const config = {
           primary: "linear-gradient(to right, #4875F7, #2962FF)",
         },
       }
+      ,
+      fontFamily: {
+        normal: ["Nunito-Regular", "sans"],
+        base: ["Nunito-Regular", "sans"],
+        thin: ["Nunito-Light", "sans"], 
+        plain: ["Nunito-Medium", "sans-serif"],
+        bold: ["Nunito-Bold", "sans-serif"],
+        black: ["Nunito-Black", "sans-serif"],
+        semibold: ["Nunito-SemiBold", "sans-serif"],
+      },
       
     },
   },
