@@ -10,6 +10,7 @@ import InjectiveChart from "@/components/InjectiveChart";
 import { TokensTable } from "@/components/TokensTable";
 import HomePage from "./HomePage";
 import Footer from "@/components/Footer";
+import TokenTable from "@/components/DexTable";
 
 const overview = () => {
 
@@ -274,10 +275,10 @@ const overview = () => {
 
       {/* table options */}
       <div className="hidden lg:inline">
-        <TokensTable />
+        <TokenTable />
       </div>
       <div className="inline lg:hidden">
-        <OverviewTableMobile />
+       <TokenTable/>
       </div>
       {/* <Footer/> */}
     </div>
