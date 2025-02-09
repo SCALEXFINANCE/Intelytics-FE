@@ -255,7 +255,7 @@ const overview = () => {
           <div className="lg:px-3 lg:text-xl lg:inline hidden font-plain">
             Injective Total Value Locked
           </div>
-          <div className="flex flex-col items-center justify-center lg:translate-x-12 lg:translate-y-5">
+          <div className="flex flex-col items-center justify-center p-2">
             <div className="lg:hidden w-full flex justify-between items-center text-sm p-2 ">
               <div className="w-full text-start text-xs flex items-center"><BarChart2/>Token Chart</div>
               <div className="flex justify-end w-full items-center text-xxs text-nowrap space-x-4">

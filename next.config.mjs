@@ -15,6 +15,12 @@ const nextConfig = {
         port: "",
         pathname: "/code-bajju/Project-Image/**",
       },
+      {
+        protocol: "https",
+        hostname: "dd.dexscreener.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

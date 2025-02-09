@@ -177,7 +177,7 @@ const Charted = ({ height, width }: any) => {
     chartValues();
   }, []);
   return (
-    <div className="shadow-xl lg:p-4 h-full">
+    <div className="shadow-xl h-full w-full ">
       <Line data={data} options={options} width={width} height={height} />
     </div>
   );
