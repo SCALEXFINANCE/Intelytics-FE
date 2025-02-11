@@ -142,10 +142,10 @@ const TokenTable: React.FC = () => {
                       </TableCell>
                     )}
                     {visibleColumns.includes("name") && (
-                      <TableCell>{token.baseToken.name}</TableCell>
+                      <TableCell>{token.baseToken.name} <span className="text-bordercolor text-lg">/</span> {token.quoteToken.name}</TableCell>
                     )}
                     {visibleColumns.includes("symbol") && (
-                      <TableCell>{token.baseToken.symbol}</TableCell>
+                      <TableCell>{token.baseToken.symbol}  <span className="text-bordercolor text-lg">/</span> {token.quoteToken.symbol}</TableCell>
                     )}
                     {visibleColumns.includes("chainId") && (
                       <TableCell>{token.chainId}</TableCell>

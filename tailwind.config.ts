@@ -35,7 +35,7 @@ const config = {
         "base": "1rem",
         "lg": "16px",
         "xl": "14px",
-        "2xl": "12px",
+        "2xl": "18px",
         "3xl": "1.875rem",
         "4xl": "2.25rem",
         "5xl": "3rem",

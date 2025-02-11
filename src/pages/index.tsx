@@ -8,6 +8,7 @@ import App from "@/components/TestChart";
 import SearchBar from "@/components/Searchbar";
 import InjectiveChart from "@/components/InjectiveChart";
 import { TokensTable } from "@/components/TokensTable";
+import TradingViewWidget from "@/components/charts/tvcharts";
 import HomePage from "./HomePage";
 import Footer from "@/components/Footer";
 import TokenTable from "@/components/DexTable";
@@ -203,7 +204,7 @@ const overview = () => {
           INJ
         </button>
       </div> */}
-      <div className="lg:hidden">MARKET CHART ANALYSIS</div>
+      <p style={{textShadow:" rgb(255, 255, 255) 2px 2px 20px;"}} className="text-2xl">MARKET CHART ANALYSYS</p>
       {/* graph card */}
       <div className="flex flex-col space-y-4 md:space-y-0 lg:flex-row lg:space-x-4 justify-between">
         {/* left */}
@@ -247,12 +248,11 @@ const overview = () => {
             </div>
           </div>
         </div>
-
         {/* right */}
         <div className=" flex flex-col bg-bluebackground rounded-xl lg:w-[70%] border border-gray-500">
           <div className="">
           {/* <Charted height={200} width={600} /> */}
-          <div className="lg:px-3 lg:text-xl lg:inline hidden font-plain">
+          <div className="lg:px-3 lg:text-lg lg:flex p-2 hidden font-plain">
             Injective Total Value Locked
           </div>
           <div className="flex flex-col items-center justify-center p-2">
@@ -264,7 +264,9 @@ const overview = () => {
                 <div><div>Lowest Price</div><div className="text-bordercolor text-center">0.056</div></div>
               </div>
             </div>
-          <InjectiveChart />
+       <div className=" h-96 w-full">
+      <TradingViewWidget/>
+       </div>
 
           </div>
 
