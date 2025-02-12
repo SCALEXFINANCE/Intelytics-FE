@@ -29,7 +29,7 @@ const data = [
 const Gainer = () => {
   return (
     <div className="border w-full text-sm border-bordercolor p-2  text-white rounded-md">
-      <h2 className="flex space-x-2 items-center text-sm font-bold text-green-400 mb-4"><TrendingUpIcon className="h-6 w-6"/><div className="font-bold">TOP GAINERS</div></h2>
+      <h2 className="flex space-x-2 items-center text-sm font-bold text-green-400 mb-4"><TrendingUpIcon className="h-6 w-6"/><div className="font-bold" style={{textShadow:"green 2px 2px 20px;"}}>TOP GAINERS</div></h2>
       <ul>
         {data.map((item) => (
           <li

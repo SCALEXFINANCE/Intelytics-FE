@@ -2,16 +2,9 @@ import { BarChart, BarChart2, Search } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { OverviewTable, OverviewTableMobile } from "@/components/OverviewTable";
-import Charted from "@/components/ChartComponent";
-import App from "@/components/TestChart";
-import SearchBar from "@/components/Searchbar";
-import InjectiveChart from "@/components/InjectiveChart";
-import { TokensTable } from "@/components/TokensTable";
 import TradingViewWidget from "@/components/charts/tvcharts";
 import HomePage from "./HomePage";
-import Footer from "@/components/Footer";
-import TokenTable from "@/components/DexTable";
+import TokenTable from "@/components/tables/DexTable";
 
 const overview = () => {
 
@@ -252,13 +245,22 @@ const overview = () => {
         <div className=" flex flex-col bg-bluebackground rounded-xl lg:w-[70%] border border-gray-500">
           <div className="">
           {/* <Charted height={200} width={600} /> */}
-          <div className="lg:px-3 lg:text-lg lg:flex p-2 hidden font-plain">
+          <div className="lg:px-3 lg:text-lg p-2 hidden font-plain">
             Injective Total Value Locked
           </div>
+          <div className="lg:px-3 lg:text-2xl p-2 lg:flex hidden text-gray-500 font-plain text-nowrap">
+          <BarChart2/>Token Chart
+          <div className="flex justify-end w-full items-center lg:text-lg text-xxs text-nowrap space-x-4">
+                <div><div>On Average Price</div><div className="text-bordercolor text-center">0.056</div></div>
+                <div><div>Highest Price</div><div className="text-bordercolor text-center">0.056</div></div>
+                <div><div>Lowest Price</div><div className="text-bordercolor text-center">0.056</div></div>
+              </div>
+          </div>
+          
           <div className="flex flex-col items-center justify-center p-2">
-            <div className="lg:hidden w-full flex justify-between items-center text-sm p-2 ">
-              <div className="w-full text-start text-xs flex items-center"><BarChart2/>Token Chart</div>
-              <div className="flex justify-end w-full items-center text-xxs text-nowrap space-x-4">
+            <div className="w-full flex justify-between items-center text-sm p-2 ">
+              <div className="w-full text-start hidden sm:text-xs flex items-center"><BarChart2/>Token Chart</div>
+              <div className="flex justify-end w-full hidden items-center lg:text-lg text-xxs text-nowrap space-x-4">
                 <div><div>On Average Price</div><div className="text-bordercolor text-center">0.056</div></div>
                 <div><div>Highest Price</div><div className="text-bordercolor text-center">0.056</div></div>
                 <div><div>Lowest Price</div><div className="text-bordercolor text-center">0.056</div></div>

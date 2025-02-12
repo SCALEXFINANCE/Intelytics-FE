@@ -1,11 +1,11 @@
 import React from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "@/components/layout/Sidebar";
+import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Logo from "./assets/logo.png";
 import Link from "next/link";
 import { log } from "console";
-import Footer from "./Footer";
 const Layout = ({ children }: any) => {
   const [isVisibie, setIsVisible] = React.useState<boolean>(false);
   const router = useRouter();

@@ -28,7 +28,7 @@ const data = [
 const Trending = () => {
   return (
     <div className="border w-full text-sm border-bordercolor p-2  text-white rounded-md">
-      <h2 className="flex space-x-2 items-center text-sm font-bold text-orange-400 mb-4"><Flame className="h-6 w-6"/><div className="font-bold">TRENDING</div></h2>
+      <h2 className="flex space-x-2 items-center text-sm font-bold text-orange-400 mb-4"><Flame className="h-6 w-6"/><div className="font-bold" style={{textShadow:"orange 2px 2px 20px;"}}>TRENDING</div></h2>
       <ul>
         {data.map((item) => (
           <li
