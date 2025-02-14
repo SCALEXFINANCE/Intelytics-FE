@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Gainer from "./Gainer";
-import Looser from "./Looser";
+import Looser from "./Loser";
 import Trending from "./Trending";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules"; // Corrected import
