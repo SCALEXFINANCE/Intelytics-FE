@@ -3,7 +3,7 @@ import { BarChart2 } from "lucide-react";
 
 const TokenChart = () => {
   return (
-    <div className="flex flex-col bg-bluebackground rounded-xl lg:w-[70%] border border-gray-500">
+    <div className="flex flex-col bg-bluebackground rounded-xl w-full border border-gray-500">
       <div className="lg:px-3 lg:text-2xl p-2 lg:flex hidden text-gray-500 font-plain text-nowrap">
         <BarChart2 /> Token Chart
         <div className="flex justify-end w-full items-center lg:text-lg text-xxs text-nowrap space-x-4">

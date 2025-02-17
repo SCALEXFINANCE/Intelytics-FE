@@ -17,28 +17,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDownIcon } from "lucide-react";
 import Image from "next/image";
+import { TOKEN_ADDRESSES } from "@/lib/constant";
+import router from "next/router";
 
 const API_URL = process.env.NEXT_PUBLIC_DEXSCREENER_API;
-const TOKEN_ADDRESSES = [
-  "inj1n73yuus64z0yrda9hvn77twkspc4uste9j9ydd",
-  "inj1fu5u29slsg2xtsj7v5la22vl4mr4ywl7wlqeck",
-  "inj1l49685vnk88zfw2egf6v65se7trw2497wsqk65",
-  "factory-inj1etz0laas6h7vemg3qtd67jpr6lh8v7xz7gfzqw-hdro",
-  "inj14rgkkvwar36drhuajheu3u84jh9gdk27acfphy",
-  "inj18luqttqyckgpddndh8hvaq25d5nfwjc78m56lc",
-  "factory-inj172ccd0gddgz203e4pf86ype7zjx573tn8g0df9-GINGER",
-  "peggy0x943Af2ece93118B973c95c2F698EE9D15002e604",
-  "inj1fy4hd7gqtdzp6j84v9phacm3f998382yz37rjd",
-  "inj1s4srnj2cdjf3cgun57swe2je8u7n3tkm6kz257",
-  "inj1z647rvv0cfv5xx3tgsdx77qclkwu2ng7tg2zq5",
-  "ibc-4971C5E4786D5995EC7EF894FCFA9CF2E127E95D5D53A982F6A062F3F410EDB8",
-  "factory-inj10gcvfpnn4932kzk56h5kp77mrfdqas8z63qr7n-bits",
-  "factory-inj1q4z7jjxdk7whwmkt39x7krc49xaqapuswhjhkn-boys",
-  "factory-inj1s9smy53dtqq087usaf02sz984uddndwuj2f0wt-injussy",
-  "factory-inj18flmwwaxxqj8m8l5zl8xhjrnah98fcjp3gcy3e-XIII",
-  "factory-inj127l5a2wmkyvucxdlupqyac3y0v6wqfhq03ka64-qunt",
-  "factory-inj13ze65lwstqrz4qy6vvxx3lglnkkuan436aw45e-HACHI",
-];
+
 
 const columns = [
   { id: "image", label: "Logo" },
@@ -53,7 +36,7 @@ const columns = [
   { id: "volumeH6", label: "6H Volume" },
   { id: "volumeH1", label: "1H Volume" },
 ];
-const TokenTable: React.FC = () => {
+const DexTable: React.FC = () => {
   const [tokens, setTokens] = useState<any[]>([]);
   const [visibleColumns, setVisibleColumns] = useState<string[]>(
     columns.map((c) => c.id)
@@ -129,7 +112,7 @@ const TokenTable: React.FC = () => {
         ) : (
           <Table>
             <TableHeader>
-              <TableRow>
+              <TableRow >
                 {columns.map(
                   (column) =>
                     visibleColumns.includes(column.id) && (
@@ -141,7 +124,7 @@ const TokenTable: React.FC = () => {
             <TableBody>
               {tokens.length > 0 ? (
                 tokens.map((token, index) => (
-                  <TableRow key={index}>
+                  <TableRow key={index}onClick={() => router.push(`/tokens/${token.baseToken.address}`)}>
                     {visibleColumns.includes("image") && (
                       <TableCell>
                         <Image
@@ -345,11 +328,5 @@ const TopTokens: React.FC = () => {
   );
 };
 
-const TokensPage: React.FC = () => (
-  <div>
-    <TokenTable />
-    <TopTokens />
-  </div>
-);
 
-export default TokensPage;
+export default DexTable;

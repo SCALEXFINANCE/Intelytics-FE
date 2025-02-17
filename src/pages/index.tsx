@@ -1,7 +1,7 @@
 import React from "react";
 import {useFetchData} from "@/lib/hooks";
 import HomePage from "./HomePage";
-import TokenTable from "@/components/tables/DexTable";
+import DexTable from "@/components/tables/DexTable";
 import TokenInfo from "@/components/TokenInfo";
 import TokenChart from "@/components/tokenChart";
 
@@ -21,11 +21,8 @@ const index = () => {
         <TokenChart />
       </div>
 
-      <div className="hidden lg:inline">
-        <TokenTable />
-      </div>
-      <div className="inline lg:hidden">
-        <TokenTable />
+      <div className="">
+        <DexTable />
       </div>
     </div>
   );
