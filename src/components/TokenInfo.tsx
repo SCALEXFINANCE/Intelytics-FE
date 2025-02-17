@@ -17,44 +17,39 @@ const TokenInfo: React.FC<TokenInfoProps> = ({
   injPrice,
 }) => {
   return (
-    <div className="bg-bluebackground rounded-xl lg:px-2 flex gap-2 flex-col lg:w-[30%] w-full lg:my-0 border border-bordercolor border border-bordercolor-gray-500">
-      <div className="flex flex-col p-2 h-full">
-        <div className="lg:text-2xl lg:flex hidden text-border text-bordercolor font-plain text-nowrap">
-          <CoinsIcon /> Token Info
-        </div>
-        <div className="flex items-center space-x-2 pt-4">
-          <Image alt="INJ Logo" src="/inj.png" height={30} width={30} className="h-6 w-6 rounded-full" />
-          <div className="font-bold text-lg">INJECTIVE</div>
-        </div>
-        <div className="text-4xl hidden lg:inline">{injPrice}</div>
-        <div className="grid space-y-4 h-full">
-  <div className="col-span-3 border border-bordercolor p-4 backdrop-blur-md bg-transparent rounded-lg shadow-md">
-    <div className="flex justify-between">
-      <div>Top Protocols TVL</div>
-      <div>{stable}</div>
-    </div>
-  </div>
-  <div className="p-4 mr-2 border border-bordercolor backdrop-blur-md bg-transparent rounded-lg shadow-md">
-    <div className="flex justify-between">
-      <div>Volume</div>
-      <div>{volume}</div>
-    </div>
-  </div>
-  <div className="p-4 border ml-2 border-bordercolor backdrop-blur-md bg-transparent rounded-lg shadow-md">
-    <div className="flex justify-between">
-      <div>Liquidity Staking</div>
-      <div>{funding}</div>
-    </div>
-  </div>
-  <div className="p-4 border border-bordercolor w-full col-span-3 backdrop-blur-md bg-transparent rounded-lg shadow-md">
-    <div className="flex justify-between">
-      <div>Total</div>
-      <div>{totalTVL}</div>
-    </div>
-  </div>
-</div>
+    <div className="bg-bluebackground rounded-xl border border-bordercolor p-4 w-full lg:w-1/3 flex flex-col gap-4">
+      {/* Header */}
+      <div className="flex items-center gap-2 text-bordercolor text-lg lg:text-2xl font-semibold">
+        <CoinsIcon className="w-6 h-6" />
+        <span>Token Info</span>
+      </div>
+      
+      {/* Token Name */}
+      <div className="flex items-center space-x-2">
+        <Image alt="INJ Logo" src="/inj.png" height={30} width={30} className="h-8 w-8 rounded-full" />
+        <span className="font-bold text-xl">INJECTIVE</span>
+      </div>
+      
+      {/* Token Price (Visible on Large Screens) */}
+      <div className="text-3xl hidden lg:block">{injPrice}</div>
 
+      {/* Info Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+        <InfoCard label="Top Protocols TVL" value={stable} />
+        <InfoCard label="Volume" value={volume} />
+        <InfoCard label="Liquidity Staking" value={funding} />
+        <InfoCard label="Total" value={totalTVL} fullWidth />
+      </div>
+    </div>
+  );
+};
 
+const InfoCard: React.FC<{ label: string; value?: string; fullWidth?: boolean }> = ({ label, value, fullWidth }) => {
+  return (
+    <div className={`border border-bordercolor p-4 rounded-lg shadow-md backdrop-blur-md bg-transparent ${fullWidth ? 'col-span-full' : ''}`}>
+      <div className="flex justify-between text-sm sm:text-base">
+        <span>{label}</span>
+        <span className="font-medium">{value || "-"}</span>
       </div>
     </div>
   );

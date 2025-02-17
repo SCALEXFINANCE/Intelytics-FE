@@ -8,7 +8,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import imageNotFound from "@/components/assets/404-image.png"
+import imageNotFound from "@/components/assets/404-image.png";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -55,7 +55,9 @@ const columns = [
 ];
 const TokenTable: React.FC = () => {
   const [tokens, setTokens] = useState<any[]>([]);
-  const [visibleColumns, setVisibleColumns] = useState<string[]>(columns.map((c) => c.id));
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(
+    columns.map((c) => c.id)
+  );
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -81,7 +83,9 @@ const TokenTable: React.FC = () => {
 
   const toggleColumn = (columnId: string) => {
     setVisibleColumns((prev) =>
-      prev.includes(columnId) ? prev.filter((c) => c !== columnId) : [...prev, columnId]
+      prev.includes(columnId)
+        ? prev.filter((c) => c !== columnId)
+        : [...prev, columnId]
     );
   };
 
@@ -89,12 +93,14 @@ const TokenTable: React.FC = () => {
     <div className="w-full pb-8">
       <div className="flex items-center py-4">
         <div className="border border-bordercolor bg-bluebackground lg:px-2 px-4 rounded-xl flex gap-4 w-full justify-between">
-          <div className="flex p-2 font-bold text-white justify-center items-center">TOKENS</div>
+          <div className="flex p-2 font-bold text-white justify-center items-center">
+            TOKENS
+          </div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="default" className="m-2">
-                Columns <ChevronDownIcon className="m-2 h-4 w-4"/>
+                Columns <ChevronDownIcon className="m-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -112,14 +118,14 @@ const TokenTable: React.FC = () => {
         </div>
       </div>
 
-      <div className="rounded-md border border-gray-700">
+      <div className="rounded-md border border-gray-700 hidden lg:block">
         {loading ? (
-            <div className="flex justify-center items-center p-4 space-x-2">
-            <span className='sr-only'>Loading...</span>
-  <div className='h-4 w-4 bg-white rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-<div className='h-4 w-4 bg-white rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-<div className='h-4 w-4 bg-white rounded-full animate-bounce'></div>
-        </div>
+          <div className="flex justify-center items-center p-4 space-x-2">
+            <span className="sr-only">Loading...</span>
+            <div className="h-4 w-4 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+            <div className="h-4 w-4 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+            <div className="h-4 w-4 bg-white rounded-full animate-bounce"></div>
+          </div>
         ) : (
           <Table>
             <TableHeader>
@@ -138,14 +144,28 @@ const TokenTable: React.FC = () => {
                   <TableRow key={index}>
                     {visibleColumns.includes("image") && (
                       <TableCell>
-                        <Image width={100} height={100} className="w-8 h-8 rounded-full bg-white p-1" src={token.info?.imageUrl || imageNotFound} alt={token.baseToken.name}></Image>
+                        <Image
+                          width={100}
+                          height={100}
+                          className="w-8 h-8 rounded-full bg-white p-1"
+                          src={token.info?.imageUrl || imageNotFound}
+                          alt={token.baseToken.name}
+                        ></Image>
                       </TableCell>
                     )}
                     {visibleColumns.includes("name") && (
-                      <TableCell>{token.baseToken.name} <span className="text-bordercolor text-lg">/</span> {token.quoteToken.name}</TableCell>
+                      <TableCell>
+                        {token.baseToken.name}{" "}
+                        <span className="text-bordercolor text-lg">/</span>{" "}
+                        {token.quoteToken.name}
+                      </TableCell>
                     )}
                     {visibleColumns.includes("symbol") && (
-                      <TableCell>{token.baseToken.symbol}  <span className="text-bordercolor text-lg">/</span> {token.quoteToken.symbol}</TableCell>
+                      <TableCell>
+                        {token.baseToken.symbol}{" "}
+                        <span className="text-bordercolor text-lg">/</span>{" "}
+                        {token.quoteToken.symbol}
+                      </TableCell>
                     )}
                     {visibleColumns.includes("chainId") && (
                       <TableCell>{token.chainId}</TableCell>
@@ -175,13 +195,76 @@ const TokenTable: React.FC = () => {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={visibleColumns.length} className="text-center">
+                  <TableCell
+                    colSpan={visibleColumns.length}
+                    className="text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>
               )}
             </TableBody>
           </Table>
+        )}
+      </div>
+      <div className="lg:hidden block">
+        {tokens.length > 0 ? (
+          tokens.map((token, index) => (
+            <div className="border border-bordercolor my-2 p-4 rounded-lg" key={index}>
+              <div className="flex items-center mb-2 mr-2 space-x-2">
+                {" "}
+                {visibleColumns.includes("image") && (
+                  <div>
+                    <Image
+                      width={100}
+                      height={100}
+                      className="w-12 h-12 rounded-full bg-white p-1"
+                      src={token.info?.imageUrl || imageNotFound}
+                      alt={token.baseToken.name}
+                    ></Image>
+                  </div>
+                )}
+                {visibleColumns.includes("name") && (
+                  <div>
+                  <div className="space-x-2">
+                  <span> {token.baseToken.name}</span>
+                    <span className="text-bordercolor text-lg">/</span>
+                 <span> {token.quoteToken.name}</span>
+                  </div>
+                    {visibleColumns.includes("symbol") && (
+                      <div className="space-x-2">
+                           <span className="rounded-full bg-bordercolor px-2"> {token.baseToken.symbol}</span>
+                       
+                        <span className="text-bordercolor text-lg">/</span>
+                       <span className="rounded-full bg-bordercolor px-2"> {token.quoteToken.symbol}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+              {visibleColumns.includes("volumeH24") && (
+                <div className="flex justify-between">
+                  <div>Vol 24h</div>
+                  <div className=" text-bordercolor">${token.volume.h24}</div>
+                </div>
+              )}
+
+              {visibleColumns.includes("priceUsd") && (
+                <div className="flex justify-between">
+                  <div>Price</div>
+                  <div className="text-bordercolor">${token.priceUsd}</div>
+                </div>
+              )}
+              {visibleColumns.includes("liquidityUsd") && (
+                <div className="flex justify-between">
+                  <div>Liquidity</div>
+                  <div className="text-bordercolor">${token.liquidity.usd}</div>
+                </div>
+              )}
+            </div>
+          ))
+        ) : (
+          <div>no result</div>
         )}
       </div>
     </div>
@@ -214,10 +297,10 @@ const TopTokens: React.FC = () => {
       <div className="rounded-md border border-gray-700">
         {loading ? (
           <div className="flex justify-center items-center p-4 space-x-2">
-            	<span className='sr-only'>Loading...</span>
-  	<div className='h-4 w-4 bg-white rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-	<div className='h-4 w-4 bg-white rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-	<div className='h-4 w-4 bg-white rounded-full animate-bounce'></div>
+            <span className="sr-only">Loading...</span>
+            <div className="h-4 w-4 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+            <div className="h-4 w-4 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+            <div className="h-4 w-4 bg-white rounded-full animate-bounce"></div>
           </div>
         ) : (
           <Table>
