@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import Image from "next/image";
-import HelixChart from "@/components/HelixChart";
+import HelixChart from "@/components/charts/HelixChart";
 
 const helix = () => {
   const [tvl, settvl] = useState<string>();

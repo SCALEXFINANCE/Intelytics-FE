@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import Image from "next/image";
-import AstroChart from "@/components/AstroChart";
+import AstroChart from "@/components/charts/AstroChart";
 
 const dojoswap = () => {
   const [tvl, settvl] = useState<string>();

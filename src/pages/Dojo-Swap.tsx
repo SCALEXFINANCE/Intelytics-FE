@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import Image from "next/image";
-import DojoChart from "@/components/DojoChart";
+import DojoChart from "@/components/charts/DojoChart";
 // import DojoSwapChart from "@/components/DojoChart";
 
 export default function DojoSwap() {
