@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import { Key, useEffect, useState } from "react";
 import Image from "next/image";
 import TokenChart from "@/components/tokenChart";
-
+import bannerdefault from "@/components/assets/banner-default.png"
+import tokendefault from "@/components/assets/404-image.png"
 const API_URL = process.env.NEXT_PUBLIC_DEXSCREENER_API;
 
 const TokenDetails = () => {
@@ -63,19 +64,19 @@ const TokenDetails = () => {
             <Image
                width={1000}
                height={1000}
-               className="w-auto h-40 lg:h-96 rounded-md"
-               src={pair.info?.openGraph || "/default-token.png"}
+               className="w-auto h-40 lg:h-96 rounded-md border-bordercolor border"
+               src={pair.info?.openGraph || bannerdefault}
                alt={pair.baseToken?.name || "N/A"}
              /></div>
              <div className="space-y-2 w-full">
                 
              <div className="flex space-x-2 justify-between w-full">
-           <div className="flex">
+           <div className="flex space-x-1">
            <Image
                 width={80}
                 height={80}
-                className="w-20 h-20 rounded-full p-1"
-                src={pair.info?.imageUrl || "/default-token.png"}
+                className="w-20 h-20 rounded-full p-1 bg-bordercolor"
+                src={pair.info?.imageUrl || tokendefault}
                 alt={pair.baseToken?.name || "N/A"}
               />
                 <h2 className="text-3xl font-semibold">{pair.baseToken?.name || "N/A"} <p className="text-white text-xl bg-bordercolor rounded-full">{pair.baseToken?.symbol || "N/A"}</p></h2>
