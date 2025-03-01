@@ -39,7 +39,7 @@ const TokenDetails = () => {
   if (!tokenData.length) return <p className="text-center">Token not found.</p>;
 
   return (
-    <div className="p-4 h-screen">
+    <div className="p-4 min-h-screen">
       {/* Header Banner */}
 
       {tokenData.map(

@@ -124,7 +124,7 @@ const DexTable: React.FC = () => {
             <TableBody>
               {tokens.length > 0 ? (
                 tokens.map((token, index) => (
-                  <TableRow key={index}onClick={() => router.push(`/tokens/${token.baseToken.address}`)}>
+                  <TableRow key={index} onClick={() => router.push(`/tokens/${token.baseToken.address}`)}>
                     {visibleColumns.includes("image") && (
                       <TableCell>
                         <Image
@@ -193,9 +193,8 @@ const DexTable: React.FC = () => {
       <div className="lg:hidden block">
         {tokens.length > 0 ? (
           tokens.map((token, index) => (
-            <div className="border border-bordercolor my-2 p-4 rounded-lg" key={index}>
+            <div className="border border-bordercolor my-2 p-4 rounded-lg" key={index} onClick={() => router.push(`/tokens/${token.baseToken.address}`)}>
               <div className="flex items-center mb-2 mr-2 space-x-2">
-                {" "}
                 {visibleColumns.includes("image") && (
                   <div>
                     <Image

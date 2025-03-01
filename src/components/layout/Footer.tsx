@@ -1,9 +1,9 @@
 import { TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Chrome, File, TwitchIcon, Twitter, XIcon } from "lucide-react";
-import { Button } from "./ui/button";
-const Footer = () => {
+const div = () => {
   return (
-    <footer className="bg-darkblue text-white p-6 text-start">
+
+    <div className="bg-darkblue text-whitetext-start lg:p-4 p-2">
       
       <div className="flex">
         
@@ -49,7 +49,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
-export default Footer;
+export default div;

@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { POLYGON_TOKEN_PAIRS } from "@/lib/constant";
-import {
-  invalidateBalanceCache,
-  useFetchBalance,
-  useFetchBalances,
-} from "@/hooks/useFetchBalance";
-import { useTokenBalances } from "../Providers/BalanceProvider";
+import { POLYGON_TOKEN_PAIRS, POLYGON_TOKENS } from "@/lib/constant";
+// import {
+//   invalidateBalanceCache,
+//   useFetchBalance,
+//   useFetchBalances,
+// } from "@/hooks/useFetchBalance";
+// import { useTokenBalances } from "../Providers/BalanceProvider";
 
 interface TokenSelectorProps {
   selectedToken: { symbol: string; name: string; logoURI: string } | null;
