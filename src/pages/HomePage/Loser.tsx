@@ -29,7 +29,7 @@ const data = [
 const Looser = () => {
   return (
     <div className="border w-full text-sm border-bordercolor p-2 text-white rounded-md">
-      <h2 className="flex space-x-2 items-center text-sm font-bold text-red-400 mb-4"><TrendingDownIcon className="h-6 w-6"/><div className="font-bold" style={{textShadow:"red 2px 2px 20px;"}}>TOP LOSERS</div></h2>
+      <h2 className="flex space-x-2 items-center text-sm font-bold text-red-400 mb-4"><TrendingDownIcon className="h-6 w-6"/><div className="font-bold" style={{textShadow:"red 2px 2px 20px"}}>TOP LOSERS</div></h2>
       <ul>
         {data.map((item) => (
           <li

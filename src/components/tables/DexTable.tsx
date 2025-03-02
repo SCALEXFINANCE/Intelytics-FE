@@ -122,71 +122,69 @@ const DexTable: React.FC = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {tokens.length > 0 ? (
-                tokens.map((token, index) => (
-                  <TableRow key={index} onClick={() => router.push(`/tokens/${token.baseToken.address}`)}>
-                    {visibleColumns.includes("image") && (
-                      <TableCell>
-                        <Image
-                          width={100}
-                          height={100}
-                          className="w-8 h-8 rounded-full bg-white p-1"
-                          src={token.info?.imageUrl || imageNotFound}
-                          alt={token.baseToken.name}
-                        ></Image>
-                      </TableCell>
-                    )}
-                    {visibleColumns.includes("name") && (
-                      <TableCell>
-                        {token.baseToken.name}{" "}
-                        <span className="text-bordercolor text-lg">/</span>{" "}
-                        {token.quoteToken.name}
-                      </TableCell>
-                    )}
-                    {visibleColumns.includes("symbol") && (
-                      <TableCell>
-                        {token.baseToken.symbol}{" "}
-                        <span className="text-bordercolor text-lg">/</span>{" "}
-                        {token.quoteToken.symbol}
-                      </TableCell>
-                    )}
-                    {visibleColumns.includes("chainId") && (
-                      <TableCell>{token.chainId}</TableCell>
-                    )}
-                    {visibleColumns.includes("dexId") && (
-                      <TableCell>{token.dexId}</TableCell>
-                    )}
-                    {visibleColumns.includes("priceUsd") && (
-                      <TableCell>${token.priceUsd}</TableCell>
-                    )}
-                    {visibleColumns.includes("priceNative") && (
-                      <TableCell>${token.priceNative}</TableCell>
-                    )}
-                    {visibleColumns.includes("liquidityUsd") && (
-                      <TableCell>${token.liquidity.usd}</TableCell>
-                    )}
-                    {visibleColumns.includes("volumeH24") && (
-                      <TableCell>${token.volume.h24}</TableCell>
-                    )}
-                    {visibleColumns.includes("volumeH6") && (
-                      <TableCell>${token.volume.h6}</TableCell>
-                    )}
-                    {visibleColumns.includes("volumeH1") && (
-                      <TableCell>${token.volume.h1}</TableCell>
-                    )}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={visibleColumns.length}
-                    className="text-center"
-                  >
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
+  {tokens.length > 0 ? (
+    tokens.map((token, index) => (
+      <TableRow key={index} onClick={() => router.push(`/tokens/${token.baseToken.address}`)}>
+        {visibleColumns.includes("image") && (
+          <TableCell>
+            <Image
+              width={100}
+              height={100}
+              className="w-8 h-8 rounded-full bg-white p-1"
+              src={token.info?.imageUrl || imageNotFound}
+              alt={token.baseToken.name}
+            />
+          </TableCell>
+        )}
+        {visibleColumns.includes("name") && (
+          <TableCell>
+            {token.baseToken.name}{" "}
+            <span className="text-bordercolor text-lg">/</span>{" "}
+            {token.quoteToken.name}
+          </TableCell>
+        )}
+        {visibleColumns.includes("symbol") && (
+          <TableCell>
+            {token.baseToken.symbol}{" "}
+            <span className="text-bordercolor text-lg">/</span>{" "}
+            {token.quoteToken.symbol}
+          </TableCell>
+        )}
+        {visibleColumns.includes("chainId") && (
+          <TableCell>{token.chainId || "-"}</TableCell>
+        )}
+        {visibleColumns.includes("dexId") && (
+          <TableCell>{token.dexId || "-"}</TableCell>
+        )}
+        {visibleColumns.includes("priceUsd") && (
+          <TableCell>{token.priceUsd ? `$${token.priceUsd}` : "-"}</TableCell>
+        )}
+        {visibleColumns.includes("priceNative") && (
+          <TableCell>{token.priceNative ? `$${token.priceNative}` : "-"}</TableCell>
+        )}
+        {visibleColumns.includes("liquidityUsd") && (
+          <TableCell>{token.liquidity?.usd ? `$${token.liquidity.usd}` : "-"}</TableCell>
+        )}
+        {visibleColumns.includes("volumeH24") && (
+          <TableCell>{token.volume?.h24 ? `$${token.volume.h24}` : "-"}</TableCell>
+        )}
+        {visibleColumns.includes("volumeH6") && (
+          <TableCell>{token.volume?.h6 ? `$${token.volume.h6}` : "-"}</TableCell>
+        )}
+        {visibleColumns.includes("volumeH1") && (
+          <TableCell>{token.volume?.h1 ? `$${token.volume.h1}` : "-"}</TableCell>
+        )}
+      </TableRow>
+    ))
+  ) : (
+    <TableRow>
+      <TableCell colSpan={visibleColumns.length} className="text-center">
+        No results.
+      </TableCell>
+    </TableRow>
+  )}
+</TableBody>
+
           </Table>
         )}
       </div>
@@ -225,24 +223,32 @@ const DexTable: React.FC = () => {
                 )}
               </div>
               {visibleColumns.includes("volumeH24") && (
-                <div className="flex justify-between">
-                  <div>Vol 24h</div>
-                  <div className=" text-bordercolor">${token.volume.h24}</div>
-                </div>
-              )}
+  <div className="flex justify-between">
+    <div>Vol 24h</div>
+    <div className="text-bordercolor">
+      {token.volume?.h24 ? `$${token.volume.h24}` : "-"}
+    </div>
+  </div>
+)}
 
-              {visibleColumns.includes("priceUsd") && (
-                <div className="flex justify-between">
-                  <div>Price</div>
-                  <div className="text-bordercolor">${token.priceUsd}</div>
-                </div>
-              )}
-              {visibleColumns.includes("liquidityUsd") && (
-                <div className="flex justify-between">
-                  <div>Liquidity</div>
-                  <div className="text-bordercolor">${token.liquidity.usd}</div>
-                </div>
-              )}
+{visibleColumns.includes("priceUsd") && (
+  <div className="flex justify-between">
+    <div>Price</div>
+    <div className="text-bordercolor">
+      {token.priceUsd ? `$${token.priceUsd}` : "-"}
+    </div>
+  </div>
+)}
+
+{visibleColumns.includes("liquidityUsd") && (
+  <div className="flex justify-between">
+    <div>Liquidity</div>
+    <div className="text-bordercolor">
+      {token.liquidity?.usd ? `$${token.liquidity.usd}` : "-"}
+    </div>
+  </div>
+)}
+
             </div>
           ))
         ) : (

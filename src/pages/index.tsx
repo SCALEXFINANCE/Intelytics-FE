@@ -13,7 +13,7 @@ const index = () => {
     <div className="flex flex-col space-y-4 p-4">
       <HomePage />
       <p
-        style={{ textShadow: "rgb(255, 255, 255) 2px 2px 20px;" }}
+        style={{ textShadow: "rgb(255, 255, 255) 2px 2px 20px" }}
         className="text-2xl"
       >
         MARKET CHART ANALYSIS
