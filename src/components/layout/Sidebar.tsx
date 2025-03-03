@@ -44,7 +44,7 @@ const Sidebar = ({ visible, setVisible }: any) => {
   };
 
   return (
-    <div className="bg-[#04041E] text-white lg:flex lg:flex-row lg:items-center lg:justify-between lg:px-4 lg:py-4">
+    <div style={{zIndex:"999"}} className="bg-[#04041E]/10 backdrop-blur-lg fixed w-full text-white lg:flex lg:flex-row lg:items-center lg:justify-between lg:px-4 lg:py-4">
       {/* Logo */}
       <div className="flex items-center justify-between p-4 lg:py-0">
         <Link href="/">

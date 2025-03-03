@@ -7,10 +7,10 @@ const Swap = () => {
   const [slippage, setSlippage] = useState(0.5);
 
   return (
-    <div  style={{textShadow:"red 2px 2px 20px"}}className="h-full bg-bluebackground text-white p-2 border rounded-xl w-full mx-auto">
+    <div  style={{textShadow:"red 2px 2px 20px"}}className="h-full bg-bluebackground text-white p-2  rounded-xl w-full mx-auto">
       <h2 className="text-xl">INTELYTICS SWAP</h2>
       
-      <div className="bg-black text-gray-300 p-2 rounded-lg flex items-center justify-between">
+      <div className="bg-black text-color p-2 rounded-lg flex items-center justify-between">
         <span>SLIPPAGE</span>
         <div className="flex gap-2">
           {[0.1, 0.5, 1.0, 0.5].map((value, index) => (

@@ -189,8 +189,9 @@ const TokenDetails = () => {
               </div>
             </div>
             <div className="rounded-md my-4 h-full lg:flex w-full">
-              <div className="w-full">
+              <div className="w-full space-y-4 lg:space-y-0 lg:space-x-4 lg:flex">
                 <TokenChart />
+                <Swap/>
               </div>
             </div>
           </div>
