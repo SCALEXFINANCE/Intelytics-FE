@@ -1,29 +1,27 @@
 import TradingViewWidget from "@/components/charts/tvcharts";
-import { BarChart2 } from "lucide-react";
+import { BarChart, BarChart2 } from "lucide-react";
 
 const TokenChart = () => {
   return (
-    <div className="flex flex-col bg-bluebackground rounded-xl w-full border border-gray-500">
-      <div className="lg:px-3 lg:text-2xl p-2 lg:flex hidden text-gray-500 font-plain text-nowrap">
-        <BarChart2 /> Token Chart
-        {/* <div className="flex justify-end w-full items-center lg:text-lg text-xxs text-nowrap space-x-4">
-          <div>
-            <div>On Average Price</div>
-            <div className="text-bordercolor text-center">0.056</div>
+    <div className="bg-gray-900 rounded-xl border border-gray-700 w-full lg:w-full  h-full overflow-hidden">
+     {/* Header */}
+     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between m-2 gap-3">
+          <div className="flex items-center">
+            <button 
+              // onClick={handleGoBack}
+              className="mr-3 p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-white transition-colors flex items-center justify-center group"
+              aria-label="Go back"
+            >
+              <BarChart size={20} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
+            <h2 className="text-2xl font-bold text-white">Chart Info</h2>
           </div>
-          <div>
-            <div>Highest Price</div>
-            <div className="text-bordercolor text-center">0.056</div>
-          </div>
-          <div>
-            <div>Lowest Price</div>
-            <div className="text-bordercolor text-center">0.056</div>
-          </div>
-        </div> */}
-      </div>
+        </div>
 
-      <div className="h-96 w-full">
+      {/* Chart Area */}
+      <div className="lg:h-full h-96 pb-20 w-full">
         <TradingViewWidget />
+        {/* Replace with <TradingViewWidget /> in your actual code */}
       </div>
     </div>
   );

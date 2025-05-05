@@ -67,7 +67,7 @@ const Signin = () => {
           <Image src="/search.png" alt="" height={30} width={30} />
           <div className="text-2xl font-bold">Welcome Back</div>
           <div className="text-md text-gray-600">
-            Don't have an account yet?{" "}
+            Don t have an account yet?{" "}
             <span className="text-white">
               <Link href="/Signup">Sign Up</Link>
             </span>

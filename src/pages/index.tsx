@@ -13,22 +13,27 @@ const index = () => {
     <div className="flex flex-col space-y-4 p-4">
       <HomePage />
       <p
-        style={{ textShadow: "rgb(255, 255, 255) 2px 2px 20px" }}
+        // style={{ textShadow: "rgb(255, 255, 255) 2px 2px 20px" }}
         className="text-2xl"
       >
         MARKET CHART ANALYSIS
       </p>
 
-      <div className="flex flex-col space-y-4 md:space-y-0 lg:flex-row lg:space-x-4 justify-between">
-        <TokenInfo
-          totalTVL={totalTVL}
-          stable={stable}
-          volume={volume}
-          funding={funding}
-          injPrice={injPrice}
-        />
-        <TokenChart />
-      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+  <div className="lg:col-span-4">
+    <TokenInfo
+      totalTVL={totalTVL}
+      stable={stable}
+      volume={volume}
+      funding={funding}
+      injPrice={injPrice}
+    />
+  </div>
+  <div className="lg:col-span-8">
+    <TokenChart />
+  </div>
+</div>
+
 
       <div className="">
         <DexTable />

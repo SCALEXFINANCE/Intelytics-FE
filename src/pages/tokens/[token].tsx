@@ -5,6 +5,8 @@ import TokenChart from "@/components/tokenChart";
 import bannerdefault from "@/components/assets/banner-default.png";
 import tokendefault from "@/components/assets/404-image.png";
 import Swap from "@/components/swap/Swap";
+import { Copy, Check, ArrowLeft, Loader } from "lucide-react";
+// import Navbar from "@/components/Navbar/Navbar";
 
 const API_URL = process.env.NEXT_PUBLIC_DEXSCREENER_API;
 
@@ -14,9 +16,15 @@ const TokenDetails = () => {
 
   const [tokenData, setTokenData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
 
   const scriptLoaded = useRef(false); // Track script execution
+
+  const items = [
+    { label: "Home", href: "/" },
+    { label: "Dashboard", href: "/Dashboard" },
+    { label: "Tokens", href: "/Tokens" },
+  ];
 
   useEffect(() => {
     if (!token || scriptLoaded.current) return;
@@ -37,167 +45,300 @@ const TokenDetails = () => {
     scriptLoaded.current = true; // Mark script as loaded
   }, [token]);
 
-  if (loading) return <p className="text-center">Loading...</p>;
-  if (!tokenData?.length) return <p className="text-center">Token not found.</p>;
+  const handleGoBack = () => {
+    router.back();
+  };
+
+  const copyToClipboard = (text: string): void => {
+    navigator.clipboard.writeText(text);
+    setCopied(text);
+    setTimeout(() => setCopied(null), 2000);
+  };
+
+  const shortenAddress = (address: string): string => `${address.slice(0, 6)}...${address.slice(-4)}`;
+
+  if (loading) {
+    return (
+      <>
+        {/* <Navbar items={items} /> */}
+        <div className="w-full transition-all md:p-6 p-2 duration-300">
+          <div className="bg-gray-900 lg:p-3 md:p-5 p-3 rounded-xl">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
+              <div className="flex items-center">
+                <button 
+                  onClick={handleGoBack}
+                  className="mr-3 p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-white transition-colors flex items-center justify-center group"
+                  aria-label="Go back"
+                >
+                  <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+                </button>
+                <h2 className="text-2xl font-bold text-white">Token Details</h2>
+              </div>
+              <div className="flex items-center gap-3 self-end sm:self-auto">
+                <div className="text-sm text-gray-400 flex items-center bg-gray-800 px-3 py-1.5 rounded-lg">
+                  <Loader size={16} className="animate-spin mr-2" />
+                  <span>Loading token data...</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="animate-pulse space-y-4">
+              <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+                <div className="h-1 w-full bg-gradient-to-r from-bordercolor to-gray-600" />
+                <div className="p-4">
+                  <div className="flex items-center mb-4">
+                    <div className="rounded-full bg-gray-700 h-12 w-12"></div>
+                    <div className="ml-3">
+                      <div className="h-5 bg-gray-700 rounded w-24 mb-2"></div>
+                      <div className="h-4 bg-gray-700 rounded w-16"></div>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <div className="h-4 bg-gray-700 rounded w-20"></div>
+                      <div className="h-4 bg-gray-700 rounded w-24"></div>
+                    </div>
+                    <div className="flex justify-between">
+                      <div className="h-4 bg-gray-700 rounded w-20"></div>
+                      <div className="h-4 bg-gray-700 rounded w-28"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gray-800 rounded-xl border border-gray-700 h-64"></div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (!tokenData?.length) {
+    return (
+      <>
+        {/* <Navbar items={items} /> */}
+        <div className="w-full transition-all md:p-6 p-2 duration-300">
+          <div className="bg-gray-900 lg:p-3 md:p-5 p-3 rounded-xl">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
+              <div className="flex items-center">
+                <button 
+                  onClick={handleGoBack}
+                  className="mr-3 p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-white transition-colors flex items-center justify-center group"
+                  aria-label="Go back"
+                >
+                  <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+                </button>
+                <h2 className="text-2xl font-bold text-white">Token Details</h2>
+              </div>
+            </div>
+            <div className="text-center py-12">
+              <p className="text-white text-lg">Token not found.</p>
+              <button 
+                onClick={handleGoBack}
+                className="mt-4 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors"
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
-    <div className="p-4 min-h-screen">
-      {tokenData.map(
-        (
-          pair: {
-            baseToken: { name: any; symbol: any };
-            info: {
-              openGraph: string;
-              imageUrl: any;
-              websites: { url: string; label: any }[];
-              socials: any[];
-            };
-            chainId: any;
-            dexId: any;
-            pairAddress: any;
-            priceUsd: any;
-            liquidity: { usd: any };
-            volume: { h24: any; h6: any; h1: any };
-            priceChange: { h24: any };
-          },
-          index: Key | null | undefined
-        ) => (
-          <div key={index}>
-            <div className="lg:flex text-white text-center rounded-lg shadow-md border border-bordercolor p-2 lg:p-4">
-              <div className="w-full flex justify-center items-center">
+    <>
+      {/* <Navbar items={items} /> */}
+      <div className="w-full transition-all md:p-6 p-2 duration-300">
+        <div className="bg-gray-900 lg:p-3 md:p-5 p-3 rounded-xl">
+          {/* Header with back button */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
+            <div className="flex items-center">
+              <button 
+                onClick={handleGoBack}
+                className="mr-3 p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-white transition-colors flex items-center justify-center group"
+                aria-label="Go back"
+              >
+                <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+              </button>
+              <h2 className="text-2xl font-bold text-white">Token Details</h2>
+            </div>
+            
+            <div className="flex items-center gap-3 self-end sm:self-auto">
+              <div className="text-sm text-gray-400 flex items-center bg-gray-800 px-3 py-1.5 rounded-lg">
+                <span>{tokenData.length} pair{tokenData.length !== 1 ? 's' : ''} found</span>
+              </div>
+            </div>
+          </div>
+
+          {tokenData.map((pair: any, index: Key) => (
+            <div key={index} className="space-y-4">
+              {/* Token Overview Card */}
+              <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-bordercolor">
+                {/* Gradient top bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-bordercolor to-gray-600" />
+                
+                <div className="p-4">
+                  {/* Token Header */}
+                  <div className="flex items-center mb-4">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-bordercolor to-gray-600 rounded-full opacity-20 animate-pulse" />
+                      <Image
+                        src={pair.info?.imageUrl || tokendefault}
+                        alt={pair.baseToken?.name || "N/A"}
+                        width={48}
+                        height={48}
+                        className="rounded-full border-2 border-gray-700 z-10 relative"
+                      />
+                    </div>
+                    <div className="ml-3">
+                      <h3 className="text-lg font-bold text-white">{pair.baseToken?.name || "N/A"}</h3>
+                      <span className="inline-block px-2 py-1 text-xs font-medium bg-gray-700 text-gray-300 rounded-full">
+                        {pair.baseToken?.symbol || "N/A"}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Key Metrics */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div className="bg-gray-900 bg-opacity-40 px-3 py-2 rounded-lg">
+                      <div className="text-sm text-gray-400 mb-1">Price (USD)</div>
+                      <div className="text-lg font-bold text-white">${pair.priceUsd || "N/A"}</div>
+                      <div className="text-xs text-gray-500">24h Change: ${pair.priceChange?.h24 || "N/A"}</div>
+                    </div>
+                    
+                    <div className="bg-gray-900 bg-opacity-40 px-3 py-2 rounded-lg">
+                      <div className="text-sm text-gray-400 mb-1">Liquidity (USD)</div>
+                      <div className="text-lg font-bold text-white">${pair.liquidity?.usd || "N/A"}</div>
+                      <div className="text-xs text-gray-500">&nbsp;</div>
+                    </div>
+                    
+                    <div className="bg-gray-900 bg-opacity-40 px-3 py-2 rounded-lg">
+                      <div className="text-sm text-gray-400 mb-1">24h Volume</div>
+                      <div className="text-lg font-bold text-white">${pair.volume?.h24 || "N/A"}</div>
+                      <div className="text-xs text-gray-500">1h: ${pair.volume?.h1 || "N/A"}</div>
+                    </div>
+                  </div>
+                  
+                  {/* Token Info */}
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-md font-semibold text-white mb-2">Token Details</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center text-sm">
+                            <span className="text-gray-400">Chain ID</span>
+                            <span className="font-medium text-gray-300">{pair.chainId || "N/A"}</span>
+                          </div>
+                          <div className="flex justify-between items-center text-sm">
+                            <span className="text-gray-400">Dex ID</span>
+                            <span className="font-medium text-gray-300">{pair.dexId || "N/A"}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center text-sm">
+                            <span className="text-gray-400">Pair Address</span>
+                            <div className="flex items-center space-x-1">
+                              <span className="font-mono text-gray-300">{shortenAddress(pair.pairAddress || "")}</span>
+                              <button
+                                onClick={() => copyToClipboard(pair.pairAddress)}
+                                className="p-1 rounded-md hover:bg-gray-700 transition-colors"
+                                title="Copy address"
+                              >
+                                {copied === pair.pairAddress ? (
+                                  <Check size={14} className="text-green-500" />
+                                ) : (
+                                  <Copy size={14} className="text-gray-400" />
+                                )}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Links & Socials */}
+                    <div>
+                      <h4 className="text-md font-semibold text-white mb-2">Links & Socials</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center text-sm">
+                            <span className="text-gray-400">Website</span>
+                            <a
+                              href={pair.info?.websites?.[0]?.url || "#"}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-300 hover:text-blue-400 transition-colors"
+                            >
+                              {pair.info?.websites?.[0]?.label || "N/A"}
+                            </a>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <div className="flex items-center text-sm">
+                            <span className="text-gray-400 mr-2">Socials</span>
+                            <div className="flex flex-wrap gap-2">
+                              {pair.info?.socials?.length ? (
+                                pair.info.socials.map((social: any, i: number) => (
+                                  <a
+                                    key={i}
+                                    href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-block px-2 py-1 text-xs font-medium bg-gray-700 text-blue-300 hover:text-blue-400 rounded-full transition-colors"
+                                  >
+                                    {social.type}
+                                  </a>
+                                ))
+                              ) : (
+                                <span className="text-gray-300">N/A</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Banner Image */}
+              <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden p-4">
                 <Image
                   width={1000}
-                  height={1000}
-                  className="h-full w-auto rounded-md border-bordercolor border"
+                  height={300}
+                  className="w-full h-auto rounded-md"
                   src={pair.info?.openGraph || bannerdefault}
                   alt={pair.baseToken?.name || "N/A"}
                 />
               </div>
-              <div className="space-y-2 w-full">
-                <div className="flex lg:p-2 justify-between w-full items-center">
-                  <div className="flex ">
-                    <Image
-                      width={80}
-                      height={80}
-                      className="h-8 w-8 lg:w-20 lg:h-20 rounded-full p-1 bg-bordercolor"
-                      src={pair.info?.imageUrl || tokendefault}
-                      alt={pair.baseToken?.name || "N/A"}
-                    />
-                    <h2 className="text-xs lg:text-3xl font-semibold">
-                      {pair.baseToken?.name || "N/A"}{" "}
-                      <p className="text-white text-xxs lg:text-xl bg-bordercolor rounded-full">
-                        {pair.baseToken?.symbol || "N/A"}
-                      </p>
-                    </h2>
-                  </div>
-                  <div className="flex flex-col text-xs lg:text-3xl">
-                    <strong className="text-bordercolor text-xs lg:text-2xl">
-                      {pair.baseToken?.symbol || "N/A"} Price (USD)
-                    </strong>
-                    ${pair.priceUsd || "N/A"}
-                  </div>
-                  <div className="flex flex-col text-xs lg:text-3xl">
-                    <strong className="text-bordercolor text-xs lg:text-2xl">
-                      Liquidity (USD)
-                    </strong>
-                    ${pair.liquidity?.usd || "N/A"}
-                  </div>
-                  <div className="flex flex-col text-xs lg:text-3xl">
-                    <strong className="text-bordercolor text-xs lg:text-2xl">
-                      24h Change (USD)
-                    </strong>{" "}
-                    ${pair.priceChange?.h24 || "N/A"}
+              
+              {/* Charts and Swap */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+                  <div className="h-1 w-full bg-gradient-to-r from-bordercolor to-gray-600" />
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-white mb-4">Price Chart</h3>
+                    <TokenChart />
                   </div>
                 </div>
-
-                <div className="lg:px-2">
-                  <div
-                    className="text-left text-lg font-bold"
-                    style={{ textShadow: "white 2px 2px 20px" }}
-                  >
-                    GENERAL INFO
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="lg:p-4 p-1 rounded-lg border border-bordercolor text-left">
-                      <p>
-                        <strong>Chain ID:</strong> {pair.chainId || "N/A"}
-                      </p>
-                      <p>
-                        <strong>Dex ID:</strong> {pair.dexId || "N/A"}
-                      </p>
-                      <p className="overflow-hidden">
-                        <strong>Pair Address:</strong> {pair.pairAddress || "N/A"}
-                        <div>
-                          <button
-                            onClick={() => {
-                              navigator.clipboard.writeText(pair.pairAddress).then(() => {
-                                setCopied(true);
-                                setTimeout(() => setCopied(false), 2000);
-                              });
-                            }}
-                            className={`rounded ${copied ? "text-red-600" : "text-green-600"}`}
-                          >
-                            {copied ? "Copied!" : "Copy Address"}
-                          </button>
-                        </div>
-                      </p>
-                    </div>
-
-                    <div className="lg:p-4 p-1 rounded-lg border border-bordercolor text-left">
-                      <p>
-                        <strong>24H Volume:</strong> ${pair.volume?.h24 || "N/A"}
-                      </p>
-                      <p>
-                        <strong>6H Volume:</strong> ${pair.volume?.h6 || "N/A"}
-                      </p>
-                      <p>
-                        <strong>1H Volume:</strong> ${pair.volume?.h1 || "N/A"}
-                      </p>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="lg:p-4 p-1 rounded-lg border border-bordercolor text-left col-span-2">
-                      <p>
-                        <strong>Website:</strong>{" "}
-                        <a
-                          href={pair.info?.websites?.[0]?.url || "#"}
-                          target="_blank"
-                          className="text-blue-300"
-                        >
-                          {pair.info?.websites?.[0]?.label || "N/A"}
-                        </a>
-                      </p>
-                      <p>
-                        <strong>Socials:</strong>
-                      </p>
-                      <ul className="list-disc pl-4">
-                        {pair.info?.socials?.length ? (
-                          pair.info.socials.map((social, i) => (
-                            <li key={i}>
-                              <a href={social.url} target="_blank" className="text-blue-300">
-                                {social.type}
-                              </a>
-                            </li>
-                          ))
-                        ) : (
-                          <li>N/A</li>
-                        )}
-                      </ul>
-                    </div>
+                
+                <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+                  <div className="h-1 w-full bg-gradient-to-r from-bordercolor to-gray-600" />
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-white mb-4">Swap</h3>
+                    <Swap />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="rounded-md my-4 h-full lg:flex w-full">
-              <div className="w-full space-y-4 lg:space-y-0 lg:space-x-4 lg:flex">
-                <TokenChart />
-                <Swap/>
-              </div>
-            </div>
-          </div>
-        )
-      )}
-    </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

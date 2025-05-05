@@ -3,7 +3,7 @@ import { Chrome, File, TwitchIcon, Twitter, XIcon } from "lucide-react";
 const div = () => {
   return (
 
-    <div className="bg-darkblue text-whitetext-start lg:p-4 p-2">
+    <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-whitetext-start lg:p-4 p-2">
       
       <div className="flex">
         
