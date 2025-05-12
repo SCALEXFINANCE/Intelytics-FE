@@ -20,10 +20,11 @@ const Sidebar = ({ visible, setVisible }: any) => {
   const sidebarConfig = {
     menu: [
       { title: "Defi", path: "/" },
-      { title: "NFT", path: "/Nft" },
-      { title: "Lending", path: "/Lending" },
+      { title: "Security", path: "/Security" },
+      // { title: "NFT", path: "/Nft" },
+      // { title: "Lending", path: "/Lending" },
       { title: "Rewards", path: "/Rewards" },
-      { title: "Trading Bot", path: "/TradingBot" },
+      // { title: "Trading Bot", path: "/TradingBot" },
     ],
     extras: {
       rewards: {
