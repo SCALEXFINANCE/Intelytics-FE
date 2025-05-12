@@ -252,6 +252,7 @@ interface TokenInfo {
 
 interface TokenPair {
   baseToken?: BaseToken;
+  quoteToken?: BaseToken; // Added quoteToken property
   chainId?: string;
   dexId?: string;
   pairAddress?: string;
@@ -490,15 +491,32 @@ const TokenPairCard: FC<TokenPairCardProps> = ({ pair, copied, onCopy }) => {
                 
                 <div className="space-y-2">
                   <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-400">Pair Address</span>
+                    <span className="text-gray-400">Base Token Address</span>
                     <div className="flex items-center space-x-1">
-                      <span className="font-mono text-gray-300">{pair.pairAddress ? `${pair.pairAddress.slice(0, 6)}...${pair.pairAddress.slice(-4)}` : "N/A"}</span>
+                      <span className="font-mono text-gray-300">{pair.baseToken?.address ? `${pair.baseToken.address.slice(0, 6)}...${pair.baseToken.address.slice(-3)}` : "N/A"}</span>
                       <button
-                        onClick={() => pair.pairAddress && onCopy(pair.pairAddress)}
+                        onClick={() => pair.baseToken?.address && onCopy(pair.baseToken?.address)}
                         className="p-1 rounded-md hover:bg-gray-700 transition-colors"
                         title="Copy address"
                       >
-                        {copied === pair.pairAddress ? (
+                        {copied === pair.baseToken?.address ? (
+                          <Check size={14} className="text-green-500" />
+                        ) : (
+                          <Copy size={14} className="text-gray-400" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-400">Qoute Token Address</span>
+                    <div className="flex items-center space-x-1">
+                      <span className="font-mono text-gray-300">{pair.quoteToken?.address ? `${pair.quoteToken.address.slice(0, 6)}...${pair.quoteToken.address.slice(-3)} ` : "N/A"}</span>
+                      <button
+                        onClick={() => pair.quoteToken?.address && onCopy(pair.quoteToken?.address)}
+                        className="p-1 rounded-md hover:bg-gray-700 transition-colors"
+                        title="Copy address"
+                      >
+                        {copied === pair.quoteToken?.address ? (
                           <Check size={14} className="text-green-500" />
                         ) : (
                           <Copy size={14} className="text-gray-400" />
