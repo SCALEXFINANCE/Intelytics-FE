@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Logo from "./assets/logo.png";
 import Link from "next/link";
 import { log } from "console";
+
 const Layout = ({ children }: any) => {
   const [isVisibie, setIsVisible] = React.useState<boolean>(false);
   const router = useRouter();
